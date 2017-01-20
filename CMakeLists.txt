@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.0)
 project(GGJ2017)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES src/tower-maze.cpp)
+set(SOURCE_FILES src/tower-maze.cpp Enemy.cpp Enemy.hpp ASpritesHandler.hpp ASpritesHandler.cpp GameEngine.cpp GameEngine.hpp Window.cpp Window.hpp Core.cpp Core.hpp Display.cpp Display.hpp)
 add_executable(GGJ2017 ${SOURCE_FILES})
 
 # Detect and add SFML
