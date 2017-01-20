@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.5)
 project(GGJ2017)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES src/tower-maze.cpp)
-add_executable(GGJ2017 ${SOURCE_FILES})
+set(SOURCE_FILES src/tower-maze.cpp include/Tower/ITower.h)
+add_executable(GGJ2017 ${SOURCE_FILES} include/Tower/ITower.h)
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
