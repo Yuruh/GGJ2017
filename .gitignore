@@ -1,3 +1,7 @@
+.idea
+CMakeCache.txt
+CMakeFiles
+
 # Compiled Object files
 *.slo
 *.lo
