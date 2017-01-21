@@ -37,6 +37,8 @@ void GameEngine::update(float deltaTime)
     }
     for (auto block = _blocks.begin(); block != _blocks.end(); ++block)
     {
+        if (block == _blocks.end())
+            break;
         (*block)->update(deltaTime);
         if ((*block)->getTimeSinceCreated() >= WALL_DURATION)
         {
