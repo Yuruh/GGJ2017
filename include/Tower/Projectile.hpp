@@ -7,20 +7,25 @@
 
 #include <Monsters/Monster.hpp>
 
-class   Projectile
+
+class   Projectile : public AEntity
 {
 public:
-    Projectile(int, int, Monster*);
+    Projectile(float, float, int, int, Monster*);
     ~Projectile();
     int getRange() const;
     int getHit()   const;
     void setRange(int);
     void setHit(int);
     void setMonster(Monster*);
+    void update(float &deltaTime);
 
 private:
     int _range;
     int _hit;
+    float _ori;
+    float _x;
+    float _y;
     Monster* _target;
 };
 #endif //GGJ2017_PROJECTILE_H
