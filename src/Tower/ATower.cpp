@@ -171,6 +171,8 @@ bool ATower::isInCircle(std::pair<float, float> const& _pos, float prev_dist) {
 void ATower::attack(ActiveElement &target)
 {
     this->_timeSinceAtk = 0;
+    if (_target != nullptr)
+        Core::getInstance().addProjectile(5, 0, _target);
     //CORE ADD PROJECTILE
     // lancer projectile sur la pos du target
 }

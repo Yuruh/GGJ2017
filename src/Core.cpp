@@ -52,3 +52,8 @@ void Core::init()
 std::list<Monster*>& Core::getMonster() {
     return _monsters;
 }
+
+void Core::addProjectile(int hit, int range, Monster* _monster) {
+    _projectile.push_back(new Projectile(range, hit, _monster));
+
+}

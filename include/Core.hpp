@@ -12,6 +12,7 @@
 
 #include <list>
 #include <Monsters/Monster.hpp>
+#include <Tower/Projectile.hpp>
 
 class Core
 {
@@ -25,6 +26,7 @@ private:
 
     std::list<Button*>  _buttons;
     std::list<Monster*>  _monsters;
+    std::list<Projectile*>  _projectile;
     GameEngine          _engine{ _buttons };
     Display             _display{ _buttons, _monsters };
 
@@ -34,6 +36,7 @@ public:
     ~Core() {};
     static Core &getInstance();
     std::list<Monster*> & getMonster();
+    void addProjectile(int, int, Monster*);
     void run();
 };
 
