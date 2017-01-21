@@ -55,14 +55,13 @@ void        Map::initWorld()
 
 void        Map::placeTower()
 {
-    int     j = rand() % MAP_SIZE + 1;
-    int     i = rand() % MAP_SIZE + 1;
+    int j = rand() % MAP_SIZE + 1;
+    int i = rand() % MAP_SIZE + 1;
 
     if (_map[j][i] == 0 &&
         _map[j - 1][i - 1] != TOWER && _map[j][i - 1] != TOWER && _map[j + 1][i - 1] != TOWER &&
         _map[j - 1][i] != TOWER && _map[j][i] != TOWER && _map[j + 1][i] != TOWER &&
-        _map[j - 1][i + 1] != TOWER && _map[j][i + 1] != TOWER && _map[j + 1][i + 1] != TOWER)
-    {
+        _map[j - 1][i + 1] != TOWER && _map[j][i + 1] != TOWER && _map[j + 1][i + 1] != TOWER) {
         _map[j][i] = TOWER;
         _towers -= 1;
     }
@@ -70,3 +69,8 @@ void        Map::placeTower()
     if (_towers > 0)
         placeTower();
 }
+
+const std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE> &Map::get_map() const {
+    return _map;
+}
+

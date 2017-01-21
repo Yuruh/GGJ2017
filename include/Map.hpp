@@ -7,7 +7,9 @@
 
 # define    MAP_SIZE    11
 
-enum    _type {
+#include    <array>
+
+enum    typeMap {
     ROAD = 0,
     WALL = 1,
     TOWER = 2,
@@ -22,8 +24,10 @@ public:
     void    initWorld();
     void    placeTower();
 
+    const std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE> &get_map() const;
+
 private:
-    int     _map[MAP_SIZE][MAP_SIZE];
+    std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE>     _map;
     int     _towers;
 };
 
