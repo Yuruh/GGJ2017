@@ -7,7 +7,7 @@
 #include <ATower.hpp>
 #include <BasicTower.hpp>
 
-BasicTower::BasicTower(unsigned hp, int mp, int range, float atkSpeed, MagickAttack * magic, Projectile * projectile) : ATower(hp, mp, range, atkSpeed, magic, projectile)
+BasicTower::BasicTower(float x, float y, unsigned hp, int mp, int range, float atkSpeed, MagickAttack * magic, Projectile * projectile) : ATower(x, y, hp, mp, range, atkSpeed, magic, projectile)
 {
 
 }

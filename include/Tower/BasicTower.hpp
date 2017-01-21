@@ -11,7 +11,7 @@
 class BasicTower : public  ATower
 {
 public:
-    BasicTower(unsigned int, int, int, float, MagickAttack *, Projectile *);
+    BasicTower(float, float, unsigned int, int, int, float, MagickAttack *, Projectile *);
     ~BasicTower();
     void Speak() const;
 

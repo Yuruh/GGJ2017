@@ -3,14 +3,18 @@
 //
 
 
+#include <list>
 #include "ATower.hpp"
 
-ATower::ATower(unsigned int hp, int mp, int range, float atkSpeed, MagickAttack * magic, Projectile * projectile) : ActiveElement(hp, atkSpeed), _magic(magic), _attack(projectile)
+ATower::ATower(float x, float y, unsigned int hp, int mp, int range, float atkSpeed, MagickAttack * magic, Projectile * projectile) : ActiveElement(hp, atkSpeed), _magic(magic), _attack(projectile)
 {
+    _x = x;
+    _y = y;
     _mp = mp;
     _range = range;
     _timeSinceAtk = 0;
     _atkSpeed = atkSpeed;
+    _target = nullptr;
 }
 
 ATower::~ATower() {
@@ -100,12 +104,79 @@ Projectile *ATower::getPhysicalAttack() const {
 
 void ATower::update(float &deltaTime)
 {
+
     this->_timeSinceAtk += deltaTime;
+    if (_target == nullptr)
+    {
+        //nearestMonster()  TO DO METTRE LE VECTOR DE MONSTRE
+    }
+    if (canAttack() == true && hadRunAway() == false)
+    {
+        if (_target != nullptr)
+            this->attack(*_target);
+
+    }
+    /*if (_monster == nullptr)
+
+    if (canAttack() == true)
+    {
+        nearestMonster(_monster);
+    }*/
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
+
+int ATower::nearestMonster(std::vector<Monster> &monster) //int a changé par la cla
+{
+    int nb;
+    int count;
+    float dist;
+
+    count = 0;
+    nb = -1;
+    _dist = 0.0;
+
+    for(std::vector<Monster>::iterator i = monster.begin(); i != monster.end(); ++i)
+    {
+        count++;
+        if (isInCircle((*i).getPos(), _dist) == true)
+            nb = count;
+    }
+    if (nb != -1)
+        _target = &monster[nb];
+    return (nb);
+}
+
+bool ATower::hadRunAway()
+{
+    float dist;
+
+    dist = sqrtf(powf(_target->getPos().second - _x, 2) + powf(_target->getPos().first - _y, 2));
+    if (dist > _range) {
+        _target = nullptr;
+        return true;
+    }
+    return false;
+}
+bool ATower::isInCircle(std::pair<float, float> const& _pos, float prev_dist) {
+    float dist;
+
+    dist = sqrtf(powf(_pos.second - _x, 2) + powf(_pos.first - _y, 2));
+    if (_dist != 0 && dist < prev_dist) {
+        _dist = dist;
+        return false;
+    }
+    if (dist <= _range) {
+        _dist = dist; //redondant, mais il doit être set une première fois (autrement que 0);
+        return true;
+    }
+    return false;
+}
+
+
 
 void ATower::attack(ActiveElement &target)
 {
     this->_timeSinceAtk = 0;
+    //CORE ADD PROJECTILE
     // lancer projectile sur la pos du target
 }
