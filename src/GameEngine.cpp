@@ -53,6 +53,8 @@ void GameEngine::update(float deltaTime)
 
     for (auto & tower : _towers) {
         tower->update(deltaTime);
+        if (tower->getPhysicalAttack() != nullptr)
+            tower->getPhysicalAttack()->update(deltaTime);
     }
 }
 

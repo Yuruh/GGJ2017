@@ -103,5 +103,7 @@ void Display::drawTowers() {
     //std::cout << "Tower size: " << _towers.size() << std::endl;
     for (auto & tower : _towers) {
         _window->draw(*tower);
+        if (tower->getPhysicalAttack() != nullptr)
+            _window->draw(*tower->getPhysicalAttack());
     }
 }

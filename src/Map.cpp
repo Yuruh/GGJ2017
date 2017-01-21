@@ -86,6 +86,12 @@ std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos) con
     ret.push_back(std::pair<int, int>(1, 5));
     ret.push_back(std::pair<int, int>(1, 4));
     ret.push_back(std::pair<int, int>(1, 5));
+    ret.push_back(std::pair<int, int>(2, 5));
+    ret.push_back(std::pair<int, int>(3, 5));
+    ret.push_back(std::pair<int, int>(4, 5));
+    ret.push_back(std::pair<int, int>(4, 6));
+    ret.push_back(std::pair<int, int>(4, 7));
+    ret.push_back(std::pair<int, int>(4, 8));
 
     return ret;
 }
