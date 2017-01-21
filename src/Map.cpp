@@ -3,7 +3,7 @@
 //
 
 #include    "Map.hpp"
-#include    "TextureManager.hpp"
+#include "Display/TextureManager.hpp"
 #include    <iostream>
 #include    <cstdlib>
 #include    <ctime>

@@ -8,7 +8,7 @@
 # define    MAP_SIZE    21
 
 #include    <array>
-#include "SfmlSpriteHandler.hpp"
+#include "Display/SfmlSpriteHandler.hpp"
 
 enum    typeMap {
     ROAD = 0,

@@ -16,13 +16,13 @@ public:
         _map(nullptr) {}
 
     void init(Map *map);
-    void go();
     void update(float deltaTime);
     void draw(sf::RenderWindow *window);
-
+    void nextWave();
     void handleEvent(const std::pair<int, int> &event);
 
 private:
+    bool    _isLaunched;
     Map     *_map;
     //    enemies, tower, projectiles, map, walls
 };

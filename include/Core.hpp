@@ -6,7 +6,8 @@
 #define GGJ2017_CORE_HPP
 
 #include "GameEngine.hpp"
-#include "Display.hpp"
+#include "Display/Display.hpp"
+#include "Display/Button.hpp"
 #include "Map.hpp"
 
 class Core
@@ -20,7 +21,7 @@ private:
     static  Core        _instance;
     GameEngine          _engine;
     Display             _display;
-
+    std::vector<Button*> _buttons;
     Map     *_map;
 
 public:

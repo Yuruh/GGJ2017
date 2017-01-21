@@ -4,7 +4,7 @@ project(GGJ2017)
 include_directories(
         include
         include/Tower)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -g")
 
 set(SOURCE_FILES
         src/main.cpp
@@ -15,17 +15,19 @@ set(SOURCE_FILES
         src/Tower/Projectile.cpp include/Tower/Projectile.hpp
 
         src/Map.cpp include/Map.hpp
-        src/ASpritesHandler.cpp include/ASpritesHandler.hpp
+        src/Display/ASpritesHandler.cpp include/Display/ASpritesHandler.hpp
         src/GameEngine.cpp include/GameEngine.hpp
         src/Core.cpp include/Core.hpp
-        src/Display.cpp include/Display.hpp
+        src/Display/Display.cpp include/Display/Display.hpp
         src/Monsters/Monster.cpp
         src/Monsters/Soldier.cpp
         src/AEntity.cpp
         src/PassiveElement.cpp
         src/ActiveElement.cpp
-        src/TextureManager.cpp include/TextureManager.hpp
-        src/SfmlSpriteHandler.cpp
+        src/Display/TextureManager.cpp include/Display/TextureManager.hpp
+        src/Display/SfmlSpriteHandler.cpp
+        src/Display/Clickable.cpp
+        src/Display/Button.cpp
         )
 add_executable(GGJ2017 ${SOURCE_FILES})
 
