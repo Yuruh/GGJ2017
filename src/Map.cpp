@@ -39,7 +39,6 @@ void        Map::initWorld()
             else
                 _map[y][x] = ROAD;
 
-//                légal de passer l'adresse ?
             _map[y][x].y = y;
             _map[y][x].x = x;
 
@@ -119,10 +118,8 @@ std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos)
             _map[i][j].prev = nullptr;
         }
     }
-//    std::cout << pos.first << " " << pos.second << std::endl;
     Tile    *current = &this->_map[pos.first][pos.second];
     current->dist = 0;
-//    current->visited = true;
     std::vector <Tile*>   dist;
     this->launchAlgo(current, dist);
 
@@ -130,14 +127,14 @@ std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos)
 
     while (prev != nullptr)
     {
-        std::cout << prev->dist << std::endl;
+        if (prev->type == BLOCK)
+            std::cout << "PROBLEM" << std::endl;
         ret.push_front(std::pair<int, int>(prev->x, prev->y));
         prev = prev->prev;
     }
 
     ret.push_back(std::pair<int, int>(0, 1));
 
-//    exit(1);
     return ret;
 }
 
@@ -150,13 +147,9 @@ void Map::launchAlgo(Tile *tile, std::vector<Tile*> &dist)
 {
     tile->visited = true;
 
-//    std::vector <Tile*>   dist;
-
-//    std::cout << tile->x << " " << tile->y << ": " << tile->dist << std::endl;
     for (auto it = tile->links.begin(); it != tile->links.end(); ++it)
     {
-//        std::cout << tile->links.size() << std::endl;
-        if (!(*it)->visited && (*it)->type == ROAD || (*it)->type == BORDER_CASTLE || (*it)->type == CASTLE)
+        if (!(*it)->visited && ((*it)->type == ROAD || (*it)->type == BORDER_CASTLE || (*it)->type == CASTLE))
         {
             if ((*it)->dist == -1 || (*it)->dist > tile->dist + 1)
             {
@@ -166,7 +159,6 @@ void Map::launchAlgo(Tile *tile, std::vector<Tile*> &dist)
             dist.push_back(*it);
         }
     }
-//    std::sort(dist.begin(), dist.end(), cmpTile);
     while (!dist.empty() && dist[0]->visited)
     {
         dist.erase(dist.begin());
@@ -177,13 +169,5 @@ void Map::launchAlgo(Tile *tile, std::vector<Tile*> &dist)
         dist.erase(dist.begin());
         launchAlgo(instance, dist);
     }
-//    for (int i = 0; i < dist.size(); ++i)
-//    {
-//        if (!dist[i]->visited)
-//            launchAlgo(dist[i]);
-//    }
-
-//    if (next != nullptr)
-//        launchAlgo(next);
 }
 

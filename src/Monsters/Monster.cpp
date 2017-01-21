@@ -38,22 +38,39 @@ void Monster::update(float &deltaTime)
             _counter = 0;
         _t = 0;
     }
-//    todo : normaliser ? Pas besoin si pas diagonale
+
     float movingValue = this->_moveSpeed * deltaTime * TILE_SIZE;
     ASpritesHandler::move(movingValue * dir.first, movingValue * dir.second);
 
     if (abs((int) (this->getPosition().x - this->currentPos.first * TILE_SIZE)) > TILE_SIZE ||
             abs((int) (this->getPosition().y - this->currentPos.second * TILE_SIZE)) > TILE_SIZE)
     {
-        if (nextPositions.size() > 0)
+        if (nextPositions.size() > 1)
         {
+//            std::cout << currentPos.first << " " << currentPos.second << std::endl;
             this->currentPos = this->nextPositions.front();
+//            std::cout << currentPos.first << " " << currentPos.second << std::endl << std::endl;
             this->nextPositions.pop_front();
             this->dir.first = (this->nextPositions.front().first - this->currentPos.first);
             this->dir.second = (this->nextPositions.front().second - this->currentPos.second);
         }
         else
             arrived = true;
+    }
+}
+
+void    Monster::checkBlockInPath(const std::pair<int, int> &pos)
+{
+    for (auto &path : nextPositions)
+    {
+        if (pos.first == path.first && pos.second == path.second)
+        {
+//            this->dir.first = 0;
+//            this->dir.second = 0;
+            this->nextPositions.clear();
+            this->setPosition(this->getPos().first, this->getPos().second);
+            return;
+        }
     }
 }
 
