@@ -7,7 +7,7 @@
 TextureManager::TextureManager()
 {
     this->addTexture("resources/assets/wall.png", TextureManager::WALL);
-    this->addTexture("resources/assets/wallToPlace.png", TextureManager::WALLTOPLACE);
+    this->addTexture("resources/assets/block.png", TextureManager::BLOCK);
     this->addTexture("resources/assets/ground.png", TextureManager::GROUND);
     this->addTexture("resources/assets/buttonNormal.png", TextureManager::BUTTON);
 }

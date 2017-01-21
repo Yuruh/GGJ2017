@@ -6,6 +6,7 @@
 #define GGJ2017_MAP_H
 
 #include    <array>
+#include    <list>
 #include    "Display/SfmlSpriteHandler.hpp"
 
 # define    MAP_SIZE    21
@@ -26,7 +27,7 @@ public:
     ~Map();
 
     void    initWorld();
-    void    placeTower();
+    void    placeTower(); // Will get tower list &
 
     inline const std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE> &getMap() const { return _map; };
     inline const SfmlSpriteHandler &getGround() const { return _ground; };

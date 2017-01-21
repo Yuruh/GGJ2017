@@ -1,6 +1,9 @@
 .idea
 CMakeCache.txt
 CMakeFiles
+GGJ2017*
+cmake_install.cmake
+Makefile
 
 # Compiled Object files
 *.slo

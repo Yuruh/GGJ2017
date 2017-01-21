@@ -22,6 +22,7 @@ void GameEngine::nextWave()
 {
     if (!_isLaunched)
         _isLaunched = true;
+    _map->placeTower(); // Need to pass tower list &
     std::cout << "NEXT WAVE" << std::endl;
 }
 
@@ -41,13 +42,10 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
     if (_isLaunched) {
         std::cout << "J'utilise dans le gameEngine un clic en pos " <<
                   event.first << " " << event.second << std::endl;
-
-        // Will have an IG_state to differenciate interaction with button (before game is launched) and
-        // interaction with map (place a wall InGame)
         return;
     }
     for (auto & button : _buttons)
-        if (button->containMouse(event))
+        if (button->containMouse(event)) // Will need binding between button and behavior
             this->nextWave();
 
     int x = 0, y = 0, tileSize = 40;
