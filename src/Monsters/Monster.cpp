@@ -3,16 +3,17 @@
 //
 
 #include <iostream>
+#include <Map.hpp>
 #include "Monsters/Monster.hpp"
 
 Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed) : ActiveElement(hp, atkSpeed), _atkValue(atkValue), _moveSpeed(moveSpeed)
 {
     _t = 0;
     _counter = 0;
-    pos.first = 0;
-    pos.second = 0;
+    currentPos.first = 0;
+    currentPos.second = 0;
     dir.first = 0;
-    dir.second = 1;
+    dir.second = 0;
 }
 
 Monster::~Monster()
@@ -35,8 +36,23 @@ void Monster::update(float &deltaTime)
         _t = 0;
     }
 //    todo : normaliser ? Pas besoin si pas diagonale
-    float movingValue = this->_moveSpeed * deltaTime * 40;
+    float movingValue = this->_moveSpeed * deltaTime * TILE_SIZE;
     ASpritesHandler::move(movingValue * dir.first, movingValue * dir.second);
+
+    if (abs((int) (this->getPosition().x - this->currentPos.first * TILE_SIZE)) > TILE_SIZE ||
+            abs((int) (this->getPosition().y - this->currentPos.second * TILE_SIZE)) > TILE_SIZE)
+    {
+        if (nextPositions.size() > 0)
+        {
+            this->currentPos = this->nextPositions.front();
+            this->nextPositions.pop_front();
+            this->dir.first = (this->nextPositions.front().first - this->currentPos.first);
+            this->dir.second = (this->nextPositions.front().second - this->currentPos.second);
+            std::cout << this->dir.second << std::endl;
+        }
+        else
+            std::cout << "JE SUIS ARRIVE" << std::endl;
+    }
 }
 
 float& Monster::getMoveSpeed()
@@ -65,5 +81,14 @@ void Monster::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
     if (this->_counter < this->sprites.size() && this->_counter >= 0)
         target.draw(this->sprites[this->_counter]);
+}
 
+void Monster::setNextPositions(const std::list<std::pair<int, int>> &nextPositions)
+{
+    this->nextPositions = nextPositions;
+    if (this->nextPositions.size() > 0)
+    {
+        this->dir.first = (int) (this->nextPositions.front().first - this->_pos.first);
+        this->dir.second = (int) (this->nextPositions.front().second - this->_pos.second);
+    }
 }

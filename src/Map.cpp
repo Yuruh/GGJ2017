@@ -65,3 +65,23 @@ void        Map::placeTower() // Will get tower list &
         placeTower();
 }
 
+std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos) const
+{
+    std::list<std::pair<int, int> >   ret;
+
+    ret.push_back(std::pair<int, int>(0, 1));
+    ret.push_back(std::pair<int, int>(0, 2));
+    ret.push_back(std::pair<int, int>(0, 3));
+    ret.push_back(std::pair<int, int>(1, 3));
+    ret.push_back(std::pair<int, int>(2, 3));
+    ret.push_back(std::pair<int, int>(2, 4));
+    ret.push_back(std::pair<int, int>(2, 5));
+    ret.push_back(std::pair<int, int>(3, 5));
+    ret.push_back(std::pair<int, int>(2, 5));
+    ret.push_back(std::pair<int, int>(1, 5));
+    ret.push_back(std::pair<int, int>(1, 4));
+    ret.push_back(std::pair<int, int>(1, 5));
+
+    return ret;
+}
+

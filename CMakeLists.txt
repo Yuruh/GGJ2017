@@ -30,7 +30,7 @@ set(SOURCE_FILES
         src/Display/Button.cpp
 
         include
-        )
+        Tile.cpp Tile.hpp)
 add_executable(GGJ2017 ${SOURCE_FILES})
 
 

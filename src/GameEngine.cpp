@@ -52,6 +52,9 @@ void GameEngine::update(float deltaTime)
 {
     for (auto & monster : _monsters)
     {
+//        il peut arriver que le mur posé par un joueur casse les direction d'un monstre, auquel cas on recalcule son path
+        if (!monster->hasDirection())
+            monster->setNextPositions(_map->getPath(monster->getPos()));
         monster->update(deltaTime);
     }
     for (auto & tower : _towers)
