@@ -28,6 +28,10 @@ void GameEngine::nextWave()
 
 void GameEngine::update(float deltaTime)
 {
+    for (auto & monster : _monsters)
+    {
+        monster->update(deltaTime);
+    }
     // update stuff
 }
 

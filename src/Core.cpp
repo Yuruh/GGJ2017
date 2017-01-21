@@ -26,7 +26,7 @@ void Core::run()
         if (event.first != -1 && event.second != -1)
             this->_engine.handleEvent(event);
 
-        sf::Time deltaTime = clock.getElapsedTime();
+        sf::Time deltaTime = clock.restart();
         this->_engine.update(deltaTime.asSeconds());
         this->_display.draw();
     }

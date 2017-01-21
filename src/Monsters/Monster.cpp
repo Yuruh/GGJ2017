@@ -2,6 +2,7 @@
 // Created by wasta-geek on 20/01/17.
 //
 
+#include <iostream>
 #include "Monsters/Monster.hpp"
 
 Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed) : ActiveElement(hp, atkSpeed), _atkValue(atkValue), _moveSpeed(moveSpeed)
@@ -23,7 +24,7 @@ void Monster::update(float &deltaTime)
     _t += deltaTime;
     if (this->_t > this->_refreshRate)
     {
-        if (_counter < this->sprites.size())
+        if (_counter < this->sprites.size() - 1)
             _counter++;
         else
             _counter = 0;
@@ -57,4 +58,5 @@ void Monster::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
     if (this->_counter < this->sprites.size() && this->_counter >= 0)
         target.draw(this->sprites[this->_counter]);
+
 }
