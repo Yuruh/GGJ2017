@@ -29,7 +29,6 @@ private:
 
     Map     *_map;
     std::list<Button*>  &_buttons;
-    //    enemies, tower, projectiles, map, walls
 };
 
 

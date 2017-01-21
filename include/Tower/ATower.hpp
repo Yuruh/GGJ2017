@@ -11,6 +11,7 @@
 #include <iostream>
 #include <vector>
 #include <ActiveElement.hpp>
+#include "Core.hpp"
 #include "Projectile.hpp"
 #include "MagickAttack.hpp"
 #include "Monsters/Monster.hpp"
@@ -42,7 +43,7 @@ public:
     virtual void        Speak() const = 0;
     void                update(float&);
     void                attack(ActiveElement&);
-    int                 nearestMonster(std::vector<Monster> &_monster);
+    int                 nearestMonster(std::list<Monster*>& );
     bool                isInCircle(std::pair<float, float> const&, float dist);
     bool                hadRunAway();
 private:
