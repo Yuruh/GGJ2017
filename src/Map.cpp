@@ -127,9 +127,14 @@ std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos)
 
     while (prev != nullptr)
     {
-        if (prev->type == BLOCK)
+        if (prev->type == WALL)
             std::cout << "PROBLEM" << std::endl;
-        ret.push_front(std::pair<int, int>(prev->x, prev->y));
+
+        if (prev->x != pos.first || prev->y != pos.second)
+        {
+            ret.push_front(std::pair<int, int>(prev->x, prev->y));
+            std::cout << prev->x << "-" << prev->y << std::endl;
+        }
         prev = prev->prev;
     }
 
