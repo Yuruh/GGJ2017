@@ -3,7 +3,9 @@
 //
 
 #include    "Map.hpp"
+//#include    "ATower.hpp"
 #include    "Display/TextureManager.hpp"
+
 #include    <iostream>
 #include    <cstdlib>
 #include    <ctime>
@@ -15,6 +17,8 @@ Map::Map() : _wall(TextureManager::get(TextureManager::WALL)),
         for (int i = 0; i < MAP_SIZE; i += 1)
             _map[j][i] = ROAD;
     _towers = MAP_SIZE;
+
+    this->initWorld();
 }
 
 Map::~Map()
@@ -40,14 +44,9 @@ void        Map::initWorld() {
     _map[(MAP_SIZE + 1) / 2][(MAP_SIZE - 2) / 2] = BORDER_CASTLE;
     _map[(MAP_SIZE + 1) / 2][(MAP_SIZE - 1) / 2] = BORDER_CASTLE;
     _map[(MAP_SIZE + 1) / 2][(MAP_SIZE + 1) / 2] = BORDER_CASTLE;
-
-
-    // Build tower
-    srand(time(0));
-    placeTower();
 }
 
-void        Map::placeTower()
+void        Map::placeTower() // Will get tower list &
 {
     int j = rand() % MAP_SIZE;
     int i = rand() % MAP_SIZE;

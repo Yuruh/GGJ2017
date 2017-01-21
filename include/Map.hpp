@@ -8,6 +8,7 @@
 # define    MAP_SIZE    21
 
 #include    <array>
+#include    <list>
 #include    "Display/SfmlSpriteHandler.hpp"
 
 enum    typeMap {
@@ -24,7 +25,7 @@ public:
     ~Map();
 
     void    initWorld();
-    void    placeTower();
+    void    placeTower(); // Will get tower list &
 
     const std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE> &getMap() const;
     const SfmlSpriteHandler &getGround() const;
