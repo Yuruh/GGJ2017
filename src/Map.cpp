@@ -30,7 +30,7 @@ void        Map::initWorld()
     // Build wall
     for (int y = 0; y < MAP_SIZE; y += 1)
         for (int x = 0; x < MAP_SIZE; x += 1)
-            if (x % 2 == 0 && x % 2 == 0)
+            if (y % 2 == 0 && x % 2 == 0)
                 _map[y][x] = WALL;
             else
                 _map[y][x] = ROAD;
