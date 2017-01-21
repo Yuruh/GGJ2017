@@ -97,8 +97,10 @@ void Display::drawMap()
 void Display::drawButtons()
 {
     for (auto & button : _buttons) {
-        _window->draw(button->getSprite());
-        _window->draw(button->getText());
+        if (button->isVisible()) {
+            _window->draw(button->getSprite());
+            _window->draw(button->getText());
+        }
     }
 }
 

@@ -15,9 +15,3 @@ Button::Button(sf::Texture const &texture, std::wstring text, sf::Vector2f posit
     this->_text.setString(text);
 
 }
-
-Button::~Button()
-{}
-
-const sf::Text& Button::getText() const
-{ return this->_text; }
