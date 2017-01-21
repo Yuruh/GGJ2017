@@ -15,7 +15,6 @@ Projectile::Projectile(float x, float y, int range, int hit, Monster* monster) {
     _target = monster;
     sf::Texture const& text = TextureManager::get(TextureManager::PROJECTILE);
     this->addSprites(text, sf::IntRect(_x, _y, text.getSize().x, text.getSize().y), 1);
-    this->setProportionalSize(100, 100);
 }
 
 Projectile::~Projectile() {
@@ -25,6 +24,7 @@ Projectile::~Projectile() {
 int Projectile::getHP() const {
     return _hp;
 }
+
 void Projectile::update(float &deltaTime) {
     //std::cout << "POS MONSTER " << (int)_target->getPosition().x << " | " << (int)_target->getPosition().y << "POS PROJ " << (int)_x << " | " << (int)_y << std::endl;
     if (_x > _target->getPosition().x)
