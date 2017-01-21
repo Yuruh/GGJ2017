@@ -77,7 +77,8 @@ void ATower::setTime() {
     y2k.tm_mon = 0;
     y2k.tm_mday = 0;
     time(&_tim);
-    this->_time_attack =  0;
+    timer = _tim;
+    //this->_time_attack =  0;
 }
 
 void ATower::changeTime() {
