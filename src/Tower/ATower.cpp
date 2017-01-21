@@ -30,7 +30,7 @@ bool ATower::canAttack() {
     if (getTime() >= _speed)
     {
         std::cout << "can attack" << std::endl;
-        this->_time_attack = 0;
+       setTime();
         return true;
     }
     std::cout << "can't attack" << std::endl;
@@ -67,6 +67,7 @@ double ATower::getTime() const {
 
 void ATower::setTime() {
     struct tm y2k;
+    time_t _tim;
 
     memset(&y2k, 0, sizeof(tm));
     y2k.tm_hour = 0;
@@ -75,8 +76,8 @@ void ATower::setTime() {
     y2k.tm_year = 0;
     y2k.tm_mon = 0;
     y2k.tm_mday = 0;
-    time(&timer);
-    this->_time_attack = difftime(timer, mktime(&y2k));
+    time(&_tim);
+    this->_time_attack =  0;
 }
 
 void ATower::changeTime() {

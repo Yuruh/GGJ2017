@@ -14,21 +14,17 @@ int testTom()
     ATower *_tow = new BasicTower(0, 0, 0, 0, 2, mag, NULL);
     _tow->Speak();
     _tow->setTime();
-    _tow->canAttack();
-    _tow->changeTime();
-    std::cout << _tow->getTime() << std::endl;
-    sleep(1);
-    _tow->changeTime();
-    std::cout << _tow->getTime() << std::endl;
-    sleep(1);
-    _tow->changeTime();
-    _tow->canAttack();
-    std::cout << _tow->getTime() << std::endl;
-    _tow->changeTime();
-    std::cout << _tow->getTime() << std::endl;
-    sleep(1);
-    _tow->changeTime();
-    std::cout << _tow->getTime() << std::endl;
+    int i;
+
+    i = 0;
+    while (i < 10) {
+        std::cout << "I" << i << std::endl;
+        _tow->canAttack();
+        std::cout << _tow->getTime() << std::endl;
+        _tow->changeTime();
+        sleep(1);
+        i++;
+    }
 }
 int main()
 {
