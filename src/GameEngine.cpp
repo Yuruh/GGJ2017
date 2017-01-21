@@ -6,7 +6,7 @@
 #include <SFML/Window/Event.hpp>
 #include "../include/GameEngine.hpp"
 
-void GameEngine::init() // Will get every lists from Core
+void GameEngine::init(Map * map) // Will get every lists from Core
 {
     std::cout << "Engine.init()" << std::endl;
 }

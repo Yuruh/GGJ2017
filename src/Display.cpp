@@ -8,7 +8,7 @@
 
 bool Display::isActive()
 {
-    return this->window && this->window->isOpen();
+    return this->_window && this->_window->isOpen();
 }
 
 std::pair<int, int> Display::getEvent()
@@ -16,7 +16,7 @@ std::pair<int, int> Display::getEvent()
     sf::Event   event;
     std::pair<int, int> ret(-1, -1);
 
-    while (this->window->pollEvent(event))
+    while (this->_window->pollEvent(event))
     {
         if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
         {
@@ -24,24 +24,24 @@ std::pair<int, int> Display::getEvent()
             ret.second = event.mouseButton.y;
         }
         if (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-            this->window->close();
+            this->_window->close();
     }
     return ret;
 }
 
 void Display::run()
 {
-    this->window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "TOWER MAZE");
+    this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "TOWER MAZE");
 }
 
-void Display::init() // Will get everything from Core
+void Display::init(Map *map) // Will get everything from Core
 {
     std::cout << "Display.init()" << std::endl;
 }
 
 void Display::draw()
 {
-    this->window->clear();
+    this->_window->clear();
     // Draw entities
-    this->window->display();
+    this->_window->display();
 }

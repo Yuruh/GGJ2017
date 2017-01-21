@@ -5,6 +5,7 @@
 #ifndef GGJ2017_DISPLAY_HPP
 #define GGJ2017_DISPLAY_HPP
 
+#include "Map.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -12,23 +13,25 @@ class Display
 {
 public:
     Display() :
-        window(nullptr) {}
+        _window(nullptr) {}
     ~Display() {
-        if (this->window)
-            delete this->window;
+        if (this->_window)
+            delete this->_window;
     }
 
     void run();
     bool isActive();
 
-    void init();
+    void init(Map *map);
     void draw();
 
     std::pair<int, int> getEvent();
 
 
 private:
-    sf::RenderWindow    *window;
+    sf::RenderWindow    *_window;
+
+    Map     *_map;
 };
 
 

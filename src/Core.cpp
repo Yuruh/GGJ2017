@@ -37,6 +37,8 @@ void Core::init()
     this->_display.run();
 
     // Init Map and all lists (ennemies, projectiles, towers, walls, buttons)
-    _engine.init();// (Map, enemies, projectiles, towers, walls, button);
-    _display.init();// (Map, enemies, projectiles, towers, walls, button);
+    _map = new Map();
+
+    _engine.init(_map);// (Map, enemies, projectiles, towers, walls, button);
+    _display.init(_map);// (Map, enemies, projectiles, towers, walls, button);
 }

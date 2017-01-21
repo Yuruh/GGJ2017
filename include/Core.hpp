@@ -7,11 +7,13 @@
 
 #include "GameEngine.hpp"
 #include "Display.hpp"
+#include "Map.hpp"
 
 class Core
 {
 private:
-    Core() {};
+    Core() : 
+        _map(nullptr) {}
 
     void init();
 
@@ -19,7 +21,7 @@ private:
     GameEngine          _engine;
     Display             _display;
 
-
+    Map     *_map;
 
 public:
     ~Core() {};
