@@ -23,6 +23,11 @@ public:
 protected:
     unsigned int    _atkValue;
     float           _moveSpeed;
+    float           _refreshRate;
+    float           _t;
+    unsigned int    _counter;
+
+    void draw(sf::RenderTarget &, sf::RenderStates) const;
 };
 
 

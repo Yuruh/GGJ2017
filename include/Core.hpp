@@ -26,7 +26,7 @@ private:
     std::list<Button*>  _buttons;
     std::list<Monster*>  _monsters;
     GameEngine          _engine{ _buttons };
-    Display             _display{ _buttons };
+    Display             _display{ _buttons, _monsters };
 
     Map     *_map;
 

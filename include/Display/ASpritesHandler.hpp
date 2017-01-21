@@ -11,7 +11,7 @@
 class ASpritesHandler : public sf::Drawable
 {
 protected:
-    std::vector<sf::Sprite>  sprites;
+    std::vector<SfmlSpriteHandler>  sprites;
     sf::Vector2f             mainPos;
 public:
     ASpritesHandler();
@@ -25,6 +25,7 @@ public:
     virtual void setColor(int r, int g, int b, int a);
 
     void setProportionalSize(float width, float height);
+    void addSprites(const sf::Texture&, sf::IntRect, int qty);
 };
 
 
