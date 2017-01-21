@@ -78,6 +78,8 @@ void ATower::update(float &deltaTime)
 {
 
     this->_timeSinceAtk += deltaTime;
+    if (_target != nullptr && _target->getHp() <= 0)
+        _target = nullptr;
     if (_target == nullptr)
         nearestMonster(_monsters);
     if (_target != nullptr && canAttack() == true /*&& hadRunAway() == false*/)
