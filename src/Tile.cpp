@@ -12,4 +12,5 @@ bool Tile::operator==(typeMap type) const
 Tile &Tile::operator=(typeMap type)
 {
     this->type = type;
+    return *this;
 }
