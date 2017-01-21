@@ -101,9 +101,9 @@ void Display::drawMonsters()
 }
 
 void Display::drawTowers() {
-
     for (auto & tower : _towers)
     {
+        std::cout << "Try to draw" << std::endl;
         _window->draw(*tower);
     }
 }

@@ -21,13 +21,16 @@ enum    typeMap {
     CASTLE = 9
 };
 
+class ATower;
+class Monster;
+
 class Map {
 public:
     Map();
     ~Map();
 
     void    initWorld();
-    void    placeTower(); // Will get tower list &
+    void    placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters);
 
     inline const std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE> &getMap() const { return _map; };
     inline const SfmlSpriteHandler &getGround() const { return _ground; };

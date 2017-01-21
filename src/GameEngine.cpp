@@ -20,14 +20,13 @@ void GameEngine::init(Map * map) // Will get every lists from Core
     this->testPathfinding = new Monster(10, 10, 10, 1);
 }
 
-// Still needed?
+
 void GameEngine::nextWave()
 {
     if (!_isLaunched) {
-        createTower();
         _isLaunched = true;
     }
-    _map->placeTower(); // Need to pass tower list &
+    _map->placeTower(_towers, _monsters);
     std::cout << "NEXT WAVE" << std::endl;
 }
 
@@ -37,8 +36,9 @@ void GameEngine::createTower() {
 
     x = 300.0;
     y = 100.0;
-    for (int i = 0; i < 0; i++)
+    for (int i = 0; i < 10; i++)
     {
+        std::cout << "Draw tower!" << std::endl;
         _towers.push_back(new BasicTower(x, y, 10, 10, 5, 5.0, nullptr, nullptr, _monsters));
         x += 100.0;
         if (x >= 900) {

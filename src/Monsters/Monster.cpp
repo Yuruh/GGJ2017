@@ -65,5 +65,4 @@ void Monster::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
     if (this->_counter < this->sprites.size() && this->_counter >= 0)
         target.draw(this->sprites[this->_counter]);
-
 }

@@ -119,6 +119,11 @@ void ATower::update(float &deltaTime)
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
 
+void ATower::draw(sf::RenderTarget &target, sf::RenderStates) const
+{
+    std::cout << "Draw tower!" << std::endl;
+    target.draw(this->sprites[0]);
+}
 
 int ATower::nearestMonster(std::list<Monster*>& monsters) //int a changé par la cla
 {
