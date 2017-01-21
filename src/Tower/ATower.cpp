@@ -124,14 +124,10 @@ void ATower::draw(sf::RenderTarget &target, sf::RenderStates) const
     target.draw(this->sprites[0]);
 }
 
-int ATower::nearestMonster(std::list<Monster*>& monsters) //int a changé par la cla
+int ATower::nearestMonster(std::list<Monster*>& monsters)
 {
-    int nb;
-    int count;
-    float dist;
-
-    count = 0;
-    nb = -1;
+    int nb = -1;
+    int count = 0;
     _dist = 0.0;
 
     for (auto & monster : monsters)
@@ -150,7 +146,6 @@ bool ATower::hadRunAway()
 {
     float dist;
 
-
     dist = sqrtf(powf(_target->getPosition().x - _x, 2) + powf(_target->getPosition().y - _y, 2));
     if (dist > _range) {
         _target = nullptr;
@@ -158,6 +153,7 @@ bool ATower::hadRunAway()
     }
     return false;
 }
+
 bool ATower::isInCircle(const sf::Vector2f& _pos, float prev_dist) {
     float dist;
 
