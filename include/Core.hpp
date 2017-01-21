@@ -13,6 +13,7 @@
 #include <list>
 #include <Monsters/Monster.hpp>
 #include <Tower/Projectile.hpp>
+#include "Walls/Wall.hpp"
 
 class Core
 {
@@ -27,7 +28,9 @@ private:
     std::list<Button*>  _buttons;
     std::list<Monster*>  _monsters;
     std::list<Projectile*>  _projectile;
-    GameEngine          _engine{ _buttons, _monsters };
+    std::list<Wall*> _blocks;
+
+    GameEngine          _engine{ _buttons, _monsters, _blocks };
     Display             _display{ _buttons, _monsters };
 
     Map     *_map;

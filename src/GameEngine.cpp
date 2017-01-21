@@ -34,6 +34,17 @@ void GameEngine::update(float deltaTime)
     {
         monster->update(deltaTime);
     }
+
+    for (auto block = _blocks.begin(); block != _blocks.end(); ++block)
+    {
+        (*block)->update(deltaTime);
+        if ((*block)->getTimeSinceCreated() >= WALL_DURATION)
+        {
+            _map->setType((*block)->getY(), (*block)->getX(), ROAD);
+            block = _blocks.erase(block);
+        }
+    }
+
     // update stuff
 }
 
@@ -59,7 +70,10 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
             event.first /= TILE_SIZE;
             event.second /= TILE_SIZE;
             if (_map->getMap()[event.first][event.second] == ROAD)
+            {
+                _blocks.push_back(new Wall(event.first, event.second));
                 _map->setType(event.first, event.second, BLOCK);
+            }
         }
         return;
     }

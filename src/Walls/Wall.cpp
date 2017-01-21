@@ -3,9 +3,13 @@
 //
 
 #include "Walls/Wall.hpp"
+#include <iostream>
 
-Wall::Wall() : _timeSinceCreated(0f)
-{}
+Wall::Wall(int y, int x) : _timeSinceCreated(0.0)
+{
+    _pos.first = y;
+    _pos.second = x;
+}
 
 Wall::~Wall()
 {}

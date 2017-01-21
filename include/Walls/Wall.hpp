@@ -7,15 +7,21 @@
 
 #include "PassiveElement.hpp"
 
-#define WALL_DURATION   2.0f
+#define WALL_DURATION   2.0
 
-class Wall : public APassiveElement
+class Wall : public PassiveElement
 {
 public:
-    Wall();
+    Wall(int, int);
     virtual ~Wall();
     void update(float&);
+
+    inline float    getTimeSinceCreated() const { return _timeSinceCreated; };
+    inline int      getY() const { return _pos.first; };
+    inline int      getX() const { return _pos.second; };
+
 private:
+    std::pair<int, int> _pos;
     float _timeSinceCreated;
 };
 
