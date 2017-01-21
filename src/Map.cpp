@@ -12,7 +12,8 @@
 
 Map::Map() : _wall(TextureManager::get(TextureManager::WALL)),
              _ground(TextureManager::get(TextureManager::GROUND)),
-             _block(TextureManager::get(TextureManager::BLOCK))
+             _block(TextureManager::get(TextureManager::BLOCK)),
+             _castle(TextureManager::get(TextureManager::CASTLE))
 {
     _towers = MAP_SIZE;
 
@@ -34,17 +35,19 @@ void        Map::initWorld()
                 _map[j][i] = ROAD;
 
     // Build castle
-    _map[(MAP_SIZE - 2) / 2][(MAP_SIZE - 2) / 2] = BORDER_CASTLE;
+    _map[(MAP_SIZE - 2) / 2][(MAP_SIZE - 2) / 2] = CASTLE;
     _map[(MAP_SIZE - 2) / 2][(MAP_SIZE - 1) / 2] = BORDER_CASTLE;
     _map[(MAP_SIZE - 2) / 2][(MAP_SIZE + 1) / 2] = BORDER_CASTLE;
 
     _map[(MAP_SIZE - 1) / 2][(MAP_SIZE - 2) / 2] = BORDER_CASTLE;
-    _map[(MAP_SIZE - 1) / 2][(MAP_SIZE - 1) / 2] = CASTLE;
+    _map[(MAP_SIZE - 1) / 2][(MAP_SIZE - 1) / 2] = BORDER_CASTLE;
     _map[(MAP_SIZE - 1) / 2][(MAP_SIZE + 1) / 2] = BORDER_CASTLE;
 
     _map[(MAP_SIZE + 1) / 2][(MAP_SIZE - 2) / 2] = BORDER_CASTLE;
     _map[(MAP_SIZE + 1) / 2][(MAP_SIZE - 1) / 2] = BORDER_CASTLE;
     _map[(MAP_SIZE + 1) / 2][(MAP_SIZE + 1) / 2] = BORDER_CASTLE;
+
+    setPositionCastle(((MAP_SIZE - 2) / 2) * TILE_SIZE, ((MAP_SIZE - 2) / 2) * TILE_SIZE);
 }
 
 void        Map::placeTower() // Will get tower list &

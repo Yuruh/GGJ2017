@@ -33,10 +33,13 @@ public:
     inline const SfmlSpriteHandler &getGround() const { return _ground; };
     inline const SfmlSpriteHandler &getWall() const { return _wall; };
     inline const SfmlSpriteHandler &getBlock() const { return _block;};
+    inline const SfmlSpriteHandler &getCastle() const { return _castle;};
 
-    inline void setPositionWall(float x, float y) { _wall.setPosition(x, y); };
-    inline void setPositionGround(float x, float y) { _ground.setPosition(x, y); };
-    inline void setPositionBlock(float x, float y) { _block.setPosition(x, y); };
+    inline void setPositionWall(float y, float x) { _wall.setPosition(y, x); };
+    inline void setPositionGround(float y, float x) { _ground.setPosition(y, x); };
+    inline void setPositionBlock(float y, float x) { _block.setPosition(y, x); };
+    inline void setPositionCastle(float y, float x) { _castle.setPosition(y, x); };
+
     inline void setType(int y, int x, typeMap type) { _map[y][x] = type; };
 
 private:
@@ -45,6 +48,8 @@ private:
     SfmlSpriteHandler _wall;
     SfmlSpriteHandler _ground;
     SfmlSpriteHandler _block;
+    SfmlSpriteHandler _castle;
+
 public:
 
     void set_block(const SfmlSpriteHandler &_block);

@@ -48,15 +48,12 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
         if (button->containMouse(event)) // Will need binding between button and behavior
             this->nextWave();
 
-    int x = 0, y = 0, tileSize = 40;
-
-    while (event.first % tileSize != 0)
+    while (event.first % TILE_SIZE != 0)
         event.first -= 1;
-    while (event.second % tileSize != 0)
+    while (event.second % TILE_SIZE != 0)
         event.second -= 1;
-    event.first /= tileSize;
-    event.second /= tileSize;
-    std::cout << event.first << " " << event.second << std::endl;
+    event.first /= TILE_SIZE;
+    event.second /= TILE_SIZE;
     if (_map->getMap()[event.first][event.second] == ROAD)
         _map->setType(event.first, event.second, BLOCK);
 }
