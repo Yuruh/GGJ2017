@@ -12,5 +12,10 @@ AEntity::AEntity()
 AEntity::~AEntity()
 {}
 
-std::pair<unsigned, unsigned>& AEntity::getPos()
+const std::pair<float, float>& AEntity::getPos() const
 { return this->_pos; }
+
+void AEntity::setPos(float &y, float &x)
+{
+    this->_pos = {y, x};
+}

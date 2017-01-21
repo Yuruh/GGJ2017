@@ -21,7 +21,7 @@ void ActiveElement::setHp(unsigned &hp)
 const float& ActiveElement::getAtkSpeed() const
 { return this->_atkSpeed; }
 
-void ActiveElement::setAtkSpeed(unsigned &atkSpeed)
+void ActiveElement::setAtkSpeed(float &atkSpeed)
 {
     this->_atkSpeed = atkSpeed;
 }

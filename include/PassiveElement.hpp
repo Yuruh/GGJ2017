@@ -9,7 +9,6 @@
 
 class PassiveElement : public AEntity
 {
-
 };
 
 

@@ -12,10 +12,11 @@ class AEntity
 public:
     AEntity();
     virtual ~AEntity();
-    std::pair<unsigned, unsigned>   &getPos();
+    const std::pair<float, float>   &getPos() const;
+    void    setPos(float &y, float &x);
     virtual void    update(float&) = 0;
 protected:
-    std::pair<unsigned, unsigned>   _pos;
+    std::pair<float, float>   _pos;
 };
 
 

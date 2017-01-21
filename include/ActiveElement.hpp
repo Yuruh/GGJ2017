@@ -16,7 +16,7 @@ public:
     void            setHp(unsigned int&);
 
     const float     &getAtkSpeed() const;
-    void            setAtkSpeed(unsigned&);
+    void            setAtkSpeed(float&);
     const float     &getTimeSinceAtk() const;
     void            setTimeSinceAtk(float&);
     void            takeDmg(unsigned int&);
