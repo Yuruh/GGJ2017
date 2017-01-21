@@ -11,6 +11,7 @@
 #include "Map.hpp"
 
 #include <list>
+#include <Monsters/Monster.hpp>
 
 class Core
 {
@@ -23,6 +24,7 @@ private:
     static  Core        _instance;
 
     std::list<Button*>  _buttons;
+    std::list<Monster*>  _monsters;
     GameEngine          _engine{ _buttons };
     Display             _display{ _buttons };
 
@@ -31,7 +33,7 @@ private:
 public:
     ~Core() {};
     static Core &getInstance();
-
+    std::list<Monster*> & getMonster();
     void run();
 };
 

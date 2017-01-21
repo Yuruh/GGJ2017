@@ -31,7 +31,6 @@ private:
     Map     *_map;
     Monster *testPathfinding;
     std::list<Button*>  &_buttons;
-    //    enemies, tower, projectiles, map, walls
 };
 
 
