@@ -63,15 +63,15 @@ void Display::drawMap()
     for (int y = 0; y < MAP_SIZE; y += 1)
         for (int x = 0; x < MAP_SIZE; x += 1)
         {
-            if (_map->getMap()[y][x] == WALL ||
-                    _map->getMap()[y][x] == TOWER)
+            if (_map->getMap()[y][x] == WALL)
             {
                 _map->setPositionWall((float)y * tileSize, (float)x * tileSize);
                 _window->draw(_map->getWall());
             }
             if (_map->getMap()[y][x] == ROAD ||
                     _map->getMap()[y][x] == CASTLE ||
-                    _map->getMap()[y][x] == BORDER_CASTLE)
+                    _map->getMap()[y][x] == BORDER_CASTLE ||
+                    _map->getMap()[y][x] == TOWER)
             {
                 _map->setPositionGround((float)y * tileSize, (float)x * tileSize);
                 _window->draw(_map->getGround());
