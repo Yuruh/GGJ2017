@@ -62,26 +62,30 @@ void Display::drawMap()
     for (int y = 0; y < MAP_SIZE; y += 1)
         for (int x = 0; x < MAP_SIZE; x += 1)
         {
+            _map->setPositionGround((float) y * TILE_SIZE, (float) x * TILE_SIZE);
+            _window->draw(_map->getGround());
+        }
+    for (int y = 0; y < MAP_SIZE; y += 1)
+        for (int x = 0; x < MAP_SIZE; x += 1)
+        {
             if (_map->getMap()[y][x] == WALL)
             {
-                _map->setPositionWall((float)y * tileSize, (float)x * tileSize);
+                _map->setPositionWall((float)y * TILE_SIZE, ((float)x * TILE_SIZE) - 63 + TILE_SIZE);
                 _window->draw(_map->getWall());
-            }
-            if (_map->getMap()[y][x] == ROAD ||
-                    _map->getMap()[y][x] == CASTLE ||
-                    _map->getMap()[y][x] == BORDER_CASTLE ||
-                    _map->getMap()[y][x] == TOWER)
-            {
-                _map->setPositionGround((float)y * tileSize, (float)x * tileSize);
-                _window->draw(_map->getGround());
             }
             if (_map->getMap()[y][x] == BLOCK)
             {
-                _map->setPositionBlock((float)y * tileSize, (float)x * tileSize);
+                _map->setPositionBlock((float)y * TILE_SIZE, (float)x * TILE_SIZE - 51 + TILE_SIZE);
                 _window->draw(_map->getBlock());
             }
-    }
-    _window->draw(_map->getCastle());
+            if (_map->getMap()[y][x] == TOWER)
+            {
+                _map->setPositionTower((float)y * TILE_SIZE, ((float)x * TILE_SIZE) - 61 + TILE_SIZE);
+                _window->draw(_map->getTower());
+            }
+            if (_map->getMap()[y][x] == CASTLE)
+                _window->draw(_map->getCastle());
+        }
 }
 
 void Display::drawButtons()
@@ -101,7 +105,6 @@ void Display::drawMonsters()
 
 void Display::drawTowers() {
     for (auto & tower : _towers) {
-        _window->draw(*tower);
         if (tower->getPhysicalAttack() != nullptr)
             _window->draw(*tower->getPhysicalAttack());
     }

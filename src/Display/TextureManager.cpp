@@ -6,9 +6,9 @@
 
 TextureManager::TextureManager()
 {
-    this->addTexture("resources/assets/wall.png", TextureManager::WALL);
-    this->addTexture("resources/assets/block.png", TextureManager::BLOCK);
-    this->addTexture("resources/assets/ground.png", TextureManager::GROUND);
+    this->addTexture("resources/assets/tree.png", TextureManager::WALL);
+    this->addTexture("resources/assets/rock.png", TextureManager::BLOCK);
+    this->addTexture("resources/assets/grass.png", TextureManager::GROUND);
     this->addTexture("resources/assets/castle.png", TextureManager::CASTLE);
     this->addTexture("resources/assets/buttonNormal.png", TextureManager::BUTTON);
     this->addTexture("resources/spriteSheets/Actor1.png", TextureManager::ACTORS);
