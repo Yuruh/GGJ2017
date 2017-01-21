@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <SFML/Window/Event.hpp>
+#include <Tower/BasicTower.hpp>
 
 
 void GameEngine::init(Map * map) // Will get every lists from Core
@@ -22,10 +23,29 @@ void GameEngine::init(Map * map) // Will get every lists from Core
 // Still needed?
 void GameEngine::nextWave()
 {
-    if (!_isLaunched)
+    if (!_isLaunched) {
+        createTower();
         _isLaunched = true;
+    }
     _map->placeTower(); // Need to pass tower list &
     std::cout << "NEXT WAVE" << std::endl;
+}
+
+void GameEngine::createTower() {
+    int x;
+    int y;
+
+    x = 300.0;
+    y = 100.0;
+    for (int i = 0; i < 0; i++)
+    {
+        _towers.push_back(new BasicTower(x, y, 10, 10, 5, 5.0, nullptr, nullptr, _monsters));
+        x += 100.0;
+        if (x >= 900) {
+            x = 100.0;
+            y += 100.0;
+        }
+    }
 }
 
 void GameEngine::update(float deltaTime)
@@ -34,7 +54,6 @@ void GameEngine::update(float deltaTime)
     {
         monster->update(deltaTime);
     }
-
     for (auto block = _blocks.begin(); block != _blocks.end(); ++block)
     {
         (*block)->update(deltaTime);
@@ -45,6 +64,10 @@ void GameEngine::update(float deltaTime)
         }
     }
 
+    for (auto & tower : _towers)
+    {
+        tower->update(deltaTime);
+    }
     // update stuff
 }
 

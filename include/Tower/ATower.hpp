@@ -10,16 +10,17 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include <list>
 #include <ActiveElement.hpp>
-#include "Core.hpp"
 #include "Projectile.hpp"
 #include "MagickAttack.hpp"
 #include "Monsters/Monster.hpp"
 
+class Core;
 class ATower : public ActiveElement
 {
 public:
-    ATower(float, float, unsigned int, int, int, float, MagickAttack *, Projectile *);
+    ATower(float, float, unsigned int, int, int, float, MagickAttack *, Projectile *, std::list<Monster*> &);
     ~ATower();
 
     bool canAttack();
@@ -40,6 +41,8 @@ public:
     Projectile * getPhysicalAttack() const;
     void                setPhysicalAttack(Projectile const&);
 
+    void                setMonsters(std::list<Monster*>& monsters);
+
     virtual void        Speak() const = 0;
     void                update(float&);
     void                attack(ActiveElement&);
@@ -52,7 +55,10 @@ private:
     MagickAttack    *_magic;
     Projectile *_attack;
     Monster    *_target;
+    std::list<Monster*>& _monsters;
     time_t timer;
+    int _hp;
+    int _atkSpeed;
     float _x;
     float _y;
     float _dist;

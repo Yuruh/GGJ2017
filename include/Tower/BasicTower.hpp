@@ -5,13 +5,13 @@
 #ifndef GGJ2017_BASICTOWER_H
 #define GGJ2017_BASICTOWER_H
 
-#include "ATower.hpp"
 #include <iostream>
+#include "ATower.hpp"
 
 class BasicTower : public  ATower
 {
 public:
-    BasicTower(float, float, unsigned int, int, int, float, MagickAttack *, Projectile *);
+    BasicTower(float, float, unsigned int, int, int, float, MagickAttack *, Projectile *, std::list<Monster*>&);
     ~BasicTower();
     void Speak() const;
 

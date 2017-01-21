@@ -10,6 +10,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <Monsters/Monster.hpp>
 #include "Walls/Wall.hpp"
+#include <Tower/ATower.hpp>
 #include <list>
 
 class Button;
@@ -17,13 +18,14 @@ class Button;
 class GameEngine
 {
 public:
-    GameEngine(std::list<Button*> &b, std::list<Monster*> &m, std::list<Wall*> &w) :
-        _map(nullptr), _buttons{ b }, _monsters{ m }, _blocks { w } {}
+    GameEngine(std::list<Button*> &b, std::list<Monster*> &m, std::list<ATower*> &t, std::list<Wall*> &w) :
+        _map(nullptr), _buttons{ b }, _monsters{ m }, _towers{ t }, _blocks { w } {}
 
     void init(Map *map);
     void update(float deltaTime);
     void draw(sf::RenderWindow *window);
     void nextWave();
+    void createTower();
     void handleEvent(std::pair<int, int> &event);
 
 private:
@@ -34,6 +36,7 @@ private:
     std::list<Button*>  &_buttons;
     std::list<Monster*>  &_monsters;
     std::list<Wall*>  &_blocks;
+    std::list<ATower*>  &_towers;
 };
 
 

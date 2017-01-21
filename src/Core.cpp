@@ -55,6 +55,10 @@ std::list<Monster*>& Core::getMonster() {
     return _monsters;
 }
 
+std::list<ATower *> &Core::_getTower() {
+    return _towers;
+}
+
 void Core::addProjectile(int hit, int range, Monster* _monster) {
     _projectile.push_back(new Projectile(range, hit, _monster));
 
