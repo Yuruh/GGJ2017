@@ -1,6 +1,6 @@
 #include <iostream>
 #include <BasicTower.hpp>
-#include <zconf.h>
+#include <unistd.h>
 #include "ATower.hpp"
 #include "../include/GameEngine.hpp"
 #include "../include/Core.hpp"
@@ -32,7 +32,9 @@ int testTom()
 }
 int main()
 {
+    //testTom();
     Core::getInstance().run();
+
 //    GameEngine  engine;
 //    sf::RenderWindow    *window = new sf::RenderWindow(sf::)
 
