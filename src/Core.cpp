@@ -48,7 +48,7 @@ void Core::init()
     _buttons.push_back(_launchNextWave);
 
     Monster *soldier = new Soldier();
-    soldier->setPosition(0, 1);
+    soldier->setPosition(1, 1);
     _monsters.push_back(soldier);
     // Init window
     this->_display.run();

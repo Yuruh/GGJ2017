@@ -22,11 +22,13 @@ public:
     void    attack(ActiveElement&);
 
 //    en fait il faut stocker une liste de direction
-    bool    hasDirection() const { return (this->dir.first != 0 || this->dir.second != 0); }
+    bool    hasDirection() const { return this->nextPositions.size() > 0; }
 
     void setPosition(float, float);
 
     std::pair<int, int> getPos() const;
+
+    void checkBlockInPath(const std::pair<int, int> &pos);
 
 protected:
     unsigned int    _atkValue;
@@ -47,6 +49,7 @@ protected:
     void draw(sf::RenderTarget &, sf::RenderStates) const;
 
     bool arrived;
+
 };
 
 
