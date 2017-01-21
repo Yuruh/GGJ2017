@@ -31,7 +31,7 @@ void        Map::initWorld()
     for (int y = 0; y < MAP_SIZE; y += 1)
         for (int x = 0; x < MAP_SIZE; x += 1)
             if (y % 2 == 0 && x % 2 == 0)
-                _map[y][x] = WALL;
+              _map[y][x] = WALL;
             else
                 _map[y][x] = ROAD;
 
@@ -60,7 +60,8 @@ void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &mon
     {
         _map[y][x] = TOWER;
         towers.push_back(new BasicTower(x * TILE_SIZE, y * TILE_SIZE, 10, 10, 5, 5.0, nullptr, nullptr, monsters));
-        towers.back()->setPosition(x * TILE_SIZE, y * TILE_SIZE);
+        towers.back()->setPosition(y * TILE_SIZE, x * TILE_SIZE);
+        towers.back()->setProportionalSize(100, 100);
         std::cout << "place tower :" << towers.size() << std::endl;
         _towers -= 1;
     }
