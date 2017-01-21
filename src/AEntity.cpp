@@ -19,3 +19,9 @@ void AEntity::setPos(float &y, float &x)
 {
     this->_pos = {y, x};
 }
+
+void AEntity::draw(sf::RenderTarget &target, sf::RenderStates) const
+{
+    if (this->sprites.size() > 0)
+        target.draw(this->sprites[0]);
+}

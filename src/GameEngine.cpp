@@ -15,6 +15,8 @@ void GameEngine::init(Map * map) // Will get every lists from Core
     std::cout << "Engine.init()" << std::endl;
     _map = map;
     _isLaunched = false;
+
+    this->testPathfinding = new Monster(10, 10, 10, 1);
 }
 
 // Still needed?
@@ -28,6 +30,10 @@ void GameEngine::nextWave()
 
 void GameEngine::update(float deltaTime)
 {
+    for (auto & monster : _monsters)
+    {
+        monster->update(deltaTime);
+    }
     // update stuff
 }
 

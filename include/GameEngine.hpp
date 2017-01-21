@@ -8,6 +8,7 @@
 #include "Map.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <Monsters/Monster.hpp>
 #include <list>
 
 class Button;
@@ -15,8 +16,8 @@ class Button;
 class GameEngine
 {
 public:
-    GameEngine(std::list<Button*> &b) :
-        _map(nullptr), _buttons{ b } {}
+    GameEngine(std::list<Button*> &b, std::list<Monster*> &m) :
+        _map(nullptr), _buttons{ b }, _monsters{ m } {}
 
     void init(Map *map);
     void update(float deltaTime);
@@ -28,7 +29,9 @@ private:
     bool    _isLaunched;
 
     Map     *_map;
+    Monster *testPathfinding;
     std::list<Button*>  &_buttons;
+    std::list<Monster*>  &_monsters;
 };
 
 

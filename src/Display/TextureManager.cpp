@@ -11,6 +11,7 @@ TextureManager::TextureManager()
     this->addTexture("resources/assets/ground.png", TextureManager::GROUND);
     this->addTexture("resources/assets/castle.png", TextureManager::CASTLE);
     this->addTexture("resources/assets/buttonNormal.png", TextureManager::BUTTON);
+    this->addTexture("resources/spriteSheets/Actor1.png", TextureManager::ACTORS);
 }
 
 TextureManager::~TextureManager()

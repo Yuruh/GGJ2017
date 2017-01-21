@@ -49,6 +49,7 @@ void Display::draw()
 
     // Draw entities
     drawMap();
+    drawMonsters();
     drawButtons();
     this->_window->display();
 }
@@ -87,5 +88,13 @@ void Display::drawButtons()
     {
         _window->draw(button->getSprite());
         _window->draw(button->getText());
+    }
+}
+
+void Display::drawMonsters()
+{
+    for (auto & monster : _monsters)
+    {
+        _window->draw(*monster);
     }
 }

@@ -4,6 +4,7 @@
 
 #include <SFML/Window/Event.hpp>
 #include <Display/TextureManager.hpp>
+#include <Monsters/Soldier.hpp>
 #include "../include/Core.hpp"
 
 Core    Core::_instance = Core();
@@ -25,7 +26,7 @@ void Core::run()
         if (event.first != -1 && event.second != -1)
             this->_engine.handleEvent(event);
 
-        sf::Time deltaTime = clock.getElapsedTime();
+        sf::Time deltaTime = clock.restart();
         this->_engine.update(deltaTime.asSeconds());
         this->_display.draw();
     }
@@ -43,6 +44,9 @@ void Core::init()
 
     Button  *_launchNextWave = new Button(TextureManager::get(TextureManager::BUTTON), L"\tLaunch next Wave.\n\t\tI'M READY !", sf::Vector2f(1980 / 2, 200));
     _buttons.push_back(_launchNextWave);
+
+    Monster *soldier = new Soldier();
+    _monsters.push_back(soldier);
     // Init window
     this->_display.run();
 }

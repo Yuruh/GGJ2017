@@ -7,6 +7,7 @@
 
 #include "AEntity.hpp"
 
+//todo : frapper chelmi
 class ActiveElement : public AEntity
 {
 public:
