@@ -44,3 +44,7 @@ void Core::init()
     // Init window
     this->_display.run();
 }
+
+std::list<Monster*>& Core::getMonster() {
+    return _monsters;
+}

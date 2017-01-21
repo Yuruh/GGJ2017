@@ -108,7 +108,7 @@ void ATower::update(float &deltaTime)
     this->_timeSinceAtk += deltaTime;
     if (_target == nullptr)
     {
-        //nearestMonster()  TO DO METTRE LE VECTOR DE MONSTRE
+        nearestMonster(Core::getInstance().getMonster());  //TO DO METTRE LE VECTOR DE MONSTRE
     }
     if (canAttack() == true && hadRunAway() == false)
     {
@@ -116,16 +116,10 @@ void ATower::update(float &deltaTime)
             this->attack(*_target);
 
     }
-    /*if (_monster == nullptr)
-
-    if (canAttack() == true)
-    {
-        nearestMonster(_monster);
-    }*/
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
 
-int ATower::nearestMonster(std::vector<Monster> &monster) //int a changé par la cla
+int ATower::nearestMonster(std::list<Monster*>& monsters) //int a changé par la cla
 {
     int nb;
     int count;
@@ -135,14 +129,14 @@ int ATower::nearestMonster(std::vector<Monster> &monster) //int a changé par la
     nb = -1;
     _dist = 0.0;
 
-    for(std::vector<Monster>::iterator i = monster.begin(); i != monster.end(); ++i)
+    for (auto & monster : monsters)
     {
         count++;
-        if (isInCircle((*i).getPos(), _dist) == true)
+        if (isInCircle(monster->getPos(), _dist) == true) {
             nb = count;
+            _target = monster;
+        }
     }
-    if (nb != -1)
-        _target = &monster[nb];
     return (nb);
 }
 
