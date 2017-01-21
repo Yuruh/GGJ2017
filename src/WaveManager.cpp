@@ -18,7 +18,7 @@ void WaveManager::updateWaves(float &deltaTime)
 
     for (auto it = _waves.begin(); it != _waves.end(); it++) {
         (*it)->updateTime(deltaTime);
-        if ((*it)->getStartTime() > _timeSinceBeginning && (*it)->isSpawnReady()) {
+        if ((*it)->getStartTime() < _timeSinceBeginning && (*it)->isSpawnReady()) {
             Core::getInstance().addMonster((*it)->spawnNextMonster(deltaTime));
             if ((*it)->getSize() == 0)
                 toDelete.push_back((*it));
@@ -34,7 +34,7 @@ void WaveManager::init(Map *map)
     _waves.push_back(new Wave(map, BASIC, 0.0f, sideToSpawn));
 
     sideToSpawn = static_cast<enum side>(std::rand() % 4);
-    _waves.push_back(new Wave(map, BASIC, 25.0f, sideToSpawn));
+    _waves.push_back(new Wave(map, BASIC, 5.0f, sideToSpawn));
 //
 //    sideToSpawn = static_cast<enum side>(std::rand() % 4);
 //    _waves.push_back(new Wave(map, FAST, 40.0f, sideToSpawn));

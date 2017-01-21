@@ -8,7 +8,7 @@
 #include <Monsters/Monster.hpp>
 #include "Map.hpp"
 
-#define INTERVAL_SPAWN      0.1f
+#define INTERVAL_SPAWN      0.5f
 
 enum side { WEST, EAST, NORTH, SOUTH };
 

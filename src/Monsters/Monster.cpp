@@ -22,18 +22,18 @@ Monster::~Monster()
 
 void Monster::update(float &deltaTime)
 {
-    if (arrived)
-        return;
-    _t += deltaTime;
-    if (this->_t > this->_refreshRate)
-    {
-        if (_counter < this->sprites.size() - 1)
-            _counter++;
-        else
-            _counter = 0;
-        _t = 0;
-    }
-//    todo : normaliser ? Pas besoin si pas diagonale
+//    if (arrived)
+//        return;
+//    _t += deltaTime;
+//    if (this->_t > this->_refreshRate)
+//    {
+//        if (_counter < this->sprites.size() - 1)
+//            _counter++;
+//        else
+//            _counter = 0;
+//        _t = 0;
+//    }
+//    //todo : normaliser ? Pas besoin si pas diagonale
 //    float movingValue = this->_moveSpeed * deltaTime * TILE_SIZE;
 //    ASpritesHandler::move(movingValue * dir.first, movingValue * dir.second);
 //
@@ -101,4 +101,10 @@ void Monster::setNextPositions(const std::list<std::pair<int, int>> &nextPositio
         this->dir.first = (int) (this->nextPositions.front().first - this->_pos.first);
         this->dir.second = (int) (this->nextPositions.front().second - this->_pos.second);
     }
+}
+
+void Monster::setDirection(int x, int y)
+{
+    this->dir.first = x;
+    this->dir.second = y;
 }

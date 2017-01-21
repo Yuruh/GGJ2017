@@ -20,7 +20,7 @@ public:
     unsigned int    &getAtkValue();
     void            setAtkValue(unsigned&);
     void    attack(ActiveElement&);
-
+    void    setDirection(int, int);
 //    en fait il faut stocker une liste de direction
     bool    hasDirection() const { return (this->dir.first != 0 || this->dir.second != 0); }
 

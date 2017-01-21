@@ -130,7 +130,7 @@ std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos)
 
     while (prev != nullptr)
     {
-        std::cout << prev->dist << std::endl;
+        //std::cout << prev->dist << std::endl;
         ret.push_front(std::pair<int, int>(prev->x, prev->y));
         prev = prev->prev;
     }

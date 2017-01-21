@@ -32,8 +32,8 @@ void GameEngine::nextWave()
 
 void GameEngine::update(float deltaTime)
 {
-
-    _waves.updateWaves(deltaTime);
+    if (_isLaunched)
+        _waves.updateWaves(deltaTime);
     updateBlock(deltaTime);
     updateMonster(deltaTime);
     updateProjs(deltaTime);
