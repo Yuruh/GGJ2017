@@ -9,18 +9,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(SOURCE_FILES
         src/tower-maze.cpp
 
-        include/Tower/ATower.h
-        include/Tower/BasicTower.h
-        include/Tower/MagickAttack.h
-        include/Tower/Projectile.h
+        src/Tower/ATower.cpp include/Tower/ATower.h
+        src/Tower/BasicTower.cpp include/Tower/BasicTower.h
+        src/Tower/MagickAttack.cpp include/Tower/MagickAttack.h
+        src/Tower/Projectile.cpp include/Tower/Projectile.h
 
-        src/Tower/ATower.cpp
-        src/Tower/BasicTower.cpp
-        src/Tower/MagickAttack.cpp
-        src/Tower/Projectile.cpp
-
-        src/Map.cpp include/ASpritesHandler.hpp
-        src/ASpritesHandler.cpp
+        src/Map.cpp include/Map.hpp
+        src/ASpritesHandler.cpp include/ASpritesHandler.hpp
         src/GameEngine.cpp include/GameEngine.hpp
         src/Core.cpp include/Core.hpp
         src/Display.cpp include/Display.hpp
