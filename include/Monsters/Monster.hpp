@@ -20,6 +20,7 @@ public:
     unsigned int    &getAtkValue();
     void            setAtkValue(unsigned&);
     void    attack(ActiveElement&);
+
 //    en fait il faut stocker une liste de direction
     bool    hasDirection() const { return (this->dir.first != 0 || this->dir.second != 0); }
 
@@ -33,6 +34,7 @@ protected:
     float           _refreshRate;
     float           _t;
     unsigned int    _counter;
+
 
     std::pair<int, int> currentPos;
     std::list<std::pair<int, int> > nextPositions;

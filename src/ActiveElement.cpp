@@ -26,7 +26,7 @@ void ActiveElement::setAtkSpeed(float &atkSpeed)
     this->_atkSpeed = atkSpeed;
 }
 
-void ActiveElement::takeDmg(unsigned int &dmg)
+void ActiveElement::takeDmg(unsigned int dmg)
 {
     this->_hp = _hp < dmg ? 0 : _hp - dmg;
 }

@@ -55,20 +55,35 @@ void GameEngine::updateBlock(float deltaTime)
 
 void GameEngine::updateMonster(float deltaTime)
 {
-    for (auto & monster : _monsters) {
+    for (auto monster = _monsters.begin(); monster != _monsters.end(); ++monster) {
         // il peut arriver que le mur posé par un joueur casse les direction d'un monstre, auquel cas on recalcule son path
-        if (!monster->hasDirection())
-            monster->setNextPositions(_map->getPath(monster->getPos()));
-        monster->update(deltaTime);
+        if (!(*monster)->hasDirection())
+            (*monster)->setNextPositions(_map->getPath((*monster)->getPos()));
+        (*monster)->update(deltaTime);
+        if ((*monster)->getHp() <= 0)
+        {
+            monster = _monsters.erase(monster);
+            if (monster == _monsters.end())
+                return;
+        }
     }
 }
 
 void GameEngine::updateProjs(float deltaTime)
 {
-    for (auto & proj : _projectiles) {
-        proj->update(deltaTime);
-        // Need to check if proj had reached his target
-    }
+        for (auto proj = _projectiles.begin(); proj != _projectiles.end(); ++proj) {
+
+            if ((*proj)->getHP() == 0)
+            {
+                std::cout << "remove proj" << std::endl;
+                proj = _projectiles.erase(proj);
+                if (proj == _projectiles.end())
+                    return;
+            }
+            else
+                (*proj)->update(deltaTime);
+            // Need to check if proj had reached his target
+        }
 }
 
 void GameEngine::updateTower(float deltaTime)

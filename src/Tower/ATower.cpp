@@ -80,7 +80,6 @@ void ATower::update(float &deltaTime)
     this->_timeSinceAtk += deltaTime;
     if (_target == nullptr)
         nearestMonster(_monsters);
-
     if (_target != nullptr && canAttack() == true /*&& hadRunAway() == false*/)
     {
         std::cout << "Want to attack" << std::endl;
