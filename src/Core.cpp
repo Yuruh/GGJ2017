@@ -47,8 +47,8 @@ void Core::init()
                                           sf::Vector2f((MAP_Y * TILE_SIZE / 2) - (478 / 2) + 1.5, 850));
     _buttons.push_back(_launchNextWave);
 
-    //Monster *soldier = new Soldier();
-    //soldier->setPosition(0, 1);
+//    Monster *soldier = new Soldier();
+//    soldier->setPosition(1, 1);
 //    _monsters.push_back(soldier);
     // Init window
     this->_display.run();

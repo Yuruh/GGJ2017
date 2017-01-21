@@ -96,13 +96,10 @@ void GameEngine::updateTower(float deltaTime)
     }
 }
 
-
 void GameEngine::handleEvent(std::pair<int, int> &event)
 {
-    if (_isLaunched) {
-        std::cout << "J'utilise dans le gameEngine un clic en pos " <<
-                  event.first << " " << event.second << std::endl;
-
+    if (_isLaunched)
+    {
         // Manage Wall spawn
         if (event.first > 0 && event.first < MAP_Y * TILE_SIZE &&
             event.second > 0 && event.second < MAP_X * TILE_SIZE)
@@ -115,8 +112,13 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
             event.second /= TILE_SIZE;
             if (_map->getMap()[event.first][event.second] == ROAD)
             {
+//                for (auto &mob : _monsters)
+//                    if (mob->getPos() == event)
+//                        return;
                 _blocks.push_back(new Wall(event.first, event.second));
                 _map->setType(event.first, event.second, BLOCK);
+                for (auto &mob : _monsters)
+                    mob->checkBlockInPath(event);
             }
         }
         return;
