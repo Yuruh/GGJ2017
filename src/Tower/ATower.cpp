@@ -145,5 +145,5 @@ bool ATower::isInCircle(const sf::Vector2f& _pos, float prev_dist) {
 void ATower::attack(ActiveElement &target)
 {
     this->_timeSinceAtk = 0;
-    _projectiles.push_back(new Projectile(this->getPosition().x, this->getPosition().y, 0, 5, _target));
+    _projectiles.push_back(new Projectile(this->getPosition().x, this->getPosition().y, 0, 1, _target));
 }
