@@ -19,11 +19,13 @@ class Wave
 public:
     Wave(Map *map, waveType type, float startTime, enum side);
     ~Wave();
-    const float         &getStartTime() const;
     Monster*            spawnNextMonster(float&);
-    unsigned long       getSize() const;
     bool                isSpawnReady();
     void                updateTime(const float&);
+
+    inline float        getStartTime() const { return this->_startTime; }
+    inline unsigned long    getSize() const { return _monsters.size(); }
+
 private:
    void                 putMonster(Monster*);
 

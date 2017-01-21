@@ -12,7 +12,6 @@
 
 void GameEngine::init(Map * map) // Will get every lists from Core
 {
-    std::cout << "Engine.init()" << std::endl;
     _map = map;
     _isLaunched = false;
     _waves.init(map);
@@ -26,8 +25,6 @@ void GameEngine::nextWave()
         _isLaunched = true;
     }
     _map->placeTower(_towers, _monsters, _projectiles);
-
-    std::cout << "NEXT WAVE" << std::endl;
 }
 
 void GameEngine::update(float deltaTime)
@@ -76,7 +73,6 @@ void GameEngine::updateProjs(float deltaTime)
 
             if ((*proj)->getHP() == 0)
             {
-                std::cout << "remove proj" << std::endl;
                 proj = _projectiles.erase(proj);
                 if (proj == _projectiles.end())
                     return;
@@ -89,7 +85,8 @@ void GameEngine::updateProjs(float deltaTime)
 
 void GameEngine::updateTower(float deltaTime)
 {
-    for (auto & tower : _towers) {
+    for (auto & tower : _towers)
+    {
         tower->update(deltaTime);
         if (tower->getPhysicalAttack() != nullptr)
             tower->getPhysicalAttack()->update(deltaTime);
@@ -112,9 +109,6 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
             event.second /= TILE_SIZE;
             if (_map->getMap()[event.first][event.second] == ROAD)
             {
-//                for (auto &mob : _monsters)
-//                    if (mob->getPos() == event)
-//                        return;
                 _blocks.push_back(new Wall(event.first, event.second));
                 _map->setType(event.first, event.second, BLOCK);
                 for (auto &mob : _monsters)

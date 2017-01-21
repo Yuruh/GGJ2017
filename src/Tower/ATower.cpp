@@ -9,9 +9,9 @@
 ATower::ATower(float x, float y, unsigned int hp, int mp, int range, float atkSpeed,
                MagickAttack * magic, Projectile * projectile,
                std::list<Monster*>& monsters, std::list<Projectile*> &projs) :
-    _x(x), _y(y), ActiveElement(hp, atkSpeed), _mp(mp), _range(range), _atkSpeed(atkSpeed),
-    _magic(magic), _attack(projectile), _target(nullptr),
-    _monsters(monsters), _projectiles(projs)
+        _x(x), _y(y), ActiveElement(hp, atkSpeed), _mp(mp), _range(range), _atkSpeed(atkSpeed),
+        _magic(magic), _attack(projectile), _target(nullptr),
+        _monsters(monsters), _projectiles(projs)
 {
     _hp = 10;
     _mp = 10;
@@ -34,7 +34,6 @@ void ATower::setMagickAttack(MagickAttack const&) {
 bool ATower::canAttack() {
     if (this->_timeSinceAtk >= _atkSpeed)
     {
-        std::cout << "can attack" << std::endl;
         this->_timeSinceAtk = 0;
         return true;
     }
@@ -66,7 +65,7 @@ int ATower::getRange() const {
 void ATower::setRange(int range) {
     _range = range;
 }
- MagickAttack* ATower::getMagickAttack() const {
+MagickAttack* ATower::getMagickAttack() const {
     return _magic;
 }
 
@@ -83,10 +82,7 @@ void ATower::update(float &deltaTime)
     if (_target == nullptr)
         nearestMonster(_monsters);
     if (_target != nullptr && canAttack() == true /*&& hadRunAway() == false*/)
-    {
-        std::cout << "Want to attack" << std::endl;
         this->attack(*_target);
-    }
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
 

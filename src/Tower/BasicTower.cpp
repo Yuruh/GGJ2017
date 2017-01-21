@@ -22,5 +22,4 @@ BasicTower::~BasicTower() {
 }
 
 void BasicTower::Speak() const {
-    std::cout << "PWET" << std::endl;
 }

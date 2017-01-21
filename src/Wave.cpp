@@ -33,8 +33,6 @@ Wave::Wave(Map *map, waveType type, float startTime, enum side sideToSpawn) : _s
 Wave::~Wave()
 {}
 
-const float& Wave::getStartTime() const
-{ return this->_startTime; }
 
 
 Monster* Wave::spawnNextMonster(float &deltatTime)
@@ -48,8 +46,6 @@ Monster* Wave::spawnNextMonster(float &deltatTime)
     return toDelete;
 }
 
-unsigned long Wave::getSize() const
-{ return _monsters.size(); }
 
 bool Wave::isSpawnReady()
 {
@@ -70,7 +66,7 @@ void Wave::putMonster(Monster *toPlace)
         unsigned    y = this->_sideToSpawn == SOUTH ? MAP_Y - 1 : 0;
         //float       offset = this->_sideToSpawn == SOUTH ? TILE_SIZE / 2 : -TILE_SIZE / 2;
 
-        std::cout << "PLACER EN :" << randomTile << "||" << y << std::endl;
+        //std::cout << "PLACER EN :" << randomTile << "||" << y << std::endl;
         toPlace->setPosition(randomTile, y);
     }
     else
