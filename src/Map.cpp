@@ -3,10 +3,9 @@
 //
 
 #include    "../include/Map.hpp"
-#include    <fstream>
 #include    <iostream>
-#include    <stdlib.h>
-#include    <time.h>
+#include    <cstdlib>
+#include    <ctime>
 
 Map::Map()
 {
@@ -43,7 +42,7 @@ void        Map::initWorld()
 
 
     // Build tower
-    srand(time(NULL));
+    srand(time(0));
     placeTower();
 
     for (int j = 0; j < MAP_SIZE; j += 1)
