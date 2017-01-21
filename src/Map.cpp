@@ -61,7 +61,7 @@ void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &mon
         _map[y][x] = TOWER;
 
         towers.push_back(new BasicTower(y * TILE_SIZE, (x * TILE_SIZE) - TILE_SIZE, 10, 10, 5, 5.0, nullptr, nullptr, monsters));
-        towers.back()->setPosition(y * TILE_SIZE, (x * TILE_SIZE) - 71 + TILE_SIZE);
+        towers.back()->setPosition(y * TILE_SIZE, (x * TILE_SIZE) - 61 + TILE_SIZE);
 
         //std::cout << "place tower :" << towers.size() << std::endl;
         _towers -= 1;
