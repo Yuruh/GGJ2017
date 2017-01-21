@@ -39,7 +39,7 @@ void Display::run()
 void Display::init(Map *map) // Will get everything from Core
 {
     std::cout << "Display.init()" << std::endl;
-    map->initWorld();
+//    map->initWorld();
     _map = map;
 }
 

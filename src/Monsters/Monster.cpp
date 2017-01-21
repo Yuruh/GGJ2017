@@ -48,7 +48,6 @@ void Monster::update(float &deltaTime)
             this->nextPositions.pop_front();
             this->dir.first = (this->nextPositions.front().first - this->currentPos.first);
             this->dir.second = (this->nextPositions.front().second - this->currentPos.second);
-            std::cout << this->dir.second << std::endl;
         }
         else
             std::cout << "JE SUIS ARRIVE" << std::endl;
@@ -81,6 +80,19 @@ void Monster::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
     if (this->_counter < this->sprites.size() && this->_counter >= 0)
         target.draw(this->sprites[this->_counter]);
+}
+
+std::pair<int, int> Monster::getPos() const
+{
+    return this->currentPos;
+}
+
+void Monster::setPosition(float x, float y)
+{
+    ASpritesHandler::setPosition(x * TILE_SIZE, y * TILE_SIZE);
+    this->currentPos.first = (int) x;
+    this->currentPos.second = (int) y;
+
 }
 
 void Monster::setNextPositions(const std::list<std::pair<int, int>> &nextPositions)

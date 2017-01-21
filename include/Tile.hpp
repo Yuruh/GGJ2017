@@ -7,6 +7,7 @@
 
 
 #include <cstdlib>
+#include <list>
 
 enum    typeMap {
     ROAD = 0,
@@ -17,7 +18,7 @@ enum    typeMap {
     CASTLE = 9
 };
 
-class Tile
+struct Tile
 {
 public:
     Tile() : visited(false), dist(0) {}
@@ -25,11 +26,13 @@ public:
 
     bool operator==(typeMap) const;
     Tile& operator=(typeMap);
-
-private:
     typeMap type;
     bool    visited;
-    unsigned dist;
+    int dist;
+    Tile        *prev;
+    std::list<Tile*>    links;
+    int     x;
+    int     y;
 };
 
 
