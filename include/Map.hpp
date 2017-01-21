@@ -58,6 +58,8 @@ public:
     void set_block(const SfmlSpriteHandler &_block);
 
     void launchAlgo(Tile *tile);
+
+    void launchAlgo(Tile *tile, std::vector<Tile *> &dist);
 };
 
 #endif //GGJ2017_MAP_H

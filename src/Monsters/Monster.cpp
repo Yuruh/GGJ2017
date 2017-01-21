@@ -14,6 +14,7 @@ Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed
     currentPos.second = 0;
     dir.first = 0;
     dir.second = 0;
+    arrived = false;
 }
 
 Monster::~Monster()
@@ -26,6 +27,8 @@ void Monster::move(unsigned &y, unsigned &x)
 
 void Monster::update(float &deltaTime)
 {
+    if (arrived)
+        return;
     _t += deltaTime;
     if (this->_t > this->_refreshRate)
     {
@@ -50,7 +53,7 @@ void Monster::update(float &deltaTime)
             this->dir.second = (this->nextPositions.front().second - this->currentPos.second);
         }
         else
-            std::cout << "JE SUIS ARRIVE" << std::endl;
+            arrived = true;
     }
 }
 

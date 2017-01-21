@@ -44,6 +44,7 @@ protected:
 
     void draw(sf::RenderTarget &, sf::RenderStates) const;
 
+    bool arrived;
 };
 
 
