@@ -8,22 +8,27 @@
 #include "Map.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <list>
+
+class Button;
 
 class GameEngine
 {
 public:
-    GameEngine() :
-        _map(nullptr) {}
+    GameEngine(Map *map, std::list<Button*> &b) :
+        _map{ map }, _buttons{ b } {}
 
     void init(Map *map);
     void update(float deltaTime);
     void draw(sf::RenderWindow *window);
     void nextWave();
-    void handleEvent(const std::pair<int, int> &event);
+    void handleEvent(std::pair<int, int> &event);
 
 private:
     bool    _isLaunched;
+
     Map     *_map;
+    std::list<Button*>  &_buttons;
     //    enemies, tower, projectiles, map, walls
 };
 

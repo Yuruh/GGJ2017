@@ -2,9 +2,11 @@
 // Created by yuruh on 21/01/17.
 //
 
+#include "Display/Display.hpp"
+#include "Display/Button.hpp"
+
 #include <SFML/Window/Event.hpp>
 #include <iostream>
-#include "Display/Display.hpp"
 
 bool Display::isActive()
 {
@@ -34,12 +36,11 @@ void Display::run()
     this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "TOWER MAZE");
 }
 
-void Display::init(Map *map, std::vector<Button*> *buttons) // Will get everything from Core
+void Display::init(Map *map) // Will get everything from Core
 {
     std::cout << "Display.init()" << std::endl;
     map->initWorld();
     _map = map;
-    _buttons = buttons;
 }
 
 void Display::draw()
@@ -74,9 +75,9 @@ void Display::drawMap()
 
 void Display::drawButtons()
 {
-    for (auto it = _buttons->begin(); it != _buttons->end();it++)
+    for (auto & button : _buttons)
     {
-        _window->draw((*it)->getSprite());
-        _window->draw((*it)->getText());
+        _window->draw(button->getSprite());
+        _window->draw(button->getText());
     }
 }
