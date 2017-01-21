@@ -50,6 +50,7 @@ void Display::draw()
     // Draw entities
     drawMap();
     drawMonsters();
+    drawTowers();
     drawButtons();
     this->_window->display();
 }
@@ -96,5 +97,13 @@ void Display::drawMonsters()
     for (auto & monster : _monsters)
     {
         _window->draw(*monster);
+    }
+}
+
+void Display::drawTowers() {
+
+    for (auto & tower : _towers)
+    {
+        _window->draw(*tower);
     }
 }

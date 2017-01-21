@@ -6,15 +6,15 @@
 #include <list>
 #include "ATower.hpp"
 
-ATower::ATower(float x, float y, unsigned int hp, int mp, int range, float atkSpeed, MagickAttack * magic, Projectile * projectile) : ActiveElement(hp, atkSpeed), _magic(magic), _attack(projectile)
+ATower::ATower(float x, float y, unsigned int hp, int mp, int range, float atkSpeed, MagickAttack * magic, Projectile * projectile, std::list<Monster*>& monsters) :
+            _hp(10), _mp(10), _range(5), _atkSpeed(3),
+            ActiveElement(hp, atkSpeed), _magic(magic), _attack(projectile), _monsters(monsters)
 {
     _x = x;
     _y = y;
-    _mp = mp;
-    _range = range;
     _timeSinceAtk = 0;
-    _atkSpeed = atkSpeed;
     _target = nullptr;
+
 }
 
 ATower::~ATower() {
@@ -108,7 +108,7 @@ void ATower::update(float &deltaTime)
     this->_timeSinceAtk += deltaTime;
     if (_target == nullptr)
     {
-        nearestMonster(Core::getInstance().getMonster());  //TO DO METTRE LE VECTOR DE MONSTRE
+        nearestMonster(_monsters);  //TO DO METTRE LE VECTOR DE MONSTRE
     }
     if (canAttack() == true && hadRunAway() == false)
     {
@@ -118,6 +118,7 @@ void ATower::update(float &deltaTime)
     }
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
+
 
 int ATower::nearestMonster(std::list<Monster*>& monsters) //int a changé par la cla
 {
@@ -171,8 +172,10 @@ bool ATower::isInCircle(std::pair<float, float> const& _pos, float prev_dist) {
 void ATower::attack(ActiveElement &target)
 {
     this->_timeSinceAtk = 0;
-    if (_target != nullptr)
-        Core::getInstance().addProjectile(5, 0, _target);
+    if (_target != nullptr) {
+        return;
+    }
+        //Core::getInstance().addProjectile(5, 0, _target);
     //CORE ADD PROJECTILE
     // lancer projectile sur la pos du target
 }

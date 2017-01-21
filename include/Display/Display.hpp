@@ -10,14 +10,15 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <list>
 #include <Monsters/Monster.hpp>
+#include <Tower/ATower.hpp>
 
 class Button;
 
 class Display
 {
 public:
-    Display(std::list<Button*> &b, std::list<Monster*> &m) :
-        _map(nullptr), _buttons{ b }, _monsters{ m }, _window(nullptr) {}
+    Display(std::list<Button*> &b, std::list<Monster*> &m, std::list<ATower*> &t) :
+        _map(nullptr), _buttons{ b }, _monsters{ m },  _towers { t  }, _window(nullptr) {}
     ~Display() {
         if (this->_window)
             delete this->_window;
@@ -38,9 +39,11 @@ private:
     Map     *_map;
     std::list<Button*>  &_buttons;
     std::list<Monster*> &_monsters;
+    std::list<ATower*>  &_towers;
     sf::RenderWindow    *_window;
 
     void drawMonsters();
+    void drawTowers();
 };
 
 

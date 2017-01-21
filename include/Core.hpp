@@ -11,8 +11,8 @@
 #include "Map.hpp"
 
 #include <list>
-#include <Monsters/Monster.hpp>
 #include <Tower/Projectile.hpp>
+#include <Tower/BasicTower.hpp>
 
 class Core
 {
@@ -27,8 +27,9 @@ private:
     std::list<Button*>  _buttons;
     std::list<Monster*>  _monsters;
     std::list<Projectile*>  _projectile;
-    GameEngine          _engine{ _buttons, _monsters };
-    Display             _display{ _buttons, _monsters };
+    std::list<ATower*>  _towers;
+    GameEngine          _engine{ _buttons, _monsters, _towers };
+    Display             _display{ _buttons, _monsters, _towers };
 
     Map     *_map;
 
@@ -36,6 +37,7 @@ public:
     ~Core() {};
     static Core &getInstance();
     std::list<Monster*> & getMonster();
+    std::list<ATower*> &_getTower();
     void addProjectile(int, int, Monster*);
     void run();
 };
