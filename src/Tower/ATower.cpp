@@ -121,7 +121,7 @@ void ATower::update(float &deltaTime)
 
 void ATower::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
-    std::cout << "Draw tower!" << std::endl;
+    std::cout << "Draw tower! : " << sprites.size() << std::endl;
     target.draw(this->sprites[0]);
 }
 

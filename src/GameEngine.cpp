@@ -30,28 +30,9 @@ void GameEngine::nextWave()
     std::cout << "NEXT WAVE" << std::endl;
 }
 
-void GameEngine::createTower() {
-    int x;
-    int y;
-
-    x = 300.0;
-    y = 100.0;
-    for (int i = 0; i < 10; i++)
-    {
-        std::cout << "Draw tower!" << std::endl;
-        _towers.push_back(new BasicTower(x, y, 10, 10, 5, 5.0, nullptr, nullptr, _monsters));
-        x += 100.0;
-        if (x >= 900) {
-            x = 100.0;
-            y += 100.0;
-        }
-    }
-}
-
 void GameEngine::update(float deltaTime)
 {
-    for (auto & monster : _monsters)
-    {
+    for (auto & monster : _monsters) {
         monster->update(deltaTime);
     }
     for (auto block = _blocks.begin(); block != _blocks.end(); ++block)
@@ -64,17 +45,9 @@ void GameEngine::update(float deltaTime)
         }
     }
 
-    for (auto & tower : _towers)
-    {
+    for (auto & tower : _towers) {
         tower->update(deltaTime);
     }
-    // update stuff
-}
-
-// Still needed?
-void GameEngine::draw(sf::RenderWindow *window)
-{
-
 }
 
 void GameEngine::handleEvent(std::pair<int, int> &event)
@@ -83,6 +56,7 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
         std::cout << "J'utilise dans le gameEngine un clic en pos " <<
                   event.first << " " << event.second << std::endl;
 
+        // Manage Wall spawn
         if (event.first > 0 && event.first < MAP_SIZE * TILE_SIZE &&
             event.second > 0 && event.second < MAP_SIZE * TILE_SIZE)
         {
