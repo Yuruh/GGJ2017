@@ -11,7 +11,9 @@
 class BasicTower : public  ATower
 {
 public:
-    BasicTower(float, float, unsigned int, int, int, float, MagickAttack *, Projectile *, std::list<Monster*>&);
+    BasicTower(float, float, unsigned int, int, int, float,
+               MagickAttack *, Projectile *,
+               std::list<Monster*>&, std::list<Projectile*>&);
     ~BasicTower();
     void Speak() const;
 

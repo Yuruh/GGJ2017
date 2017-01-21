@@ -10,7 +10,6 @@
 #include <SFML/Window/Event.hpp>
 #include <Tower/BasicTower.hpp>
 
-
 void GameEngine::init(Map * map) // Will get every lists from Core
 {
     std::cout << "Engine.init()" << std::endl;
@@ -26,22 +25,24 @@ void GameEngine::nextWave()
     if (!_isLaunched) {
         _isLaunched = true;
     }
-    _map->placeTower(_towers, _monsters);
+    _map->placeTower(_towers, _monsters, _projectiles);
+
     std::cout << "NEXT WAVE" << std::endl;
 }
 
 void GameEngine::update(float deltaTime)
 {
+
     _waves.updateWaves(deltaTime);
-    for (auto & monster : _monsters)
-    {
-//        il peut arriver que le mur posé par un joueur casse les direction d'un monstre, auquel cas on recalcule son path
-        if (!monster->hasDirection())
-            monster->setNextPositions(_map->getPath(monster->getPos()));
-        monster->update(deltaTime);
-    }
-    for (auto block = _blocks.begin(); block != _blocks.end(); ++block)
-    {
+    updateBlock(deltaTime);
+    updateMonster(deltaTime);
+    updateProjs(deltaTime);
+    updateTower(deltaTime);
+}
+
+void GameEngine::updateBlock(float deltaTime)
+{
+    for (auto block = _blocks.begin(); block != _blocks.end(); ++block) {
         (*block)->update(deltaTime);
         if ((*block)->getTimeSinceCreated() >= WALL_DURATION)
         {
@@ -51,11 +52,50 @@ void GameEngine::update(float deltaTime)
                 return;
         }
     }
+}
 
-    for (auto & tower : _towers) {
-        tower->update(deltaTime);
+void GameEngine::updateMonster(float deltaTime)
+{
+    for (auto monster = _monsters.begin(); monster != _monsters.end(); ++monster) {
+        // il peut arriver que le mur posé par un joueur casse les direction d'un monstre, auquel cas on recalcule son path
+        if (!(*monster)->hasDirection())
+            (*monster)->setNextPositions(_map->getPath((*monster)->getPos()));
+        (*monster)->update(deltaTime);
+        if ((*monster)->getHp() <= 0)
+        {
+            monster = _monsters.erase(monster);
+            if (monster == _monsters.end())
+                return;
+        }
     }
 }
+
+void GameEngine::updateProjs(float deltaTime)
+{
+        for (auto proj = _projectiles.begin(); proj != _projectiles.end(); ++proj) {
+
+            if ((*proj)->getHP() == 0)
+            {
+                std::cout << "remove proj" << std::endl;
+                proj = _projectiles.erase(proj);
+                if (proj == _projectiles.end())
+                    return;
+            }
+            else
+                (*proj)->update(deltaTime);
+            // Need to check if proj had reached his target
+        }
+}
+
+void GameEngine::updateTower(float deltaTime)
+{
+    for (auto & tower : _towers) {
+        tower->update(deltaTime);
+        if (tower->getPhysicalAttack() != nullptr)
+            tower->getPhysicalAttack()->update(deltaTime);
+    }
+}
+
 
 void GameEngine::handleEvent(std::pair<int, int> &event)
 {
@@ -64,8 +104,8 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
                   event.first << " " << event.second << std::endl;
 
         // Manage Wall spawn
-        if (event.first > 0 && event.first < MAP_SIZE * TILE_SIZE &&
-            event.second > 0 && event.second < MAP_SIZE * TILE_SIZE)
+        if (event.first > 0 && event.first < MAP_Y * TILE_SIZE &&
+            event.second > 0 && event.second < MAP_X * TILE_SIZE)
         {
             while (event.first % TILE_SIZE != 0)
                 event.first -= 1;

@@ -3,11 +3,12 @@
 //
 
 #include <Monsters/Soldier.hpp>
+#include <iostream>
 #include "Wave.hpp"
 
 Wave::Wave(Map *map, waveType type, float startTime, enum side sideToSpawn) : _sideToSpawn(sideToSpawn), _startTime(startTime), _timeSinceLastSpawn(0)
 {
-    _map = map;
+    (void)map;
     switch (type)
     {
         case BASIC:
@@ -38,6 +39,8 @@ const float& Wave::getStartTime() const
 
 Monster* Wave::spawnNextMonster(float &deltatTime)
 {
+    if (_monsters.size() == 0)
+        return NULL;
     Monster *toDelete = _monsters.front();
     this->putMonster(toDelete);
     _monsters.erase(_monsters.begin());
@@ -59,20 +62,23 @@ void Wave::updateTime(const float &deltaTime)
 
 void Wave::putMonster(Monster *toPlace)
 {
-    auto map = _map->getMap();;
-    unsigned randomTile = (std::rand() % (MAP_SIZE / 2)) * 2 + TILE_SIZE / 2;
-
     if (this->_sideToSpawn == SOUTH || this->_sideToSpawn == NORTH)
     {
-        unsigned    y = this->_sideToSpawn == SOUTH ? MAP_SIZE : 0;
+        int random = std::rand() % (MAP_X / 2);
+        int randomTile = (random * 2 + 1) % MAP_X;
+        unsigned    y = this->_sideToSpawn == SOUTH ? MAP_Y - 1 : 0;
         //float       offset = this->_sideToSpawn == SOUTH ? TILE_SIZE / 2 : -TILE_SIZE / 2;
 
-        toPlace->setPosition(randomTile + TILE_SIZE / 2, y);
+        //std::cout << "PLACER EN :" << randomTile << "||" << y << std::endl;
+        toPlace->setPosition(randomTile, y);
     }
     else
     {
-        unsigned    x = this->_sideToSpawn == EAST ? MAP_SIZE : 0;
+        int random = std::rand() % (MAP_Y / 2);
+        int randomTile = (random * 2 + 1) % MAP_Y;
+        unsigned    x = this->_sideToSpawn == EAST ? MAP_X - 1 : 0;
         //float       offset = this->_sideToSpawn == EAST ?
-        toPlace->setPosition(x, randomTile + TILE_SIZE / 2);
+        //std::cout << "PLACER EN [2] :" << x << "||" << randomTile << std::endl;
+        toPlace->setPosition(x, randomTile);
     }
 }

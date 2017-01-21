@@ -6,19 +6,20 @@
 #define GGJ2017_DISPLAY_HPP
 
 #include "Map.hpp"
+#include "Monsters/Monster.hpp"
+#include "Tower/ATower.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <list>
-#include <Monsters/Monster.hpp>
-#include <Tower/ATower.hpp>
 
 class Button;
 
 class Display
 {
 public:
-    Display(std::list<Button*> &b, std::list<Monster*> &m, std::list<ATower*> &t) :
-        _map(nullptr), _buttons{ b }, _monsters{ m },  _towers { t  }, _window(nullptr) {}
+    Display(std::list<Button*> &b, std::list<Monster*> &m, std::list<ATower*> &t, 
+            std::list<Projectile*> &p) :
+        _map(nullptr), _buttons{ b }, _monsters{ m }, _towers{ t }, _projectiles{ p }, _window(nullptr) {}
     ~Display() {
         if (this->_window)
             delete this->_window;
@@ -37,13 +38,17 @@ private:
     void drawButtons();
 
     Map     *_map;
-    std::list<Button*>  &_buttons;
-    std::list<Monster*> &_monsters;
-    std::list<ATower*>  &_towers;
+
+    std::list<Button*>      &_buttons;
+    std::list<Monster*>     &_monsters;
+    std::list<ATower*>      &_towers;
+    std::list<Projectile*>  &_projectiles;
+
     sf::RenderWindow    *_window;
 
     void drawMonsters();
     void drawTowers();
+    void drawProjs();
 };
 
 

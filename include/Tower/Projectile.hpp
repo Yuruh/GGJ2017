@@ -15,14 +15,19 @@ public:
     ~Projectile();
     int getRange() const;
     int getHit()   const;
+    int getHP()    const;
     void setRange(int);
     void setHit(int);
     void setMonster(Monster*);
     void update(float &deltaTime);
+    void draw(sf::RenderTarget &target, sf::RenderStates) const;
+    void resetPos(float _x, float _y);
+    bool checkCollision();
 
 private:
     int _range;
     int _hit;
+    int _hp;
     float _ori;
     float _x;
     float _y;

@@ -12,8 +12,8 @@ Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed
     _counter = 0;
     currentPos.first = 0;
     currentPos.second = 0;
-    dir.first = 0;
-    dir.second = 0;
+    dir = {0.0f, 0.0f};
+    arrived = false;
 }
 
 Monster::~Monster()
@@ -26,6 +26,8 @@ void Monster::move(unsigned &y, unsigned &x)
 
 void Monster::update(float &deltaTime)
 {
+    if (arrived)
+        return;
     _t += deltaTime;
     if (this->_t > this->_refreshRate)
     {
@@ -36,23 +38,22 @@ void Monster::update(float &deltaTime)
         _t = 0;
     }
 //    todo : normaliser ? Pas besoin si pas diagonale
-    float movingValue = this->_moveSpeed * deltaTime * TILE_SIZE;
-    ASpritesHandler::move(movingValue * dir.first, movingValue * dir.second);
-
-    if (abs((int) (this->getPosition().x - this->currentPos.first * TILE_SIZE)) > TILE_SIZE ||
-            abs((int) (this->getPosition().y - this->currentPos.second * TILE_SIZE)) > TILE_SIZE)
-    {
-        if (nextPositions.size() > 0)
-        {
-            this->currentPos = this->nextPositions.front();
-            this->nextPositions.pop_front();
-            this->dir.first = (this->nextPositions.front().first - this->currentPos.first);
-            this->dir.second = (this->nextPositions.front().second - this->currentPos.second);
-            std::cout << this->dir.second << std::endl;
-        }
-        else
-            std::cout << "JE SUIS ARRIVE" << std::endl;
-    }
+//    float movingValue = this->_moveSpeed * deltaTime * TILE_SIZE;
+//    ASpritesHandler::move(movingValue * dir.first, movingValue * dir.second);
+//
+//    if (abs((int) (this->getPosition().x - this->currentPos.first * TILE_SIZE)) > TILE_SIZE ||
+//            abs((int) (this->getPosition().y - this->currentPos.second * TILE_SIZE)) > TILE_SIZE)
+//    {
+//        if (nextPositions.size() > 0)
+//        {
+//            this->currentPos = this->nextPositions.front();
+//            this->nextPositions.pop_front();
+//            this->dir.first = (this->nextPositions.front().first - this->currentPos.first);
+//            this->dir.second = (this->nextPositions.front().second - this->currentPos.second);
+//        }
+//        else
+//            arrived = true;
+//    }
 }
 
 float& Monster::getMoveSpeed()
@@ -81,6 +82,19 @@ void Monster::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
     if (this->_counter < this->sprites.size() && this->_counter >= 0)
         target.draw(this->sprites[this->_counter]);
+}
+
+std::pair<int, int> Monster::getPos() const
+{
+    return this->currentPos;
+}
+
+void Monster::setPosition(float x, float y)
+{
+    ASpritesHandler::setPosition(x * TILE_SIZE, y * TILE_SIZE);
+    this->currentPos.first = (int) x;
+    this->currentPos.second = (int) y;
+
 }
 
 void Monster::setNextPositions(const std::list<std::pair<int, int>> &nextPositions)

@@ -6,7 +6,7 @@
 
 AEntity::AEntity()
 {
-    this->_pos = {0, 0};
+    this->_pos = {0.0f, 0.0f};
 }
 
 AEntity::~AEntity()

@@ -20,7 +20,7 @@ public:
     void            setAtkSpeed(float&);
     const float     &getTimeSinceAtk() const;
     void            setTimeSinceAtk(float&);
-    void            takeDmg(unsigned int&);
+    void            takeDmg(unsigned int);
     virtual void    attack(ActiveElement&) = 0;
 protected:
     unsigned int    _hp;

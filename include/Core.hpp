@@ -25,14 +25,14 @@ private:
 
     static  Core        _instance;
 
-    std::list<Button*>  _buttons;
-    std::list<Monster*>  _monsters;
-    std::list<Projectile*>  _projectile;
-    std::list<Wall*> _blocks;
-    std::list<ATower*>  _towers;
+    std::list<Button*>      _buttons;
+    std::list<Monster*>     _monsters;
+    std::list<Projectile*>  _projectiles;
+    std::list<Wall*>        _blocks;
+    std::list<ATower*>      _towers;
 
-    GameEngine          _engine{ _buttons, _monsters, _towers, _blocks };
-    Display             _display{ _buttons, _monsters, _towers };
+    GameEngine          _engine{ _buttons, _monsters, _towers, _blocks, _projectiles };
+    Display             _display{ _buttons, _monsters, _towers, _projectiles };
 
     Map     *_map;
 
