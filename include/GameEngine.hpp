@@ -12,6 +12,9 @@
 class GameEngine
 {
 public:
+    GameEngine() :
+        _map(nullptr) {}
+
     void init(Map *map);
     void go();
     void update(float deltaTime);

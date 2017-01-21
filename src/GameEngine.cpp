@@ -9,8 +9,10 @@
 void GameEngine::init(Map * map) // Will get every lists from Core
 {
     std::cout << "Engine.init()" << std::endl;
+    _map = map;
 }
 
+// Still needed?
 void GameEngine::go()
 {
 
@@ -31,4 +33,7 @@ void GameEngine::handleEvent(const std::pair<int, int> &event)
 {
     std::cout << "J'utilise dans le gameEngine un clic en pos " <<
               event.first << " " << event.second << std::endl;
+
+    // Will have an IG_state to differenciate interaction with button (before game is launched) and
+    // interaction with map (place a wall InGame)
 }
