@@ -13,7 +13,6 @@ Button::Button(sf::Texture const &texture, std::wstring text, sf::Vector2f posit
     this->_text.setCharacterSize(35);
     this->_text.setPosition(position.x + text.size(), position.y + 35);
     this->_text.setString(text);
-
 }
 
 Button::~Button()

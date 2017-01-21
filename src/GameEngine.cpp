@@ -16,7 +16,7 @@ void GameEngine::init(Map * map) // Will get every lists from Core
     std::cout << "Engine.init()" << std::endl;
     _map = map;
     _isLaunched = false;
-
+    _waves.init(map);
     this->testPathfinding = new Monster(10, 10, 10, 1);
 }
 
@@ -32,6 +32,7 @@ void GameEngine::nextWave()
 
 void GameEngine::update(float deltaTime)
 {
+    _waves.updateWaves(deltaTime);
     for (auto & monster : _monsters)
     {
 //        il peut arriver que le mur posé par un joueur casse les direction d'un monstre, auquel cas on recalcule son path

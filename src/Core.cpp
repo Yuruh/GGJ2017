@@ -45,8 +45,13 @@ void Core::init()
     Button  *_launchNextWave = new Button(TextureManager::get(TextureManager::BUTTON), L"\tLaunch next Wave.\n\t\tI'M READY !", sf::Vector2f(1980 / 2, 200));
     _buttons.push_back(_launchNextWave);
 
-    Monster *soldier = new Soldier();
-    _monsters.push_back(soldier);
+//    Monster *soldier = new Soldier();
+//    _monsters.push_back(soldier);
     // Init window
     this->_display.run();
+}
+
+void Core::addMonster(Monster *monster)
+{
+    this->_monsters.push_back(monster);
 }

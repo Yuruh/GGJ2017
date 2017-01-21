@@ -31,7 +31,7 @@ set(SOURCE_FILES
         src/Walls/Wall.cpp
 
         include
-        src/Tile.cpp include/Tile.hpp)
+        src/Tile.cpp include/Tile.hpp src/WaveManager.cpp include/WaveManager.hpp src/Wave.cpp include/Wave.hpp)
 add_executable(GGJ2017 ${SOURCE_FILES})
 
 

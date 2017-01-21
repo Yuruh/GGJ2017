@@ -10,6 +10,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <Monsters/Monster.hpp>
 #include "Walls/Wall.hpp"
+#include "WaveManager.hpp"
 #include <Tower/ATower.hpp>
 #include <list>
 
@@ -30,7 +31,7 @@ public:
 
 private:
     bool    _isLaunched;
-
+    WaveManager _waves;
     Map     *_map;
     Monster *testPathfinding;
     std::list<Button*>  &_buttons;

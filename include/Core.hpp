@@ -42,6 +42,7 @@ public:
     std::list<Monster*> & getMonster();
     std::list<ATower*> &_getTower();
     void addProjectile(int, int, Monster*);
+    void addMonster(Monster*);
     void run();
 };
 
