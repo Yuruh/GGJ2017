@@ -2,7 +2,7 @@
 // Created by yuruh on 20/01/17.
 //
 
-#include "../include/ASpritesHandler.hpp"
+#include "ASpritesHandler.hpp"
 
 ASpritesHandler::ASpritesHandler() : mainPos(0, 0)
 {
