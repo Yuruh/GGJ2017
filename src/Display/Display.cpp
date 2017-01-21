@@ -59,24 +59,25 @@ void Display::drawMap()
 {
     // The idea
     int tileSize = 40;
-    for (int j = 0; j < MAP_SIZE; j += 1)
-        for (int i = 0; i < MAP_SIZE; i += 1)
+    for (int y = 0; y < MAP_SIZE; y += 1)
+        for (int x = 0; x < MAP_SIZE; x += 1)
         {
-            if (_map->getMap()[j][i] == WALL)
+            if (_map->getMap()[y][x] == WALL ||
+                    _map->getMap()[y][x] == TOWER)
             {
-                _map->setPositionWall(j * tileSize, i * tileSize);
+                _map->setPositionWall(y * tileSize, x * tileSize);
                 _window->draw(_map->getWall());
             }
-            if (_map->getMap()[j][i] == ROAD ||
-                    _map->getMap()[j][i] == CASTLE ||
-                    _map->getMap()[j][i] == BORDER_CASTLE)
+            if (_map->getMap()[y][x] == ROAD ||
+                    _map->getMap()[y][x] == CASTLE ||
+                    _map->getMap()[y][x] == BORDER_CASTLE)
             {
-                _map->setPositionGround(j * tileSize, i * tileSize);
+                _map->setPositionGround(y * tileSize, x * tileSize);
                 _window->draw(_map->getGround());
             }
-            if (_map->getMap()[j][i] == BLOCK)
+            if (_map->getMap()[y][x] == BLOCK)
             {
-                _map->setPositionBlock(j * tileSize, i * tileSize);
+                _map->setPositionBlock(y * tileSize, x * tileSize);
                 _window->draw(_map->getBlock());
             }
     }
