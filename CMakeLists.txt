@@ -31,7 +31,7 @@ set(SOURCE_FILES
         src/Walls/Wall.cpp
 
         include
-        )
+        src/Tile.cpp include/Tile.hpp)
 add_executable(GGJ2017 ${SOURCE_FILES})
 
 

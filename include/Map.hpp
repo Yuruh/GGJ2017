@@ -8,18 +8,11 @@
 #include    <array>
 #include    <list>
 #include    "Display/SfmlSpriteHandler.hpp"
+#include "Tile.hpp"
 
 # define    MAP_SIZE    21
 # define    TILE_SIZE   40
 
-enum    typeMap {
-    ROAD = 0,
-    WALL = 1,
-    TOWER = 2,
-    BLOCK = 3,
-    BORDER_CASTLE = 8,
-    CASTLE = 9
-};
 
 class ATower;
 class Monster;
@@ -32,7 +25,7 @@ public:
     void    initWorld();
     void    placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters);
 
-    inline const std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE> &getMap() const { return _map; };
+    inline const std::array<std::array<Tile, MAP_SIZE>, MAP_SIZE> &getMap() const { return _map; };
     inline const SfmlSpriteHandler &getGround() const { return _ground; };
     inline const SfmlSpriteHandler &getWall() const { return _wall; };
     inline const SfmlSpriteHandler &getBlock() const { return _block;};
@@ -44,8 +37,11 @@ public:
     inline void setPositionCastle(float y, float x) { _castle.setPosition(y, x); };
     inline void setType(int y, int x, typeMap type) { _map[y][x] = type; };
 
+    std::list<std::pair<int, int> > getPath(const std::pair<int, int> &pos) const;
+
+
 private:
-    std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE>     _map;
+    std::array<std::array<Tile, MAP_SIZE>, MAP_SIZE>     _map;
     int     _towers;
     SfmlSpriteHandler _wall;
     SfmlSpriteHandler _ground;
