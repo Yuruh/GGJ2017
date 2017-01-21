@@ -37,7 +37,7 @@ void GameEngine::createTower() {
 
     x = 300.0;
     y = 100.0;
-    for (int i = 0; i < 0; i++)
+    for (int i = 0; i < 10; i++)
     {
         _towers.push_back(new BasicTower(x, y, 10, 10, 5, 5.0, nullptr, nullptr, _monsters));
         x += 100.0;
