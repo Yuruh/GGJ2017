@@ -37,11 +37,27 @@ void Display::run()
 void Display::init(Map *map) // Will get everything from Core
 {
     std::cout << "Display.init()" << std::endl;
+    _map = map;
 }
 
 void Display::draw()
 {
     this->_window->clear();
+
     // Draw entities
+    drawMap();
+
     this->_window->display();
+}
+
+void Display::drawMap()
+{
+    // The idea
+    /*for (auto & line : _map->get_map())
+    {
+        for (auto & sprite : line)
+        {
+            sprite.draw();
+        }
+    }*/
 }

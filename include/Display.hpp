@@ -13,7 +13,7 @@ class Display
 {
 public:
     Display() :
-        _window(nullptr) {}
+        _window(nullptr), _map(nullptr) {}
     ~Display() {
         if (this->_window)
             delete this->_window;
@@ -29,6 +29,8 @@ public:
 
 
 private:
+    void drawMap();
+
     sf::RenderWindow    *_window;
 
     Map     *_map;
