@@ -49,13 +49,11 @@ void        Map::initWorld() {
 
 void        Map::placeTower()
 {
-    int j = rand() % MAP_SIZE + 1;
-    int i = rand() % MAP_SIZE + 1;
+    int j = rand() % MAP_SIZE;
+    int i = rand() % MAP_SIZE;
 
-    if (_map[j][i] == 0 &&
-        _map[j - 1][i - 1] != TOWER && _map[j][i - 1] != TOWER && _map[j + 1][i - 1] != TOWER &&
-        _map[j - 1][i] != TOWER && _map[j][i] != TOWER && _map[j + 1][i] != TOWER &&
-        _map[j - 1][i + 1] != TOWER && _map[j][i + 1] != TOWER && _map[j + 1][i + 1] != TOWER) {
+    if (_map[j][i] == WALL)
+    {
         _map[j][i] = TOWER;
         _towers -= 1;
     }

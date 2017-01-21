@@ -54,18 +54,18 @@ void Display::draw()
 void Display::drawMap()
 {
     // The idea
-    int tmp = 40;
+    int tileSize = 40;
     for (int j = 0; j < MAP_SIZE; j += 1)
         for (int i = 0; i < MAP_SIZE; i += 1)
         {
             if (_map->getMap()[j][i] == WALL)
             {
-                _map->setPositionWall(j * tmp, i * tmp);
+                _map->setPositionWall(j * tileSize, i * tileSize);
                 _window->draw(_map->getWall());
             }
             if (_map->getMap()[j][i] == ROAD)
             {
-                _map->setPositionGround(j * tmp, i * tmp);
+                _map->setPositionGround(j * tileSize, i * tileSize);
                 _window->draw(_map->getGround());
             }
     }
