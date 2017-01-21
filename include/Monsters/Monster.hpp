@@ -13,7 +13,7 @@ class Monster : public ActiveElement
 public:
     Monster(unsigned, unsigned, float, float);
     virtual ~Monster();
-    void    move(unsigned &, unsigned &);
+
     void    update(float&);
     float   &getMoveSpeed();
     void    setMoveSpeed(float&);

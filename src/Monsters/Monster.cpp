@@ -20,10 +20,6 @@ Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed
 Monster::~Monster()
 {}
 
-void Monster::move(unsigned &y, unsigned &x)
-{
-    this->_pos = {y, x};
-}
 
 void Monster::update(float &deltaTime)
 {

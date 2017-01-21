@@ -109,9 +109,9 @@ std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos)
 {
     std::list<std::pair<int, int> >   ret;
 
-    for (int i = 0; i < this->_map.size(); ++i)
+    for (size_t i = 0; i < this->_map.size(); ++i)
     {
-        for (int j = 0; j < this->_map[i].size(); ++j)
+        for (size_t j = 0; j < this->_map[i].size(); ++j)
         {
             _map[i][j].dist = -1;
             _map[i][j].visited = false;

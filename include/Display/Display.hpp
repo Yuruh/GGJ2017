@@ -46,6 +46,7 @@ private:
 
     sf::RenderWindow    *_window;
 
+    void drawGround();
     void drawMonsters();
     void drawTowers();
     void drawProjs();

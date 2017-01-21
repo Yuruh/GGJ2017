@@ -48,23 +48,29 @@ void Display::draw()
     this->_window->clear();
 
     // Draw entities
-    drawMap();
+    drawGround();
     drawMonsters();
+    drawMap();
     drawTowers();
     drawProjs();
     drawButtons();
     this->_window->display();
 }
 
-void Display::drawMap()
+void Display::drawGround()
 {
-    // The idea
     for (int y = 0; y < MAP_Y; y += 1)
         for (int x = 0; x < MAP_X; x += 1)
         {
             _map->setPositionGround((float) y * TILE_SIZE, (float) x * TILE_SIZE);
             _window->draw(_map->getGround());
         }
+}
+
+void Display::drawMap()
+{
+    // The idea
+
     for (int y = 0; y < MAP_Y; y += 1)
         for (int x = 0; x < MAP_X; x += 1)
         {
