@@ -11,10 +11,9 @@
 class BasicTower : public  ATower
 {
 public:
-    BasicTower(int, int, double, int, int, MagickAttack *, Projectile *);
+    BasicTower(unsigned int, int, int, float, MagickAttack *, Projectile *);
     ~BasicTower();
     void Speak() const;
-
 
 };
 #endif //GGJ2017_BASICTOWER_H

@@ -8,34 +8,27 @@
 #include <ctime>
 #include <cstring>
 #include <iostream>
+#include <ActiveElement.hpp>
 #include "Projectile.hpp"
 #include "MagickAttack.hpp"
 
-class ATower
+class ATower : public ActiveElement
 {
 public:
-    ATower(int, int, double, int, int, MagickAttack *, Projectile *);
+    ATower(unsigned int, int, int, float, MagickAttack *, Projectile *);
     ~ATower();
 
     bool canAttack();
     int  PhysicialAttack();
     int  MagicalAttack();
 
-    int getPv() const;
-    void setPv(int);
-
     int getMp() const;
     void setMp(int) ;
 
-    double getTime() const;
-    void   setTime() ;
     void    changeTime();
 
     int getRange() const;
     void setRange(int);
-
-    int getSpeed() const;
-    void setSpeed(int);
 
     MagickAttack* getMagickAttack() const;
     void                setMagickAttack(MagickAttack const&);
@@ -44,13 +37,11 @@ public:
     void                setPhysicalAttack(Projectile const&);
 
     virtual void        Speak() const = 0;
-
+    void                update(float&);
+    void                attack(ActiveElement&);
 private:
-    int _pv;
     int _mp;
-    double _time_attack;
     int _range;
-    int _speed;
     MagickAttack    *_magic;
     Projectile *_attack;
     time_t timer;
