@@ -42,7 +42,6 @@ public:
     inline void setPositionGround(float y, float x) { _ground.setPosition(y, x); };
     inline void setPositionBlock(float y, float x) { _block.setPosition(y, x); };
     inline void setPositionCastle(float y, float x) { _castle.setPosition(y, x); };
-
     inline void setType(int y, int x, typeMap type) { _map[y][x] = type; };
 
 private:

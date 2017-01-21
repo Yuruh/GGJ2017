@@ -28,6 +28,7 @@ set(SOURCE_FILES
         src/Display/SfmlSpriteHandler.cpp
         src/Display/Clickable.cpp
         src/Display/Button.cpp
+        src/Walls/Wall.cpp
 
         include
         )

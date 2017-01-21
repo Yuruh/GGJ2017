@@ -12,6 +12,7 @@
 
 #include <list>
 #include <Tower/Projectile.hpp>
+#include "Walls/Wall.hpp"
 #include <Tower/BasicTower.hpp>
 
 class Core
@@ -27,8 +28,10 @@ private:
     std::list<Button*>  _buttons;
     std::list<Monster*>  _monsters;
     std::list<Projectile*>  _projectile;
+    std::list<Wall*> _blocks;
     std::list<ATower*>  _towers;
-    GameEngine          _engine{ _buttons, _monsters, _towers };
+
+    GameEngine          _engine{ _buttons, _monsters, _towers, _blocks };
     Display             _display{ _buttons, _monsters, _towers };
 
     Map     *_map;
