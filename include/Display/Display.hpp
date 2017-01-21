@@ -15,8 +15,8 @@ class Button;
 class Display
 {
 public:
-    Display(Map *map, std::list<Button*> &b) :
-        _map{ map }, _buttons{ b }, _window(nullptr) {}
+    Display(std::list<Button*> &b) :
+        _map(nullptr), _buttons{ b }, _window(nullptr) {}
     ~Display() {
         if (this->_window)
             delete this->_window;
