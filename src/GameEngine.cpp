@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <SFML/Window/Event.hpp>
-#include "GameEngine.hpp"
+#include "../include/GameEngine.hpp"
 
 GameEngine::GameEngine()
 {
