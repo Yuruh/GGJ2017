@@ -4,9 +4,10 @@
 
 #include "Projectile.hpp"
 
-Projectile::Projectile(int range, int hit) {
+Projectile::Projectile(int range, int hit, Monster* monster) {
     _range = range;
     _hit = hit;
+    _target = monster;
 }
 
 Projectile::~Projectile() {
@@ -27,4 +28,8 @@ void Projectile::setHit(int hit) {
 
 void Projectile::setRange(int range) {
     _range = range;
+}
+
+void Projectile::setMonster(Monster* target) {
+    _target = target;
 }

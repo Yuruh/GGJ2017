@@ -11,7 +11,7 @@ Soldier soldier;
     /*ATower(int, int, double, int, int, MagickAttack const&, Projectile const&);*/
     //:ATowerint pv, int mp, double time_attack, int range, int speed, MagickAttack * magic, Projectile * projectile)
     MagickAttack *mag = new MagickAttack(0, 0);
-    Projectile *proj = new Projectile(0, 0);
+    //Projectile *proj = new Projectile(0, 0);
     //(float x, float y, unsigned int hp, int mp, int range, float atkSpeed, MagickAttack * magic, Projectile * projectile)
     ATower *_tow = new BasicTower(0.0, 0.0, 0, 0, 0, 2.0, mag, NULL);
     _tow->Speak();
