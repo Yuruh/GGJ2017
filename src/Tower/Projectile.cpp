@@ -13,9 +13,9 @@ Projectile::Projectile(float x, float y, int range, int hit, Monster* monster) {
     _hit = hit;
     _hp = 1;
     _target = monster;
-    sf::Texture const& text = TextureManager::get(TextureManager::ACTORS);
-    this->addSprites(text, sf::IntRect(_x, _y, text.getSize().x / 4, text.getSize().y / 8), 3);
-    this->setProportionalSize(40, 40);
+    sf::Texture const& text = TextureManager::get(TextureManager::PROJECTILE);
+    this->addSprites(text, sf::IntRect(_x, _y, text.getSize().x, text.getSize().y), 1);
+    this->setProportionalSize(100, 100);
 }
 
 Projectile::~Projectile() {
