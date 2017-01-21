@@ -12,14 +12,20 @@ class Core
 {
 private:
     Core() {};
+
+    void init();
+
     static  Core        _instance;
     GameEngine          _engine;
     Display             _display;
+
+
+
 public:
     ~Core() {};
     static Core &getInstance();
-    void run();
 
+    void run();
 };
 
 

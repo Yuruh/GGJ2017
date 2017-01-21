@@ -6,19 +6,9 @@
 #include <SFML/Window/Event.hpp>
 #include "../include/GameEngine.hpp"
 
-GameEngine::GameEngine()
+void GameEngine::init() // Will get every lists from Core
 {
-    this->init();
-}
-
-GameEngine::~GameEngine()
-{
-
-}
-
-void GameEngine::init()
-{
-
+    std::cout << "Engine.init()" << std::endl;
 }
 
 void GameEngine::go()
@@ -28,9 +18,10 @@ void GameEngine::go()
 
 void GameEngine::update(float deltaTime)
 {
-
+    // update stuff
 }
 
+// Still needed?
 void GameEngine::draw(sf::RenderWindow *window)
 {
 

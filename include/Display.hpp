@@ -11,15 +11,21 @@
 class Display
 {
 public:
-    Display();
-    ~Display();
-    void run();
+    Display() :
+        window(nullptr) {}
+    ~Display() {
+        if (this->window)
+            delete this->window;
+    }
 
+    void run();
     bool isActive();
+
+    void init();
+    void draw();
 
     std::pair<int, int> getEvent();
 
-    void draw();
 
 private:
     sf::RenderWindow    *window;

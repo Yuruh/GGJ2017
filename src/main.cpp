@@ -1,6 +1,5 @@
 #include <iostream>
 #include <BasicTower.hpp>
-#include <unistd.h>
 #include "ATower.hpp"
 #include "../include/GameEngine.hpp"
 #include "../include/Core.hpp"
@@ -22,10 +21,11 @@ int testTom()
         _tow->canAttack();
         std::cout << _tow->getTime() << std::endl;
         _tow->changeTime();
-        sleep(1);
         i++;
     }
+    return (0);
 }
+
 int main()
 {
     //testTom();

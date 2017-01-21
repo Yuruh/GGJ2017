@@ -34,18 +34,14 @@ void Display::run()
     this->window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "TOWER MAZE");
 }
 
-Display::Display()
+void Display::init() // Will get everything from Core
 {
-    this->window = nullptr;
-}
-
-Display::~Display()
-{
-    delete this->window;
+    std::cout << "Display.init()" << std::endl;
 }
 
 void Display::draw()
 {
     this->window->clear();
+    // Draw entities
     this->window->display();
 }

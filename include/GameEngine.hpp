@@ -9,17 +9,16 @@
 
 class GameEngine
 {
-private:
-//    enemies, tower, projectiles, map, walls
 public:
-    GameEngine();
-    ~GameEngine();
     void init();
     void go();
     void update(float deltaTime);
     void draw(sf::RenderWindow *window);
 
     void handleEvent(const std::pair<int, int> &event);
+
+private:
+    //    enemies, tower, projectiles, map, walls
 };
 
 
