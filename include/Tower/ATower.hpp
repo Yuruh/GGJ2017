@@ -63,7 +63,7 @@ private:
     float   _y;
     int     _hp;
     int     _mp;
-    int     _atkSpeed;
+    float   _atkSpeed;
     
     int     _range;
 
