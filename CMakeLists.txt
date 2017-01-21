@@ -7,7 +7,7 @@ include_directories(
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-        src/tower-maze.cpp
+        src/main.cpp
 
         src/Tower/ATower.cpp include/Tower/ATower.hpp
         src/Tower/BasicTower.cpp include/Tower/BasicTower.hpp
@@ -19,6 +19,11 @@ set(SOURCE_FILES
         src/GameEngine.cpp include/GameEngine.hpp
         src/Core.cpp include/Core.hpp
         src/Display.cpp include/Display.hpp
+        src/Monsters/Monster.cpp
+        src/Monsters/Soldier.cpp
+        src/AEntity.cpp
+        src/PassiveElement.cpp
+        src/ActiveElement.cpp
         )
 add_executable(GGJ2017 ${SOURCE_FILES})
 
