@@ -66,7 +66,9 @@ void Display::drawMap()
                 _map->setPositionWall(j * tileSize, i * tileSize);
                 _window->draw(_map->getWall());
             }
-            if (_map->getMap()[j][i] == ROAD)
+            if (_map->getMap()[j][i] == ROAD ||
+                    _map->getMap()[j][i] == CASTLE ||
+                    _map->getMap()[j][i] == BORDER_CASTLE)
             {
                 _map->setPositionGround(j * tileSize, i * tileSize);
                 _window->draw(_map->getGround());
@@ -77,6 +79,7 @@ void Display::drawMap()
                 _window->draw(_map->getBlock());
             }
     }
+    _window->draw(_map->getCastle());
 }
 
 void Display::drawButtons()

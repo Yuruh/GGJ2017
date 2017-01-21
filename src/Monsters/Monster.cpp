@@ -9,6 +9,10 @@ Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed
 {
     _t = 0;
     _counter = 0;
+    pos.first = 0;
+    pos.second = 0;
+    dir.first = 0;
+    dir.second = 1;
 }
 
 Monster::~Monster()
@@ -30,6 +34,9 @@ void Monster::update(float &deltaTime)
             _counter = 0;
         _t = 0;
     }
+//    todo : normaliser ? Pas besoin si pas diagonale
+    float movingValue = this->_moveSpeed * deltaTime * 40;
+    ASpritesHandler::move(movingValue * dir.first, movingValue * dir.second);
 }
 
 float& Monster::getMoveSpeed()

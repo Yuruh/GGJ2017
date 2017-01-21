@@ -34,7 +34,7 @@ void Core::run()
 
 void Core::init()
 {
-    srand(time(0));
+    srand((unsigned int) time(0));
 
     // Init Map and all lists (ennemies, projectiles, towers, walls, buttons)
     _map = new Map();
