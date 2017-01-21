@@ -22,9 +22,6 @@ void Core::run()
     {
         // Event update
         std::pair<int, int> event = this->_display.getEvent();
-        for (auto it = _buttons.begin(); it != _buttons.end(); it++)
-            if ((*it)->containMouse(event))
-                _engine.nextWave();
         if (event.first != -1 && event.second != -1)
             this->_engine.handleEvent(event);
 
@@ -43,7 +40,7 @@ void Core::init()
     _map = new Map(); // Will take Loader as parameter
 
     _engine.init(_map);// (Map, enemies, projectiles, towers, walls, button);
-    _display.init(_map, &_buttons);// (Map, enemies, projectiles, towers, walls, button);
+    _display.init(_map);// (Map, enemies, projectiles, towers, walls, button);
 
     Button  *_launchNextWave = new Button(TextureManager::get(TextureManager::BUTTON), L"\tLaunch next Wave.\n\t\tI'M READY !", sf::Vector2f(1980 / 2, 200));
     _buttons.push_back(_launchNextWave);

@@ -6,17 +6,18 @@
 #define GGJ2017_DISPLAY_HPP
 
 #include "Map.hpp"
-#include "Button.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <list>
+
+class Button;
 
 class Display
 {
 public:
-    Display() :
-        _window(nullptr), _map(nullptr) {}
-    ~Display()
-    {
+    Display(Map *map, std::list<Button*> &b) :
+        _map{ map }, _buttons{ b }, _window(nullptr) {}
+    ~Display() {
         if (this->_window)
             delete this->_window;
     }
@@ -24,7 +25,7 @@ public:
     void run();
     bool isActive();
 
-    void init(Map *map, std::vector<Button*>*);
+    void init(Map *map);
     void draw();
     std::pair<int, int> getEvent();
 
@@ -33,9 +34,9 @@ private:
     void drawMap();
     void drawButtons();
 
-    sf::RenderWindow    *_window;
-    std::vector<Button*> *_buttons;
     Map     *_map;
+    std::list<Button*>  &_buttons;
+    sf::RenderWindow    *_window;
 };
 
 

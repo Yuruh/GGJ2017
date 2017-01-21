@@ -10,6 +10,8 @@
 #include "Display/Button.hpp"
 #include "Map.hpp"
 
+#include <list>
+
 class Core
 {
 private:
@@ -19,10 +21,11 @@ private:
     void init();
 
     static  Core        _instance;
-    GameEngine          _engine;
-    Display             _display;
-    std::vector<Button*> _buttons;
+
     Map     *_map;
+    std::list<Button*>  _buttons;
+    GameEngine          _engine{ _map, _buttons };
+    Display             _display{ _map, _buttons };
 
 public:
     ~Core() {};
