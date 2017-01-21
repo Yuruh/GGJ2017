@@ -85,8 +85,7 @@ void Display::drawMap()
 
 void Display::drawButtons()
 {
-    for (auto & button : _buttons)
-    {
+    for (auto & button : _buttons) {
         _window->draw(button->getSprite());
         _window->draw(button->getText());
     }
@@ -94,16 +93,14 @@ void Display::drawButtons()
 
 void Display::drawMonsters()
 {
-    for (auto & monster : _monsters)
-    {
+    for (auto & monster : _monsters) {
         _window->draw(*monster);
     }
 }
 
 void Display::drawTowers() {
-
-    for (auto & tower : _towers)
-    {
+    std::cout << "Tower size: " << _towers.size() << std::endl;
+    for (auto & tower : _towers) {
         _window->draw(*tower);
     }
 }

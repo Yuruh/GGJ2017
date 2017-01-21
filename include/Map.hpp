@@ -8,11 +8,14 @@
 #include    <array>
 #include    <list>
 #include    "Display/SfmlSpriteHandler.hpp"
-#include "../Tile.hpp"
+#include "Tile.hpp"
 
 # define    MAP_SIZE    21
 # define    TILE_SIZE   40
 
+
+class ATower;
+class Monster;
 
 class Map {
 public:
@@ -20,7 +23,7 @@ public:
     ~Map();
 
     void    initWorld();
-    void    placeTower(); // Will get tower list &
+    void    placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters);
 
     inline const std::array<std::array<Tile, MAP_SIZE>, MAP_SIZE> &getMap() const { return _map; };
     inline const SfmlSpriteHandler &getGround() const { return _ground; };
@@ -32,7 +35,6 @@ public:
     inline void setPositionGround(float y, float x) { _ground.setPosition(y, x); };
     inline void setPositionBlock(float y, float x) { _block.setPosition(y, x); };
     inline void setPositionCastle(float y, float x) { _castle.setPosition(y, x); };
-
     inline void setType(int y, int x, typeMap type) { _map[y][x] = type; };
 
     std::list<std::pair<int, int> > getPath(const std::pair<int, int> &pos) const;

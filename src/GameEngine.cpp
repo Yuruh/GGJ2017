@@ -20,32 +20,14 @@ void GameEngine::init(Map * map) // Will get every lists from Core
     this->testPathfinding = new Monster(10, 10, 10, 1);
 }
 
-// Still needed?
+
 void GameEngine::nextWave()
 {
     if (!_isLaunched) {
-        createTower();
         _isLaunched = true;
     }
-    _map->placeTower(); // Need to pass tower list &
+    _map->placeTower(_towers, _monsters);
     std::cout << "NEXT WAVE" << std::endl;
-}
-
-void GameEngine::createTower() {
-    int x;
-    int y;
-
-    x = 300.0;
-    y = 100.0;
-    for (int i = 0; i < 0; i++)
-    {
-        _towers.push_back(new BasicTower(x, y, 10, 10, 5, 5.0, nullptr, nullptr, _monsters));
-        x += 100.0;
-        if (x >= 900) {
-            x = 100.0;
-            y += 100.0;
-        }
-    }
 }
 
 void GameEngine::update(float deltaTime)
@@ -57,17 +39,21 @@ void GameEngine::update(float deltaTime)
             monster->setNextPositions(_map->getPath(monster->getPos()));
         monster->update(deltaTime);
     }
-    for (auto & tower : _towers)
+    for (auto block = _blocks.begin(); block != _blocks.end(); ++block)
     {
+        if (block == _blocks.end())
+            break;
+        (*block)->update(deltaTime);
+        if ((*block)->getTimeSinceCreated() >= WALL_DURATION)
+        {
+            _map->setType((*block)->getY(), (*block)->getX(), ROAD);
+            block = _blocks.erase(block);
+        }
+    }
+
+    for (auto & tower : _towers) {
         tower->update(deltaTime);
     }
-    // update stuff
-}
-
-// Still needed?
-void GameEngine::draw(sf::RenderWindow *window)
-{
-
 }
 
 void GameEngine::handleEvent(std::pair<int, int> &event)
@@ -76,6 +62,7 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
         std::cout << "J'utilise dans le gameEngine un clic en pos " <<
                   event.first << " " << event.second << std::endl;
 
+        // Manage Wall spawn
         if (event.first > 0 && event.first < MAP_SIZE * TILE_SIZE &&
             event.second > 0 && event.second < MAP_SIZE * TILE_SIZE)
         {
@@ -86,7 +73,10 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
             event.first /= TILE_SIZE;
             event.second /= TILE_SIZE;
             if (_map->getMap()[event.first][event.second] == ROAD)
+            {
+                _blocks.push_back(new Wall(event.first, event.second));
                 _map->setType(event.first, event.second, BLOCK);
+            }
         }
         return;
     }

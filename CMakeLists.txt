@@ -28,9 +28,10 @@ set(SOURCE_FILES
         src/Display/SfmlSpriteHandler.cpp
         src/Display/Clickable.cpp
         src/Display/Button.cpp
+        src/Walls/Wall.cpp
 
         include
-        Tile.cpp Tile.hpp)
+        src/Tile.cpp include/Tile.hpp)
 add_executable(GGJ2017 ${SOURCE_FILES})
 
 

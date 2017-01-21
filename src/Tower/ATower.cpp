@@ -36,7 +36,7 @@ bool ATower::canAttack() {
         this->_timeSinceAtk = 0;
         return true;
     }
-    std::cout << "can't attack" << std::endl;
+    //std::cout << "can't attack" << std::endl;
     return false;
 }
 
@@ -110,7 +110,7 @@ void ATower::update(float &deltaTime)
     {
         nearestMonster(_monsters);  //TO DO METTRE LE VECTOR DE MONSTRE
     }
-    if (canAttack() == true && hadRunAway() == false)
+    if (_target != nullptr && canAttack() == true && hadRunAway() == false)
     {
         if (_target != nullptr)
             this->attack(*_target);
@@ -119,6 +119,10 @@ void ATower::update(float &deltaTime)
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
 
+void ATower::draw(sf::RenderTarget &target, sf::RenderStates) const
+{
+    target.draw(this->sprites[0]);
+}
 
 int ATower::nearestMonster(std::list<Monster*>& monsters) //int a changé par la cla
 {
@@ -145,6 +149,7 @@ bool ATower::hadRunAway()
 {
     float dist;
 
+
     dist = sqrtf(powf(_target->getPos().second - _x, 2) + powf(_target->getPos().first - _y, 2));
     if (dist > _range) {
         _target = nullptr;
@@ -156,6 +161,7 @@ bool ATower::isInCircle(std::pair<float, float> const& _pos, float prev_dist) {
     float dist;
 
     dist = sqrtf(powf(_pos.second - _x, 2) + powf(_pos.first - _y, 2));
+    std::cout << dist << std::endl;
     if (_dist != 0 && dist < prev_dist) {
         _dist = dist;
         return false;

@@ -3,7 +3,8 @@
 //
 
 #include    "Map.hpp"
-//#include    "ATower.hpp"
+#include    "BasicTower.hpp"
+#include    "Monsters/Monster.hpp"
 #include    "Display/TextureManager.hpp"
 
 #include    <iostream>
@@ -27,12 +28,12 @@ Map::~Map()
 void        Map::initWorld()
 {
     // Build wall
-    for (int j = 0; j < MAP_SIZE; j += 1)
-        for (int i = 0; i < MAP_SIZE; i += 1)
-            if (i % 2 == 0 && j % 2 == 0)
-                _map[j][i] = WALL;
+    for (int y = 0; y < MAP_SIZE; y += 1)
+        for (int x = 0; x < MAP_SIZE; x += 1)
+            if (y % 2 == 0 && x % 2 == 0)
+              _map[y][x] = WALL;
             else
-                _map[j][i] = ROAD;
+                _map[y][x] = ROAD;
 
     // Build castle
     _map[(MAP_SIZE - 2) / 2][(MAP_SIZE - 2) / 2] = CASTLE;
@@ -50,19 +51,23 @@ void        Map::initWorld()
     setPositionCastle(((MAP_SIZE - 2) / 2) * TILE_SIZE, ((MAP_SIZE - 2) / 2) * TILE_SIZE);
 }
 
-void        Map::placeTower() // Will get tower list &
+void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters)
 {
-    int j = rand() % MAP_SIZE;
-    int i = rand() % MAP_SIZE;
+    int y = rand() % MAP_SIZE;
+    int x = rand() % MAP_SIZE;
 
-    if (_map[j][i] == WALL)
+    if (_map[y][x] == WALL)
     {
-        _map[j][i] = TOWER;
+        _map[y][x] = TOWER;
+        towers.push_back(new BasicTower(x * TILE_SIZE, y * TILE_SIZE, 10, 10, 5, 5.0, nullptr, nullptr, monsters));
+        towers.back()->setPosition(y * TILE_SIZE, x * TILE_SIZE);
+        towers.back()->setProportionalSize(100, 100);
+        std::cout << "place tower :" << towers.size() << std::endl;
         _towers -= 1;
     }
 
     if (_towers > 0)
-        placeTower();
+        placeTower(towers, monsters);
 }
 
 std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos) const

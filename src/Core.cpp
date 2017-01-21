@@ -39,8 +39,8 @@ void Core::init()
     // Init Map and all lists (ennemies, projectiles, towers, walls, buttons)
     _map = new Map();
 
-    _engine.init(_map);// (Map, enemies, projectiles, towers, walls, button);
-    _display.init(_map);// (Map, enemies, projectiles, towers, walls, button);
+    _engine.init(_map);
+    _display.init(_map);
 
     Button  *_launchNextWave = new Button(TextureManager::get(TextureManager::BUTTON), L"\tLaunch next Wave.\n\t\tI'M READY !", sf::Vector2f(1980 / 2, 200));
     _buttons.push_back(_launchNextWave);
@@ -49,17 +49,4 @@ void Core::init()
     _monsters.push_back(soldier);
     // Init window
     this->_display.run();
-}
-
-std::list<Monster*>& Core::getMonster() {
-    return _monsters;
-}
-
-std::list<ATower *> &Core::_getTower() {
-    return _towers;
-}
-
-void Core::addProjectile(int hit, int range, Monster* _monster) {
-    _projectile.push_back(new Projectile(range, hit, _monster));
-
 }

@@ -44,11 +44,17 @@ public:
     void                setMonsters(std::list<Monster*>& monsters);
 
     virtual void        Speak() const = 0;
+
     void                update(float&);
+
     void                attack(ActiveElement&);
     int                 nearestMonster(std::list<Monster*>& );
     bool                isInCircle(std::pair<float, float> const&, float dist);
     bool                hadRunAway();
+
+protected:
+    void                draw(sf::RenderTarget &, sf::RenderStates) const;
+
 private:
     int _mp;
     int _range;
