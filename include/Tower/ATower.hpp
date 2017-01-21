@@ -12,6 +12,7 @@
 #include <vector>
 #include <list>
 #include <ActiveElement.hpp>
+#include "Map.hpp"
 #include "Projectile.hpp"
 #include "MagickAttack.hpp"
 #include "Monsters/Monster.hpp"
@@ -49,7 +50,7 @@ public:
 
     void                attack(ActiveElement&);
     int                 nearestMonster(std::list<Monster*>& );
-    bool                isInCircle(std::pair<float, float> const&, float dist);
+    bool                isInCircle(const sf::Vector2f&, float dist);
     bool                hadRunAway();
 
 protected:

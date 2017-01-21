@@ -4,7 +4,9 @@
 
 #include "Projectile.hpp"
 
-Projectile::Projectile(int range, int hit, Monster* monster) {
+Projectile::Projectile(float x, float y, int range, int hit, Monster* monster) {
+    _x = x;
+    _y = y;
     _range = range;
     _hit = hit;
     _target = monster;
@@ -14,6 +16,9 @@ Projectile::~Projectile() {
 
 }
 
+void Projectile::update(float &deltaTime) {
+    return;
+}
 int Projectile::getRange() const {
     return _range;
 }

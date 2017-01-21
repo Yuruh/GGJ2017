@@ -59,10 +59,10 @@ void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &mon
     if (_map[y][x] == WALL)
     {
         _map[y][x] = TOWER;
-        towers.push_back(new BasicTower((x - 1) * TILE_SIZE, (y - 1) * TILE_SIZE, 10, 10, 5, 5.0, nullptr, nullptr, monsters));
+        towers.push_back(new BasicTower((y - 0.5) * TILE_SIZE, (x - 1.3) * TILE_SIZE, 10, 10, 5, 5.0, nullptr, nullptr, monsters));
         towers.back()->setPosition((y - 0.5) * TILE_SIZE, (x - 1.3) * TILE_SIZE);
         towers.back()->setProportionalSize(70, 70);
-        std::cout << "place tower :" << towers.size() << std::endl;
+        //std::cout << "place tower :" << towers.size() << std::endl;
         _towers -= 1;
     }
 
