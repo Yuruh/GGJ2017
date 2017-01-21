@@ -126,5 +126,8 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
 
     for (auto & button : _buttons)
         if (button->containMouse(event)) // Will need binding between button and behavior
+        {
             this->nextWave();
+            button->setVisible(false);
+        }
 }
