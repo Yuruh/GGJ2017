@@ -11,6 +11,8 @@ void GameEngine::init(Map * map) // Will get every lists from Core
     std::cout << "Engine.init()" << std::endl;
     _map = map;
     _isLaunched = false;
+
+    this->testPathfinding = new Monster(10, 10, 10, 1);
 }
 
 // Still needed?

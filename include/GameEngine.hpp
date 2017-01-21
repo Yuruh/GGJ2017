@@ -8,6 +8,7 @@
 #include "Map.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <Monsters/Monster.hpp>
 
 class GameEngine
 {
@@ -24,6 +25,7 @@ public:
 private:
     bool    _isLaunched;
     Map     *_map;
+    Monster *testPathfinding;
     //    enemies, tower, projectiles, map, walls
 };
 
