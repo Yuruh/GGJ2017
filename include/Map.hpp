@@ -16,6 +16,7 @@
 
 class ATower;
 class Monster;
+class Projectile;
 
 class Map {
 public:
@@ -23,7 +24,8 @@ public:
     ~Map();
 
     void    initWorld();
-    void    placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters);
+    void    placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters,
+                       std::list<Projectile*> &projs);
 
     inline const std::array<std::array<Tile, MAP_SIZE>, MAP_SIZE> &getMap() const { return _map; };
     inline const SfmlSpriteHandler &getGround() const { return _ground; };

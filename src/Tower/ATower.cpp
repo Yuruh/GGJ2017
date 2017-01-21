@@ -6,15 +6,17 @@
 #include <list>
 #include "ATower.hpp"
 
-ATower::ATower(float x, float y, unsigned int hp, int mp, int range, float atkSpeed, MagickAttack * magic, Projectile * projectile, std::list<Monster*>& monsters) :
-            _hp(10), _mp(10), _range(3), _atkSpeed(1),
-            ActiveElement(hp, atkSpeed), _magic(magic), _attack(projectile), _monsters(monsters)
+ATower::ATower(float x, float y, unsigned int hp, int mp, int range, float atkSpeed,
+               MagickAttack * magic, Projectile * projectile,
+               std::list<Monster*>& monsters, std::list<Projectile*> &projs) :
+    _x(x), _y(y), ActiveElement(hp, atkSpeed), _mp(mp), _range(range), _atkSpeed(atkSpeed),
+    _magic(magic), _attack(projectile), _target(nullptr),
+    _monsters(monsters), _projectiles(projs)
 {
-    _x = x;
-    _y = y;
-    _timeSinceAtk = 0;
-    _target = nullptr;
-
+    _hp = 10;
+    _mp = 10;
+    _range = 3;
+    _atkSpeed = 1;
 }
 
 ATower::~ATower() {
@@ -56,36 +58,6 @@ void ATower::setMp(int mp)  {
     _mp = mp;
 }
 
-//void ATower::setTime() {
-//    struct tm y2k;
-//    time_t _tim;
-//
-//    memset(&y2k, 0, sizeof(tm));
-//    y2k.tm_hour = 0;
-//    y2k.tm_min = 0;
-//    y2k.tm_sec = 0;
-//    y2k.tm_year = 0;
-//    y2k.tm_mon = 0;
-//    y2k.tm_mday = 0;
-//    time(&_tim);
-//    timer = _tim;
-//    //this->_time_attack =  0;
-//}
-//
-//void ATower::changeTime() {
-//    time_t second_time;
-//    struct tm y2k;
-//
-//    memset(&y2k, 0, sizeof(tm));
-//    y2k.tm_hour = 0;
-//    y2k.tm_min = 0;
-//    y2k.tm_sec = 0;
-//    y2k.tm_year = 0;
-//    y2k.tm_mon = 0;
-//    y2k.tm_mday = 0;
-//    time(&second_time);
-//    this->_timeSinceAtk = difftime(second_time, mktime(&y2k)) - difftime(timer, mktime(&y2k));
-//}
 
 int ATower::getRange() const {
     return _range;
@@ -108,10 +80,11 @@ void ATower::update(float &deltaTime)
     this->_timeSinceAtk += deltaTime;
     if (_target == nullptr)
         nearestMonster(_monsters);
+
     if (_target != nullptr && canAttack() == true /*&& hadRunAway() == false*/)
     {
-        if (_target != nullptr)
-            this->attack(*_target);
+        std::cout << "Want to attack" << std::endl;
+        this->attack(*_target);
     }
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
@@ -168,21 +141,8 @@ bool ATower::isInCircle(const sf::Vector2f& _pos, float prev_dist) {
 }
 
 
-
 void ATower::attack(ActiveElement &target)
 {
-    //std::cout << "ATTACK" << std::endl;
     this->_timeSinceAtk = 0;
-    if (_attack != nullptr) {
-        //std::cout << "reset pos" << std::endl;
-        _attack->setPosition(this->_x, this->_y);
-        _attack->resetPos(this->_x, this->_y);
-        return;
-    }
-    else
-    {
-        //std::cout << "new attack" << std::endl;
-        _attack = new Projectile(this->getPosition().x, this->getPosition().y, 0, 5, _target);
-        _attack->setPosition(this->_x, this->_y);
-    }
+    _projectiles.push_back(new Projectile(this->getPosition().x, this->getPosition().y, 0, 5, _target));
 }

@@ -26,22 +26,22 @@ void GameEngine::nextWave()
     if (!_isLaunched) {
         _isLaunched = true;
     }
-    _map->placeTower(_towers, _monsters);
+    _map->placeTower(_towers, _monsters, _projectiles);
 
     std::cout << "NEXT WAVE" << std::endl;
 }
 
 void GameEngine::update(float deltaTime)
 {
-    for (auto & monster : _monsters)
-    {
-        // il peut arriver que le mur posé par un joueur casse les direction d'un monstre, auquel cas on recalcule son path
-        if (!monster->hasDirection())
-            monster->setNextPositions(_map->getPath(monster->getPos()));
-        monster->update(deltaTime);
-    }
-    for (auto block = _blocks.begin(); block != _blocks.end(); ++block)
-    {
+    updateBlock(deltaTime);
+    updateMonster(deltaTime);
+    updateProjs(deltaTime);
+    updateTower(deltaTime);
+}
+
+void GameEngine::updateBlock(float deltaTime)
+{
+    for (auto block = _blocks.begin(); block != _blocks.end(); ++block) {
         (*block)->update(deltaTime);
         if ((*block)->getTimeSinceCreated() >= WALL_DURATION)
         {
@@ -51,13 +51,35 @@ void GameEngine::update(float deltaTime)
                 return;
         }
     }
+}
 
+void GameEngine::updateMonster(float deltaTime)
+{
+    for (auto & monster : _monsters) {
+        // il peut arriver que le mur posé par un joueur casse les direction d'un monstre, auquel cas on recalcule son path
+        if (!monster->hasDirection())
+            monster->setNextPositions(_map->getPath(monster->getPos()));
+        monster->update(deltaTime);
+    }
+}
+
+void GameEngine::updateProjs(float deltaTime)
+{
+    for (auto & proj : _projectiles) {
+        proj->update(deltaTime);
+        // Need to check if proj had reached his target
+    }
+}
+
+void GameEngine::updateTower(float deltaTime)
+{
     for (auto & tower : _towers) {
         tower->update(deltaTime);
         if (tower->getPhysicalAttack() != nullptr)
             tower->getPhysicalAttack()->update(deltaTime);
     }
 }
+
 
 void GameEngine::handleEvent(std::pair<int, int> &event)
 {
