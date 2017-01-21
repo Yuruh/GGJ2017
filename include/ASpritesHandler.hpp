@@ -6,7 +6,7 @@
 #define GGJ2017_ASPRITESHANDLER_HPP
 
 #include <SFML/Graphics.hpp>
-//#include "SfmlSpriteHandler.hpp"
+#include "SfmlSpriteHandler.hpp"
 
 class ASpritesHandler : public sf::Drawable
 {

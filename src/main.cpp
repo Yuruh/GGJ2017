@@ -30,10 +30,10 @@ Soldier soldier;
 int main()
 {
     //testTom();
-//    Core::getInstance().run();
+    Core::getInstance().run();
 
 //    GameEngine  engine;
-//    sf::RenderWindow    *window = new sf::RenderWindow(sf::)
+//    sf::RenderWindow    *window = new sf::RenderWindow()
 
 
 //    std::cout << "Alors Antoine on perd sur Super Meat Boy ? :)" << std::endl;

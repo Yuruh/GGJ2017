@@ -24,6 +24,8 @@ set(SOURCE_FILES
         src/AEntity.cpp
         src/PassiveElement.cpp
         src/ActiveElement.cpp
+        src/TextureManager.cpp include/TextureManager.hpp
+        src/SfmlSpriteHandler.cpp
         )
 add_executable(GGJ2017 ${SOURCE_FILES})
 

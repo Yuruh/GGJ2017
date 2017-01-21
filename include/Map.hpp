@@ -5,14 +5,16 @@
 #ifndef GGJ2017_MAP_H
 #define GGJ2017_MAP_H
 
-# define    MAP_SIZE    11
+# define    MAP_SIZE    21
 
 #include    <array>
+#include "SfmlSpriteHandler.hpp"
 
 enum    typeMap {
     ROAD = 0,
     WALL = 1,
     TOWER = 2,
+    BORDER_CASTLE = 8,
     CASTLE = 9
 };
 
@@ -24,11 +26,17 @@ public:
     void    initWorld();
     void    placeTower();
 
-    const std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE> &get_map() const;
+    const std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE> &getMap() const;
+    const SfmlSpriteHandler &getGround() const;
+    const SfmlSpriteHandler &getWall() const;
+    void setPositionWall(float, float);
+    void setPositionGround(float, float);
 
 private:
     std::array<std::array<typeMap, MAP_SIZE>, MAP_SIZE>     _map;
     int     _towers;
+    SfmlSpriteHandler _wall;
+    SfmlSpriteHandler _ground;
 };
 
 #endif //GGJ2017_MAP_H
