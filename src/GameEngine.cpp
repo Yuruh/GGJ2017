@@ -42,6 +42,8 @@ void GameEngine::update(float deltaTime)
         {
             _map->setType((*block)->getY(), (*block)->getX(), ROAD);
             block = _blocks.erase(block);
+            if (block == _blocks.end())
+                return;
         }
     }
 
