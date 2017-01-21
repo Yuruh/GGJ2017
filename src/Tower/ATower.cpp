@@ -99,7 +99,7 @@ int ATower::nearestMonster(std::list<Monster*>& monsters)
 {
     int nb = -1;
     int count = 0;
-    _dist = 0.0;
+    _dist = 0.0f;
 
     for (auto & monster : monsters)
     {

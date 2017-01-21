@@ -33,7 +33,7 @@ bool Clickable::containMouse(std::pair<int, int> &mousePos)
 {
     auto rect = this->sprite.getGlobalBounds();
 
-    return rect.contains(mousePos.first, mousePos.second);
+    return rect.contains((float)mousePos.first, (float)mousePos.second);
 }
 
 void      Clickable::setSize(float width, float height)

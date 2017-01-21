@@ -14,7 +14,7 @@ Projectile::Projectile(float x, float y, int range, int hit, Monster* monster) {
     _hp = 1;
     _target = monster;
     sf::Texture const& text = TextureManager::get(TextureManager::ACTORS);
-    this->addSprites(text, sf::IntRect(_x, _y, text.getSize().x / 4, text.getSize().y / 8), 3);
+    this->addSprites(text, sf::IntRect((int)_x, (int)_y, text.getSize().x / 4, text.getSize().y / 8), 3);
     this->setProportionalSize(40, 40);
 }
 
@@ -28,13 +28,13 @@ int Projectile::getHP() const {
 void Projectile::update(float &deltaTime) {
     //std::cout << "POS MONSTER " << (int)_target->getPosition().x << " | " << (int)_target->getPosition().y << "POS PROJ " << (int)_x << " | " << (int)_y << std::endl;
     if (_x > _target->getPosition().x)
-        _x -= 1.2;
+        _x -= 1.2f;
     if (_x < _target->getPosition().x)
-        _x += 1.2;
+        _x += 1.2f;
     if (_y > _target->getPosition().y)
-        _y -= 1.2;
+        _y -= 1.2f;
     if (_y < _target->getPosition().y)
-        _y += 1.2;
+        _y += 1.2f;
     if (checkCollision() == true) {
         _target->takeDmg((unsigned int) _hit);
         this->_hp = 0;
