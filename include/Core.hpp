@@ -22,10 +22,11 @@ private:
 
     static  Core        _instance;
 
-    Map     *_map;
     std::list<Button*>  _buttons;
-    GameEngine          _engine{ _map, _buttons };
-    Display             _display{ _map, _buttons };
+    GameEngine          _engine{ _buttons };
+    Display             _display{ _buttons };
+
+    Map     *_map;
 
 public:
     ~Core() {};

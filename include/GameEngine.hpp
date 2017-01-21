@@ -16,8 +16,8 @@ class Button;
 class GameEngine
 {
 public:
-    GameEngine(Map *map, std::list<Button*> &b) :
-        _map{ map }, _buttons{ b } {}
+    GameEngine(std::list<Button*> &b) :
+        _map(nullptr), _buttons{ b } {}
 
     void init(Map *map);
     void update(float deltaTime);

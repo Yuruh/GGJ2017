@@ -33,11 +33,8 @@ void Core::run()
 
 void Core::init()
 {
-    // Init resources
-    // Loader.init();
-
     // Init Map and all lists (ennemies, projectiles, towers, walls, buttons)
-    _map = new Map(); // Will take Loader as parameter
+    _map = new Map();
 
     _engine.init(_map);// (Map, enemies, projectiles, towers, walls, button);
     _display.init(_map);// (Map, enemies, projectiles, towers, walls, button);
