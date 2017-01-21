@@ -27,6 +27,7 @@ void GameEngine::nextWave()
         _isLaunched = true;
     }
     _map->placeTower(_towers, _monsters);
+
     std::cout << "NEXT WAVE" << std::endl;
 }
 
@@ -34,7 +35,7 @@ void GameEngine::update(float deltaTime)
 {
     for (auto & monster : _monsters)
     {
-//        il peut arriver que le mur posé par un joueur casse les direction d'un monstre, auquel cas on recalcule son path
+        // il peut arriver que le mur posé par un joueur casse les direction d'un monstre, auquel cas on recalcule son path
         if (!monster->hasDirection())
             monster->setNextPositions(_map->getPath(monster->getPos()));
         monster->update(deltaTime);
@@ -53,6 +54,8 @@ void GameEngine::update(float deltaTime)
 
     for (auto & tower : _towers) {
         tower->update(deltaTime);
+        if (tower->getPhysicalAttack() != nullptr)
+            tower->getPhysicalAttack()->update(deltaTime);
     }
 }
 

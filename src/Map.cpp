@@ -59,9 +59,10 @@ void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &mon
     if (_map[y][x] == WALL)
     {
         _map[y][x] = TOWER;
+
         towers.push_back(new BasicTower(y * TILE_SIZE, (x * TILE_SIZE) - TILE_SIZE, 10, 10, 5, 5.0, nullptr, nullptr, monsters));
         towers.back()->setPosition(y * TILE_SIZE, (x * TILE_SIZE) - 71 + TILE_SIZE);
-        //towers.back()->setProportionalSize(70, 70);
+
         //std::cout << "place tower :" << towers.size() << std::endl;
         _towers -= 1;
     }
@@ -86,6 +87,12 @@ std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos) con
     ret.push_back(std::pair<int, int>(1, 5));
     ret.push_back(std::pair<int, int>(1, 4));
     ret.push_back(std::pair<int, int>(1, 5));
+    ret.push_back(std::pair<int, int>(2, 5));
+    ret.push_back(std::pair<int, int>(3, 5));
+    ret.push_back(std::pair<int, int>(4, 5));
+    ret.push_back(std::pair<int, int>(4, 6));
+    ret.push_back(std::pair<int, int>(4, 7));
+    ret.push_back(std::pair<int, int>(4, 8));
 
     return ret;
 }

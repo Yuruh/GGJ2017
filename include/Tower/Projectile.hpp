@@ -19,6 +19,8 @@ public:
     void setHit(int);
     void setMonster(Monster*);
     void update(float &deltaTime);
+    void draw(sf::RenderTarget &target, sf::RenderStates) const;
+    void resetPos(float _x, float _y);
 
 private:
     int _range;

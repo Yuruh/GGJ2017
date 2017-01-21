@@ -64,7 +64,7 @@ void Display::drawMap()
         {
             if (_map->getMap()[y][x] == WALL)
             {
-                _map->setPositionWall(y * tileSize, x * tileSize);
+                _map->setPositionWall((float)y * tileSize, (float)x * tileSize);
                 _window->draw(_map->getWall());
             }
             if (_map->getMap()[y][x] == ROAD ||
@@ -72,12 +72,12 @@ void Display::drawMap()
                     _map->getMap()[y][x] == BORDER_CASTLE ||
                     _map->getMap()[y][x] == TOWER)
             {
-                _map->setPositionGround(y * tileSize, x * tileSize);
+                _map->setPositionGround((float)y * tileSize, (float)x * tileSize);
                 _window->draw(_map->getGround());
             }
             if (_map->getMap()[y][x] == BLOCK)
             {
-                _map->setPositionBlock(y * tileSize, x * tileSize);
+                _map->setPositionBlock((float)y * tileSize, (float)x * tileSize);
                 _window->draw(_map->getBlock());
             }
     }
@@ -100,8 +100,9 @@ void Display::drawMonsters()
 }
 
 void Display::drawTowers() {
-    //std::cout << "Tower size: " << _towers.size() << std::endl;
     for (auto & tower : _towers) {
         _window->draw(*tower);
+        if (tower->getPhysicalAttack() != nullptr)
+            _window->draw(*tower->getPhysicalAttack());
     }
 }

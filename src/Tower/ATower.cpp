@@ -7,7 +7,7 @@
 #include "ATower.hpp"
 
 ATower::ATower(float x, float y, unsigned int hp, int mp, int range, float atkSpeed, MagickAttack * magic, Projectile * projectile, std::list<Monster*>& monsters) :
-            _hp(10), _mp(10), _range(1), _atkSpeed(3),
+            _hp(10), _mp(10), _range(3), _atkSpeed(1),
             ActiveElement(hp, atkSpeed), _magic(magic), _attack(projectile), _monsters(monsters)
 {
     _x = x;
@@ -107,14 +107,11 @@ void ATower::update(float &deltaTime)
 
     this->_timeSinceAtk += deltaTime;
     if (_target == nullptr)
-    {
-        nearestMonster(_monsters);  //TO DO METTRE LE VECTOR DE MONSTRE
-    }
-    if (_target != nullptr && canAttack() == true && hadRunAway() == false)
+        nearestMonster(_monsters);
+    if (_target != nullptr && canAttack() == true /*&& hadRunAway() == false*/)
     {
         if (_target != nullptr)
             this->attack(*_target);
-
     }
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
@@ -124,14 +121,10 @@ void ATower::draw(sf::RenderTarget &target, sf::RenderStates) const
     target.draw(this->sprites[0]);
 }
 
-int ATower::nearestMonster(std::list<Monster*>& monsters) //int a changé par la cla
+int ATower::nearestMonster(std::list<Monster*>& monsters)
 {
-    int nb;
-    int count;
-    float dist;
-
-    count = 0;
-    nb = -1;
+    int nb = -1;
+    int count = 0;
     _dist = 0.0;
 
     for (auto & monster : monsters)
@@ -140,7 +133,7 @@ int ATower::nearestMonster(std::list<Monster*>& monsters) //int a changé par la
         if (isInCircle(monster->getPosition(), _dist) == true) {
             nb = count;
             _target = monster;
-            std::cout << "CATCHING POS MONSTER " << _target->getPosition().x << " | " << _target->getPosition().y << "POS TOUR " << _x << " | " << _y << std::endl;
+            //std::cout << "CATCHING POS MONSTER " << _target->getPosition().x << " | " << _target->getPosition().y << "POS TOUR " << _x << " | " << _y << std::endl;
         }
     }
     return (nb);
@@ -150,7 +143,6 @@ bool ATower::hadRunAway()
 {
     float dist;
 
-
     dist = sqrtf(powf(_target->getPosition().x - _x, 2) + powf(_target->getPosition().y - _y, 2));
     if (dist > _range) {
         _target = nullptr;
@@ -158,6 +150,7 @@ bool ATower::hadRunAway()
     }
     return false;
 }
+
 bool ATower::isInCircle(const sf::Vector2f& _pos, float prev_dist) {
     float dist;
 
@@ -178,18 +171,18 @@ bool ATower::isInCircle(const sf::Vector2f& _pos, float prev_dist) {
 
 void ATower::attack(ActiveElement &target)
 {
+    //std::cout << "ATTACK" << std::endl;
     this->_timeSinceAtk = 0;
-    if (_target != nullptr) {
+    if (_attack != nullptr) {
+        //std::cout << "reset pos" << std::endl;
         _attack->setPosition(this->_x, this->_y);
+        _attack->resetPos(this->_x, this->_y);
         return;
     }
     else
     {
+        //std::cout << "new attack" << std::endl;
         _attack = new Projectile(this->getPosition().x, this->getPosition().y, 0, 5, _target);
         _attack->setPosition(this->_x, this->_y);
-        //set reduc hp
     }
-        //Core::getInstance().addProjectile(5, 0, _target);
-    //CORE ADD PROJECTILE
-    // lancer projectile sur la pos du target
 }
