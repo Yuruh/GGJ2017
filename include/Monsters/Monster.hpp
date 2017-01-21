@@ -27,6 +27,9 @@ protected:
     float           _t;
     unsigned int    _counter;
 
+    std::pair<unsigned , unsigned > pos;
+    std::pair<float , float > dir;
+
     void draw(sf::RenderTarget &, sf::RenderStates) const;
 };
 
