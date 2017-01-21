@@ -8,8 +8,10 @@ TextureManager  TextureManager::_instance = TextureManager();
 
 TextureManager::TextureManager()
 {
-    this->addTexture("resources/assets/wall11.png", TextureManager::WALL);
-    this->addTexture("resources/assets/ground11.png", TextureManager::GROUND);
+    this->addTexture("resources/assets/wall.png", TextureManager::WALL);
+    this->addTexture("resources/assets/wallToPlace.png", TextureManager::WALLTOPLACE);
+
+    this->addTexture("resources/assets/ground.png", TextureManager::GROUND);
 
 }
 

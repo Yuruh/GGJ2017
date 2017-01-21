@@ -11,7 +11,7 @@
 class TextureManager {
 public:
     enum TextureType {
-        WALL, GROUND
+        WALL, WALLTOPLACE, GROUND
     };
 
     static TextureManager &Instance();
