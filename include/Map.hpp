@@ -41,7 +41,7 @@ public:
     inline void setPositionTower(float y, float x) { _tower.setPosition(y, x); };
     inline void setType(int y, int x, typeMap type) { _map[y][x] = type; };
 
-    std::list<std::pair<int, int> > getPath(const std::pair<int, int> &pos) const;
+    std::list<std::pair<int, int> > getPath(const std::pair<int, int> &pos);
 
 
 private:
@@ -56,6 +56,8 @@ private:
 public:
 
     void set_block(const SfmlSpriteHandler &_block);
+
+    void launchAlgo(Tile *tile);
 };
 
 #endif //GGJ2017_MAP_H

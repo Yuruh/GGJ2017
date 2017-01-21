@@ -23,6 +23,10 @@ public:
 //    en fait il faut stocker une liste de direction
     bool    hasDirection() const { return (this->dir.first != 0 || this->dir.second != 0); }
 
+    void setPosition(float, float);
+
+    std::pair<int, int> getPos() const;
+
 protected:
     unsigned int    _atkValue;
     float           _moveSpeed;
@@ -39,6 +43,7 @@ protected:
     std::pair<int, int > dir;
 
     void draw(sf::RenderTarget &, sf::RenderStates) const;
+
 };
 
 
