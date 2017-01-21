@@ -71,6 +71,11 @@ void Display::drawMap()
                 _map->setPositionGround(j * tileSize, i * tileSize);
                 _window->draw(_map->getGround());
             }
+            if (_map->getMap()[j][i] == BLOCK)
+            {
+                _map->setPositionBlock(j * tileSize, i * tileSize);
+                _window->draw(_map->getBlock());
+            }
     }
 }
 

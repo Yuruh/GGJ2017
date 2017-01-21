@@ -28,6 +28,8 @@ set(SOURCE_FILES
         src/Display/SfmlSpriteHandler.cpp
         src/Display/Clickable.cpp
         src/Display/Button.cpp
+
+        include
         )
 add_executable(GGJ2017 ${SOURCE_FILES})
 
