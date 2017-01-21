@@ -6,6 +6,7 @@
 #define GGJ2017_AMONSTER_HPP
 
 #include "ActiveElement.hpp"
+#include <list>
 
 class Monster : public ActiveElement
 {
@@ -19,6 +20,8 @@ public:
     unsigned int    &getAtkValue();
     void            setAtkValue(unsigned&);
     void    attack(ActiveElement&);
+//    en fait il faut stocker une liste de direction
+    bool    hasDirection() const { return (this->dir.first != 0 || this->dir.second != 0); }
 
 protected:
     unsigned int    _atkValue;
@@ -27,8 +30,13 @@ protected:
     float           _t;
     unsigned int    _counter;
 
-    std::pair<unsigned , unsigned > pos;
-    std::pair<float , float > dir;
+    std::pair<int, int> currentPos;
+    std::list<std::pair<int, int> > nextPositions;
+public:
+    void setNextPositions(const std::list<std::pair<int, int>> &nextPositions);
+
+protected:
+    std::pair<int, int > dir;
 
     void draw(sf::RenderTarget &, sf::RenderStates) const;
 };
