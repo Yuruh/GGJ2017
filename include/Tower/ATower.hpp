@@ -21,7 +21,9 @@ class Core;
 class ATower : public ActiveElement
 {
 public:
-    ATower(float, float, unsigned int, int, int, float, MagickAttack *, Projectile *, std::list<Monster*> &);
+    ATower(float, float, unsigned int, int, int, float,
+           MagickAttack *, Projectile *,
+           std::list<Monster*> &, std::list<Projectile*> &);
     ~ATower();
 
     bool canAttack();
@@ -57,17 +59,23 @@ protected:
     void                draw(sf::RenderTarget &, sf::RenderStates) const;
 
 private:
-    int _mp;
-    int _range;
+    float   _x;
+    float   _y;
+    int     _hp;
+    int     _mp;
+    int     _atkSpeed;
+    
+    int     _range;
+
     MagickAttack    *_magic;
-    Projectile *_attack;
-    Monster    *_target;
-    std::list<Monster*>& _monsters;
+    Projectile      *_attack;
+    Monster         *_target;
+
+    std::list<Monster*>&    _monsters;
+    std::list<Projectile*>& _projectiles;
+
     time_t timer;
-    int _hp;
-    int _atkSpeed;
-    float _x;
-    float _y;
+
     float _dist;
 };
 #endif //GGJ2017_ITOWER_H

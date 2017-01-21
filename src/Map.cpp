@@ -5,6 +5,7 @@
 #include    "Map.hpp"
 #include    "BasicTower.hpp"
 #include    "Monsters/Monster.hpp"
+#include    "Projectile.hpp"
 #include    "Display/TextureManager.hpp"
 
 #include    <iostream>
@@ -51,23 +52,35 @@ void        Map::initWorld()
     setPositionCastle(((MAP_SIZE - 2) / 2) * TILE_SIZE, ((MAP_SIZE - 2) / 2) * TILE_SIZE);
 }
 
-void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters)
+void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters,
+                            std::list<Projectile*> &projs)
 {
     int y = rand() % MAP_SIZE;
     int x = rand() % MAP_SIZE;
 
     if (_map[y][x] == WALL)
     {
+        // Create new tower in map
         _map[y][x] = TOWER;
-        towers.push_back(new BasicTower((y - 0.5f) * TILE_SIZE, (x - 1.3f) * TILE_SIZE, 10, 10, 5, 5.0, nullptr, nullptr, monsters));
-        towers.back()->setPosition((y - 0.5f) * TILE_SIZE, (x - 1.3f) * TILE_SIZE);
-        towers.back()->setProportionalSize(70, 70);
-        //std::cout << "place tower :" << towers.size() << std::endl;
+
+        // instantiate new tower
+        auto new_tower = new BasicTower((y - 0.5f) * TILE_SIZE, (x - 1.3f) * TILE_SIZE, 10, 10, 5, 5.0,
+            nullptr, nullptr,
+            monsters, projs);
+
+        // Set tile postition and proportions
+        new_tower->setPosition((y - 0.5f) * TILE_SIZE, (x - 1.3f) * TILE_SIZE);
+        new_tower->setProportionalSize(70, 70);
+
+        // Push new tower in towers list
+        towers.push_back(new_tower);
+
+        // Decrease total tower number
         _towers -= 1;
     }
 
     if (_towers > 0)
-        placeTower(towers, monsters);
+        placeTower(towers, monsters, projs);
 }
 
 std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos) const

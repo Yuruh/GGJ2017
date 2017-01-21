@@ -51,6 +51,7 @@ void Display::draw()
     drawMap();
     drawMonsters();
     drawTowers();
+    drawProjs();
     drawButtons();
     this->_window->display();
 }
@@ -104,5 +105,11 @@ void Display::drawTowers() {
         _window->draw(*tower);
         if (tower->getPhysicalAttack() != nullptr)
             _window->draw(*tower->getPhysicalAttack());
+    }
+}
+
+void Display::drawProjs() {
+    for (auto & proj : _projectiles) {
+        _window->draw(*proj);
     }
 }

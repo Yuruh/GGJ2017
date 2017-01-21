@@ -18,8 +18,9 @@ class Button;
 class GameEngine
 {
 public:
-    GameEngine(std::list<Button*> &b, std::list<Monster*> &m, std::list<ATower*> &t, std::list<Wall*> &w) :
-        _map(nullptr), _buttons{ b }, _monsters{ m }, _towers{ t }, _blocks { w } {}
+    GameEngine(std::list<Button*> &b, std::list<Monster*> &m, std::list<ATower*> &t,
+        std::list<Wall*> &w, std::list<Projectile*> &p) :
+        _map(nullptr), _buttons{ b }, _monsters{ m }, _towers{ t }, _blocks{ w }, _projectiles{ p } {}
 
     void init(Map *map);
     void update(float deltaTime);
@@ -29,14 +30,21 @@ public:
     void handleEvent(std::pair<int, int> &event);
 
 private:
+    void updateBlock(float deltaTime);
+    void updateMonster(float deltaTime);
+    void updateProjs(float deltaTime);
+    void updateTower(float deltaTime);
+
     bool    _isLaunched;
 
     Map     *_map;
     Monster *testPathfinding;
-    std::list<Button*>  &_buttons;
-    std::list<Monster*>  &_monsters;
-    std::list<Wall*>  &_blocks;
-    std::list<ATower*>  &_towers;
+
+    std::list<Button*>      &_buttons;
+    std::list<Monster*>     &_monsters;
+    std::list<Wall*>        &_blocks;
+    std::list<ATower*>      &_towers;
+    std::list<Projectile*>  &_projectiles;
 };
 
 
