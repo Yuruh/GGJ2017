@@ -8,8 +8,8 @@
 #include <ctime>
 #include <cstring>
 #include <iostream>
-#include "Projectile.h"
-#include "MagickAttack.h"
+#include "Projectile.hpp"
+#include "MagickAttack.hpp"
 
 class ATower
 {

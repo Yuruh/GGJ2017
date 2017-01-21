@@ -2,7 +2,7 @@
 // Created by thomas on 21/01/17.
 //
 
-#include <MagickAttack.h>
+#include <MagickAttack.hpp>
 
 MagickAttack::MagickAttack(int range, int hit) {
     _range = range;

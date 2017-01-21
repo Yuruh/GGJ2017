@@ -3,7 +3,7 @@
 //
 
 
-#include "ATower.h"
+#include "ATower.hpp"
 
 ATower::ATower(int pv, int mp, double time_attack, int range, int speed, MagickAttack * magic, Projectile * projectile) : _magic(magic), _attack(projectile)
 {

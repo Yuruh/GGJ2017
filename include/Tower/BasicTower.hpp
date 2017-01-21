@@ -5,7 +5,7 @@
 #ifndef GGJ2017_BASICTOWER_H
 #define GGJ2017_BASICTOWER_H
 
-#include "ATower.h"
+#include "ATower.hpp"
 #include <iostream>
 
 class BasicTower : public  ATower

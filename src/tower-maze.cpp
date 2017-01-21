@@ -1,7 +1,7 @@
 #include <iostream>
-#include <BasicTower.h>
+#include <BasicTower.hpp>
 #include <zconf.h>
-#include "ATower.h"
+#include "ATower.hpp"
 #include "../include/GameEngine.hpp"
 #include "../include/Core.hpp"
 

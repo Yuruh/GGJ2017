@@ -2,7 +2,7 @@
 // Created by thomas on 21/01/17.
 //
 
-#include "Projectile.h"
+#include "Projectile.hpp"
 
 Projectile::Projectile(int range, int hit) {
     _range = range;
