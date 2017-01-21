@@ -88,8 +88,8 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
                   event.first << " " << event.second << std::endl;
 
         // Manage Wall spawn
-        if (event.first > 0 && event.first < MAP_SIZE * TILE_SIZE &&
-            event.second > 0 && event.second < MAP_SIZE * TILE_SIZE)
+        if (event.first > 0 && event.first < MAP_Y * TILE_SIZE &&
+            event.second > 0 && event.second < MAP_X * TILE_SIZE)
         {
             while (event.first % TILE_SIZE != 0)
                 event.first -= 1;

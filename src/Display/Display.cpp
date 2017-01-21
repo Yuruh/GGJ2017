@@ -33,7 +33,7 @@ std::pair<int, int> Display::getEvent()
 
 void Display::run()
 {
-    this->_window = new sf::RenderWindow(sf::VideoMode(MAP_SIZE * TILE_SIZE, 1000), "TOWER MAZE");
+    this->_window = new sf::RenderWindow(sf::VideoMode(MAP_Y * TILE_SIZE, 1000), "TOWER MAZE");
 }
 
 void Display::init(Map *map) // Will get everything from Core
@@ -59,14 +59,14 @@ void Display::draw()
 void Display::drawMap()
 {
     // The idea
-    for (int y = 0; y < MAP_SIZE; y += 1)
-        for (int x = 0; x < MAP_SIZE; x += 1)
+    for (int y = 0; y < MAP_Y; y += 1)
+        for (int x = 0; x < MAP_X; x += 1)
         {
             _map->setPositionGround((float) y * TILE_SIZE, (float) x * TILE_SIZE);
             _window->draw(_map->getGround());
         }
-    for (int y = 0; y < MAP_SIZE; y += 1)
-        for (int x = 0; x < MAP_SIZE; x += 1)
+    for (int y = 0; y < MAP_Y; y += 1)
+        for (int x = 0; x < MAP_X; x += 1)
         {
             if (_map->getMap()[y][x] == WALL)
             {

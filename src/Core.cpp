@@ -44,7 +44,7 @@ void Core::init()
 
     Button  *_launchNextWave = new Button(TextureManager::get(TextureManager::BUTTON),
                                           L"\tLaunch next Wave.\n\t\tI'M READY !",
-                                          sf::Vector2f((MAP_SIZE * TILE_SIZE / 2) - (478 / 2) + 1.5, 850));
+                                          sf::Vector2f((MAP_Y * TILE_SIZE / 2) - (478 / 2) + 1.5, 850));
     _buttons.push_back(_launchNextWave);
 
     Monster *soldier = new Soldier();

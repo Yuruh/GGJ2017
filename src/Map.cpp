@@ -19,7 +19,7 @@ Map::Map() : _wall(TextureManager::get(TextureManager::WALL)),
              _castle(TextureManager::get(TextureManager::CASTLE)),
              _tower(TextureManager::get(TextureManager::TOWER))
 {
-    _towers = MAP_SIZE;
+    _towers = MAP_Y;
 
     this->initWorld();
 }
@@ -31,8 +31,8 @@ Map::~Map()
 void        Map::initWorld()
 {
     // Build wall
-    for (int y = 0; y < MAP_SIZE; y += 1)
-        for (int x = 0; x < MAP_SIZE; x += 1)
+    for (int y = 0; y < MAP_Y; y += 1)
+        for (int x = 0; x < MAP_X; x += 1)
         {
             if (y % 2 == 0 && x % 2 == 0)
                 _map[y][x] = WALL;
@@ -44,14 +44,14 @@ void        Map::initWorld()
             _map[y][x].x = x;
 
         }
-    for (int y = 0; y < MAP_SIZE; y += 1)
-        for (int x = 0; x < MAP_SIZE; x += 1)
+    for (int y = 0; y < MAP_Y; y += 1)
+        for (int x = 0; x < MAP_X; x += 1)
         {
-            if (x < MAP_SIZE - 1)// && _map[y][x + 1] == ROAD)
+            if (x < MAP_X - 1)// && _map[y][x + 1] == ROAD)
                 _map[y][x].links.push_back(&_map[y][x + 1]);
             if (x > 0)// && _map[y][x - 1] == ROAD)
                 _map[y][x].links.push_back(&_map[y][x - 1]);
-            if (y < MAP_SIZE - 1)// && _map[y + 1][x] == ROAD)
+            if (y < MAP_Y - 1)// && _map[y + 1][x] == ROAD)
                 _map[y][x].links.push_back(&_map[y + 1][x]);
             if (y > 0)// && _map[y - 1][x] == ROAD)
                 _map[y][x].links.push_back(&_map[y - 1][x]);
@@ -59,26 +59,26 @@ void        Map::initWorld()
 
 
     // Build castle
-    _map[(MAP_SIZE - 2) / 2][(MAP_SIZE - 2) / 2] = CASTLE;
-    _map[(MAP_SIZE - 2) / 2][(MAP_SIZE - 1) / 2] = BORDER_CASTLE;
-    _map[(MAP_SIZE - 2) / 2][(MAP_SIZE + 1) / 2] = BORDER_CASTLE;
+    _map[(MAP_Y - 2) / 2][(MAP_X - 2) / 2] = CASTLE;
+    _map[(MAP_Y - 2) / 2][(MAP_X - 1) / 2] = BORDER_CASTLE;
+    _map[(MAP_Y - 2) / 2][(MAP_X + 1) / 2] = BORDER_CASTLE;
 
-    _map[(MAP_SIZE - 1) / 2][(MAP_SIZE - 2) / 2] = BORDER_CASTLE;
-    _map[(MAP_SIZE - 1) / 2][(MAP_SIZE - 1) / 2] = BORDER_CASTLE;
-    _map[(MAP_SIZE - 1) / 2][(MAP_SIZE + 1) / 2] = BORDER_CASTLE;
+    _map[(MAP_Y - 1) / 2][(MAP_X - 2) / 2] = BORDER_CASTLE;
+    _map[(MAP_Y - 1) / 2][(MAP_X - 1) / 2] = BORDER_CASTLE;
+    _map[(MAP_Y - 1) / 2][(MAP_X + 1) / 2] = BORDER_CASTLE;
 
-    _map[(MAP_SIZE + 1) / 2][(MAP_SIZE - 2) / 2] = BORDER_CASTLE;
-    _map[(MAP_SIZE + 1) / 2][(MAP_SIZE - 1) / 2] = BORDER_CASTLE;
-    _map[(MAP_SIZE + 1) / 2][(MAP_SIZE + 1) / 2] = BORDER_CASTLE;
+    _map[(MAP_Y + 1) / 2][(MAP_X - 2) / 2] = BORDER_CASTLE;
+    _map[(MAP_Y + 1) / 2][(MAP_X - 1) / 2] = BORDER_CASTLE;
+    _map[(MAP_Y + 1) / 2][(MAP_X + 1) / 2] = BORDER_CASTLE;
 
-    setPositionCastle(((MAP_SIZE - 2) / 2) * TILE_SIZE, ((MAP_SIZE - 2) / 2) * TILE_SIZE);
+    setPositionCastle(((MAP_Y - 2) / 2) * TILE_SIZE, ((MAP_X - 2) / 2) * TILE_SIZE);
 }
 
 void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters,
                             std::list<Projectile*> &projs)
 {
-    int y = rand() % MAP_SIZE;
-    int x = rand() % MAP_SIZE;
+    int y = rand() % MAP_Y;
+    int x = rand() % MAP_X;
 
     if (_map[y][x] == WALL)
     {
@@ -126,7 +126,7 @@ std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos)
     std::vector <Tile*>   dist;
     this->launchAlgo(current, dist);
 
-    auto prev = _map[(MAP_SIZE - 2) / 2][(MAP_SIZE - 2) / 2].prev;
+    auto prev = _map[(MAP_Y - 2) / 2][(MAP_X - 2) / 2].prev;
 
     while (prev != nullptr)
     {

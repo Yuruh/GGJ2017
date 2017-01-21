@@ -10,7 +10,8 @@
 #include    "Display/SfmlSpriteHandler.hpp"
 #include "Tile.hpp"
 
-# define    MAP_SIZE    21
+# define    MAP_Y       21
+# define    MAP_X       21
 # define    TILE_SIZE   40
 
 
@@ -27,7 +28,7 @@ public:
     void    placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters,
                        std::list<Projectile*> &projs);
 
-    inline const std::array<std::array<Tile, MAP_SIZE>, MAP_SIZE> &getMap() const { return _map; };
+    inline const std::array<std::array<Tile, MAP_X>, MAP_Y> &getMap() const { return _map; };
     inline const SfmlSpriteHandler &getGround() const { return _ground; };
     inline const SfmlSpriteHandler &getWall() const { return _wall; };
     inline const SfmlSpriteHandler &getBlock() const { return _block;};
@@ -45,7 +46,7 @@ public:
 
 
 private:
-    std::array<std::array<Tile, MAP_SIZE>, MAP_SIZE>     _map;
+    std::array<std::array<Tile, MAP_X>, MAP_Y>     _map;
     int     _towers;
     SfmlSpriteHandler _wall;
     SfmlSpriteHandler _ground;
