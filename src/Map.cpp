@@ -5,6 +5,7 @@
 #include    "Map.hpp"
 #include    "BasicTower.hpp"
 #include    "Monsters/Monster.hpp"
+#include    "Projectile.hpp"
 #include    "Display/TextureManager.hpp"
 
 #include    <iostream>
@@ -15,7 +16,8 @@
 Map::Map() : _wall(TextureManager::get(TextureManager::WALL)),
              _ground(TextureManager::get(TextureManager::GROUND)),
              _block(TextureManager::get(TextureManager::BLOCK)),
-             _castle(TextureManager::get(TextureManager::CASTLE))
+             _castle(TextureManager::get(TextureManager::CASTLE)),
+             _tower(TextureManager::get(TextureManager::TOWER))
 {
     _towers = MAP_SIZE;
 
@@ -72,23 +74,35 @@ void        Map::initWorld()
     setPositionCastle(((MAP_SIZE - 2) / 2) * TILE_SIZE, ((MAP_SIZE - 2) / 2) * TILE_SIZE);
 }
 
-void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters)
+void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &monsters,
+                            std::list<Projectile*> &projs)
 {
     int y = rand() % MAP_SIZE;
     int x = rand() % MAP_SIZE;
 
     if (_map[y][x] == WALL)
     {
+        // Create new tower in map
         _map[y][x] = TOWER;
-        towers.push_back(new BasicTower((y - 0.5) * TILE_SIZE, (x - 1.3) * TILE_SIZE, 10, 10, 5, 5.0, nullptr, nullptr, monsters));
-        towers.back()->setPosition((y - 0.5) * TILE_SIZE, (x - 1.3) * TILE_SIZE);
-        towers.back()->setProportionalSize(70, 70);
-        //std::cout << "place tower :" << towers.size() << std::endl;
+
+        // instantiate new tower
+        auto new_tower = new BasicTower((y - 0.5f) * TILE_SIZE, (x - 1.3f) * TILE_SIZE, 10, 10, 5, 5.0,
+            nullptr, nullptr,
+            monsters, projs);
+
+        // Set tile postition and proportions
+        new_tower->setPosition((y - 0.5f) * TILE_SIZE, (x - 1.3f) * TILE_SIZE);
+        new_tower->setProportionalSize(70, 70);
+
+        // Push new tower in towers list
+        towers.push_back(new_tower);
+
+        // Decrease total tower number
         _towers -= 1;
     }
 
     if (_towers > 0)
-        placeTower(towers, monsters);
+        placeTower(towers, monsters, projs);
 }
 
 //todo opti ?
@@ -96,30 +110,51 @@ std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos)
 {
     std::list<std::pair<int, int> >   ret;
 
-    for (int i = 0; i < this->_map.size(); ++i)
-    {
-        for (int j = 0; j < this->_map[i].size(); ++j)
-        {
-            _map[i][j].dist = -1;
-            _map[i][j].visited = false;
-            _map[i][j].prev = nullptr;
-        }
-    }
-//    std::cout << pos.first << " " << pos.second << std::endl;
-    Tile    *current = &this->_map[pos.first][pos.second];
-    current->dist = 0;
-//    current->visited = true;
-
-    this->launchAlgo(current);
-
-    auto prev = _map[3][3].prev;
-
-    while (prev != nullptr)
-    {
-        std::cout << prev->dist << std::endl;
-        ret.push_front(std::pair<int, int>(prev->x, prev->y));
-        prev = prev->prev;
-    }
+//<<<<<<< HEAD
+//    for (int i = 0; i < this->_map.size(); ++i)
+//    {
+//        for (int j = 0; j < this->_map[i].size(); ++j)
+//        {
+//            _map[i][j].dist = -1;
+//            _map[i][j].visited = false;
+//            _map[i][j].prev = nullptr;
+//        }
+//    }
+////    std::cout << pos.first << " " << pos.second << std::endl;
+//    Tile    *current = &this->_map[pos.first][pos.second];
+//    current->dist = 0;
+////    current->visited = true;
+//
+//    this->launchAlgo(current);
+//
+//    auto prev = _map[3][3].prev;
+//=======
+    ret.push_back(std::pair<int, int>(0, 1));
+    ret.push_back(std::pair<int, int>(0, 2));
+    ret.push_back(std::pair<int, int>(0, 3));
+    ret.push_back(std::pair<int, int>(1, 3));
+    ret.push_back(std::pair<int, int>(2, 3));
+    ret.push_back(std::pair<int, int>(2, 4));
+    ret.push_back(std::pair<int, int>(2, 5));
+    ret.push_back(std::pair<int, int>(3, 5));
+    ret.push_back(std::pair<int, int>(2, 5));
+    ret.push_back(std::pair<int, int>(1, 5));
+    ret.push_back(std::pair<int, int>(1, 4));
+    ret.push_back(std::pair<int, int>(1, 5));
+    ret.push_back(std::pair<int, int>(2, 5));
+    ret.push_back(std::pair<int, int>(3, 5));
+    ret.push_back(std::pair<int, int>(4, 5));
+    ret.push_back(std::pair<int, int>(4, 6));
+    ret.push_back(std::pair<int, int>(4, 7));
+    ret.push_back(std::pair<int, int>(4, 8));
+//>>>>>>> 2d255a1d077bbdf6afaec0290e378034afc17cb5
+//
+//    while (prev != nullptr)
+//    {
+//        std::cout << prev->dist << std::endl;
+//        ret.push_front(std::pair<int, int>(prev->x, prev->y));
+//        prev = prev->prev;
+//    }
 //
 //    ret.push_back(std::pair<int, int>(0, 1));
 
@@ -132,11 +167,11 @@ bool    cmpTile(Tile *a, Tile *b)
     return a->dist < b->dist;
 }
 
-void Map::launchAlgo(Tile *tile,  std::vector<Tile *> &dist)
+void Map::launchAlgo(Tile *tile)
 {
     tile->visited = true;
 
-//    std::vector <Tile*>   dist;
+    std::vector <Tile*>   dist;
 
     std::cout << tile->x << " " << tile->y << ": " << tile->dist << std::endl;
     for (auto it = tile->links.begin(); it != tile->links.end(); ++it)
