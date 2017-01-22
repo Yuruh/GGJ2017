@@ -19,7 +19,7 @@ Map::Map() : _wall(TextureManager::get(TextureManager::WALL)),
              _castle(TextureManager::get(TextureManager::CASTLE)),
              _tower(TextureManager::get(TextureManager::TOWER))
 {
-    _towers = MAP_Y;
+    _towers = MAP_X;
 
     this->initWorld();
 }
