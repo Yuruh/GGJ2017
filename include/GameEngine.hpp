@@ -11,8 +11,10 @@
 #include <Monsters/Monster.hpp>
 #include "Walls/Wall.hpp"
 #include "WaveManager.hpp"
+#include "Sound.hpp"
 #include <Tower/ATower.hpp>
 #include <list>
+#include "Sound.hpp"
 
 class Button;
 
@@ -40,7 +42,7 @@ private:
     WaveManager _waves;
     Map     *_map;
     Monster *testPathfinding;
-
+    Sound   *_sound;
     std::list<Button*>      &_buttons;
     std::list<Monster*>     &_monsters;
     std::list<Wall*>        &_blocks;

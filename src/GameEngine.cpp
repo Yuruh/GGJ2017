@@ -16,6 +16,7 @@ void GameEngine::init(Map * map) // Will get every lists from Core
     _isLaunched = false;
     _waves.init(map);
     this->testPathfinding = new Monster(10, 10, 10, 1);
+    _sound = new Sound();
 }
 
 
@@ -23,6 +24,7 @@ void GameEngine::nextWave()
 {
     if (!_isLaunched) {
         _isLaunched = true;
+        _sound->playSound();
     }
     _map->placeTower(_towers, _monsters, _projectiles);
 }
