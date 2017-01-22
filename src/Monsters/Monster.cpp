@@ -7,6 +7,7 @@
 #include "Monsters/Monster.hpp"
 
 #include <iostream>
+#include <Display/Display.hpp>
 
 Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed) :
     ActiveElement(hp, atkSpeed), _atkValue(atkValue), _moveSpeed(moveSpeed)
@@ -67,10 +68,17 @@ void Monster::update(float &deltaTime)
             this->dir.second = (this->nextPositions.front()->y - this->currentPos.second);
             this->updateCounterOffset();
         }
+        // Else we are arrived
+        else
+        {
+            std::cout << this->currentPos.first << " " << this->currentPos.second << std::endl;
+            if (abs(this->currentPos.first - (MAP_X - 1) / 2) <= 1 && abs(this->currentPos.second - (MAP_Y - 1) / 2))
+                g_monsters++;
+        }
     }
 }
 
-// To fill to detect if there is a rock in our way
+// Check if there is a block in our way
 bool    Monster::hasBlockInPath()
 {
     for (auto &path : nextPositions)

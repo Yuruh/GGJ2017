@@ -8,6 +8,8 @@
 #include <SFML/Window/Event.hpp>
 #include <iostream>
 
+int g_monsters = 0;
+
 bool Display::isActive()
 {
     return this->_window && this->_window->isOpen();
