@@ -12,7 +12,6 @@ Projectile::Projectile(float x, float y, int range, int hit, Monster & monster) 
 {
     sf::Texture const& text = TextureManager::get(TextureManager::PROJECTILE);
     this->addSprites(text, sf::IntRect(0, 0, text.getSize().x, text.getSize().y), 1);
-    this->setProportionalSize(TILE_SIZE, TILE_SIZE);
 
     ASpritesHandler::setPosition(x, y);
 }

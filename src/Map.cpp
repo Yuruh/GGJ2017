@@ -58,12 +58,12 @@ void        Map::initWorld()
 
 
     // Build castle
-    _map[(MAP_Y - 2) / 2][(MAP_X - 2) / 2] = CASTLE;
+    _map[(MAP_Y - 2) / 2][(MAP_X - 2) / 2] = BORDER_CASTLE;
     _map[(MAP_Y - 2) / 2][(MAP_X - 1) / 2] = BORDER_CASTLE;
     _map[(MAP_Y - 2) / 2][(MAP_X + 1) / 2] = BORDER_CASTLE;
 
     _map[(MAP_Y - 1) / 2][(MAP_X - 2) / 2] = BORDER_CASTLE;
-    _map[(MAP_Y - 1) / 2][(MAP_X - 1) / 2] = BORDER_CASTLE;
+    _map[(MAP_Y - 1) / 2][(MAP_X - 1) / 2] = CASTLE;
     _map[(MAP_Y - 1) / 2][(MAP_X + 1) / 2] = BORDER_CASTLE;
 
     _map[(MAP_Y + 1) / 2][(MAP_X - 2) / 2] = BORDER_CASTLE;

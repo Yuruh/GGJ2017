@@ -17,8 +17,8 @@ public:
     void update(float&);
 
     inline float    getTimeSinceCreated() const { return _timeSinceCreated; };
-    inline int      getY() const { return _pos.first; };
-    inline int      getX() const { return _pos.second; };
+    inline int      getY() const { return _pos.second; };
+    inline int      getX() const { return _pos.first; };
 
 private:
     std::pair<int, int> _pos;
