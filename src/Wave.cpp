@@ -4,30 +4,36 @@
 
 #include <Monsters/Soldier.hpp>
 #include <iostream>
+#include <Monsters/FastMob.hpp>
+#include <Monsters/TankMob.hpp>
+#include <Monsters/DpsMob.hpp>
+#include <Monsters/Boss.hpp>
 #include "Wave.hpp"
 
-Wave::Wave(Map *map, waveType type, float startTime, enum side sideToSpawn) : _sideToSpawn(sideToSpawn), _startTime(startTime), _timeSinceLastSpawn(0)
+Wave::Wave(Map *map, waveType type, float startTime, enum side sideToSpawn, unsigned nbrToSpawn) : _sideToSpawn(sideToSpawn), _startTime(startTime), _timeSinceLastSpawn(0)
 {
     (void)map;
-    switch (type)
-    {
-        case BASIC:
-            _monsters.push_back(new Soldier);
-//            _monsters.push_back(new Soldier);
-//            _monsters.push_back(new Soldier);
-//            _monsters.push_back(new Soldier);
-            break;
-        case FAST:
-            break;
-        case TANK:
-            break;
-        case DPS:
-            break;
-        case MAGICIAN:
-            break;
-        case BOSS:
-            break;
-    }
+    for (unsigned i = 0;i < nbrToSpawn;i++)
+        switch (type)
+        {
+            case BASIC:
+                _monsters.push_back(new Soldier);
+                break;
+            case FAST:
+                _monsters.push_back(new FastMob);
+                break;
+            case TANK:
+                _monsters.push_back(new TankMob);
+                break;
+            case DPS:
+                _monsters.push_back(new DpsMob);
+                break;
+            case MAGICIAN:
+                break;
+            case BOSS:
+                _monsters.push_back(new Boss);
+                break;
+        }
 }
 
 Wave::~Wave()
@@ -75,7 +81,7 @@ void Wave::putMonster(Monster *toPlace)
         int randomTile = (random * 2 + 1) % MAP_Y;
         unsigned    x = this->_sideToSpawn == EAST ? MAP_X - 1 : 0;
         //float       offset = this->_sideToSpawn == EAST ?
-        std::cout << "PLACER EN [2] :" << x << "||" << randomTile << std::endl;
+        //std::cout << "PLACER EN [2] :" << x << "||" << randomTile << std::endl;
         toPlace->setPosition(x, randomTile);
     }
 }
