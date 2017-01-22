@@ -74,17 +74,17 @@ void Display::drawMap()
         {
             if (_map->getMap()[y][x] == WALL)
             {
-                _map->setPositionWall((float)y * TILE_SIZE, ((float)x * TILE_SIZE) - 63 + TILE_SIZE);
+                _map->setPositionWall((float)y * TILE_SIZE, ((float)x * TILE_SIZE)/* - 63 + TILE_SIZE*/);
                 _window->draw(_map->getWall());
             }
             if (_map->getMap()[y][x] == BLOCK)
             {
-                _map->setPositionBlock((float)y * TILE_SIZE, (float)x * TILE_SIZE - 51 + TILE_SIZE);
+                _map->setPositionBlock((float)y * TILE_SIZE, (float)x * TILE_SIZE/* - 51 + TILE_SIZE*/);
                 _window->draw(_map->getBlock());
             }
             if (_map->getMap()[y][x] == TOWER)
             {
-                _map->setPositionTower((float)y * TILE_SIZE, ((float)x * TILE_SIZE) - 61 + TILE_SIZE);
+                _map->setPositionTower((float)y * TILE_SIZE, ((float)x * TILE_SIZE)/* - 61 + TILE_SIZE*/);
                 _window->draw(_map->getTower());
             }
             if (_map->getMap()[y][x] == CASTLE)

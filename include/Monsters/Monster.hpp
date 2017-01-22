@@ -30,7 +30,6 @@ public:
 
     const std::pair<int, int> &getPos() const;
 
-    void checkBlockInPath(const std::pair<int, int> &pos);
     bool hasBlockInPath();
     std::pair<int, int> getNextPos() const;
 
@@ -41,6 +40,7 @@ protected:
     float           _refreshRate;
     float           _t;
     unsigned int    _counter;
+    unsigned int    _counterOffset;
 
     // Current Position in Map. [WARNING] NEVER USE _pos!
     std::pair<int, int> currentPos;
@@ -58,6 +58,7 @@ protected:
 
     bool arrived;
 
+    void updateCounterOffset();
 };
 
 
