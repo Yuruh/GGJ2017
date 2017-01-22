@@ -86,8 +86,9 @@ void ATower::update(float &deltaTime)
     {
         if (hadRunAway() == true) {
             nearestMonster(_monsters);
-            this->attack(*_target);
+
         }
+        this->attack(*_target);
     }
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
