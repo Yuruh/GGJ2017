@@ -8,7 +8,7 @@
 #include <iostream>
 
 Projectile::Projectile(float x, float y, int range, int hit, Monster & monster) :
-    _x(x), _y(y), _range(range), _hit(hit), _target(monster), _hp(1), _speed(0.5)
+    _x(x), _y(y), _range(range), _hit(hit), _target(monster), _hp(1), _speed(10)
 {
     sf::Texture const& text = TextureManager::get(TextureManager::PROJECTILE);
     this->addSprites(text, sf::IntRect(0, 0, text.getSize().x, text.getSize().y), 1);
@@ -36,20 +36,16 @@ void Projectile::update(float &deltaTime) {
 
 bool Projectile::checkCollision()
 {
-    if ((int)(_x - 1) == (int)_target.getPosition().x && (int)(_y - 1) == (int)_target.getPosition().y)
-        return true;
-    if ((int)(_x + 1) == (int)_target.getPosition().x && (int)(_y + 1) == (int)_target.getPosition().y)
-        return true;
-    if ((int)(_x - 1) == (int)_target.getPosition().x && (int)_y == (int)_target.getPosition().y)
-        return true;
-    if ((int)(_x + 1) == (int)_target.getPosition().x && (int)_y == (int)_target.getPosition().y)
-        return true;
-    if ((int)(_x) == (int)_target.getPosition().x && (int)(_y - 1) == (int)_target.getPosition().y)
-        return true;
-    if ((int)(_x) == (int)_target.getPosition().x && (int)(_y + 1) == (int)_target.getPosition().y)
+    std::cout << "POS MONSTER " << _target.getPosition().x << " | " << _target.getPosition().y << " POS TPROJ " << this->getPosition().x << " | " << this->getPosition().y << std::endl;
+    if (
+            ((int)(this->getPosition().x - 10) <= (int)_target.getPosition().x && ((int)(this->getPosition().x + 10) >= ((int)_target.getPosition().x)))
+        &&
+            ((int)(this->getPosition().y - 10) <= (int)_target.getPosition().y && ((int)(this->getPosition().y + 10) >= ((int)_target.getPosition().y)))
+            )
         return true;
     return false;
 }
+
 
 void Projectile::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
