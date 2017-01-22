@@ -81,9 +81,10 @@ void ATower::update(float &deltaTime)
         _target = nullptr;
     if (_target != nullptr && canAttack() == true)
     {
-        if (hadRunAway())
+        if (hadRunAway() == true) {
             nearestMonster(_monsters);
-        this->attack(*_target);
+            this->attack(*_target);
+        }
     }
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
@@ -116,8 +117,7 @@ bool ATower::hadRunAway()
     float dist;
 
     dist = sqrtf(powf(_target->getPosition().x - _x, 2) + powf(_target->getPosition().y - _y, 2));
-    if (dist > _range) {
-        //_target = nullptr; // Causing trouble
+    if (dist > _range * TILE_SIZE) {
         return true;
     }
     return false;
@@ -143,5 +143,5 @@ bool ATower::isInCircle(const sf::Vector2f& _pos, float prev_dist) {
 void ATower::attack(ActiveElement &target)
 {
     this->_timeSinceAtk = 0;
-    _projectiles.push_back(new Projectile(_x, _y, 0, 1, *_target));
+    _projectiles.push_back(new Projectile(_x, _y, _range, 1, *_target));
 }

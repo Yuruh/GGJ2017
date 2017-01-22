@@ -29,6 +29,8 @@ public:
 private:
     float   _x;
     float   _y;
+    float   _init_x;
+    float   _init_y;
     int     _range;
     int     _hit;
     int     _hp;
