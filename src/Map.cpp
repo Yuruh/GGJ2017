@@ -105,10 +105,12 @@ void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &mon
 }
 
 //todo opti ?
-std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos)
+std::list<Tile*> Map::getPath(const std::pair<int, int> &pos)
 {
-    std::list<std::pair<int, int> >   ret;
+    // List of future desired nextPositions to reach the castle
+    std::list<Tile*>   nextPositions;
 
+    // Reinit _map
     for (size_t i = 0; i < this->_map.size(); ++i)
     {
         for (size_t j = 0; j < this->_map[i].size(); ++j)
@@ -118,31 +120,28 @@ std::list<std::pair<int, int> > Map::getPath(const std::pair<int, int> &pos)
             _map[i][j].prev = nullptr;
         }
     }
-    Tile    *current = &this->_map[pos.first][pos.second];
+
+    // The tile where we currently are
+    Tile    *current = &this->_map[pos.second][pos.first];
     current->dist = 0;
-    std::vector <Tile*>   dist;
+    std::list <Tile*>   dist;
     this->launchAlgo(current, dist);
 
+    // Get all the desired nextPositions from the castle to our current position
     auto prev = _map[(MAP_Y - 2) / 2][(MAP_X - 2) / 2].prev;
-
     while (prev != nullptr)
     {
         if (prev->x != pos.first || prev->y != pos.second)
-            ret.push_front(std::pair<int, int>(prev->x, prev->y));
+            nextPositions.push_front(&(_map[prev->y][prev->x]));
+
         prev = prev->prev;
     }
 
-    ret.push_back(std::pair<int, int>(0, 1));
-
-    return ret;
+    return nextPositions;
 }
 
-bool    cmpTile(Tile *a, Tile *b)
-{
-    return a->dist < b->dist;
-}
-
-void Map::launchAlgo(Tile *tile, std::vector<Tile*> &dist)
+// Pathfinding algorithm that fill the _map to get the best path
+void Map::launchAlgo(Tile *tile, std::list<Tile*> &dist)
 {
     tile->visited = true;
 
@@ -158,13 +157,13 @@ void Map::launchAlgo(Tile *tile, std::vector<Tile*> &dist)
             dist.push_back(*it);
         }
     }
-    while (!dist.empty() && dist[0]->visited)
+    while (!dist.empty() && dist.front()->visited)
     {
         dist.erase(dist.begin());
     }
     if (!dist.empty())
     {
-        auto instance = dist[0];
+        auto instance = dist.front();
         dist.erase(dist.begin());
         launchAlgo(instance, dist);
     }

@@ -53,11 +53,17 @@ void GameEngine::updateBlock(float deltaTime)
 
 void GameEngine::updateMonster(float deltaTime)
 {
-    for (auto monster = _monsters.begin(); monster != _monsters.end(); ++monster) {
-        // il peut arriver que le mur posé par un joueur casse les direction d'un monstre, auquel cas on recalcule son path
-        if (!(*monster)->hasDirection())
+    for (auto monster = _monsters.begin(); monster != _monsters.end(); ++monster)
+    {
+        // Recalc path if there is a new block that blocks or way
+        // Or if we don't have any direction to go
+        if ((*monster)->hasBlockInPath() || !(*monster)->hasDirection())
             (*monster)->setNextPositions(_map->getPath((*monster)->getPos()));
+
+        // Update
         (*monster)->update(deltaTime);
+
+        // If monster is dead, delete it (Will have to be checjed not by HP but by validation of the Tower)
         if ((*monster)->getHp() <= 0)
         {
             monster = _monsters.erase(monster);
@@ -111,8 +117,6 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
             {
                 _blocks.push_back(new Wall(event.first, event.second));
                 _map->setType(event.first, event.second, BLOCK);
-                for (auto &mob : _monsters)
-                    mob->checkBlockInPath(event);
             }
         }
         return;

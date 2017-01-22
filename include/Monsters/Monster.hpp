@@ -6,6 +6,8 @@
 #define GGJ2017_AMONSTER_HPP
 
 #include "ActiveElement.hpp"
+#include "Tile.hpp"
+
 #include <list>
 
 class Monster : public ActiveElement
@@ -29,6 +31,7 @@ public:
     std::pair<int, int> getPos() const;
 
     void checkBlockInPath(const std::pair<int, int> &pos);
+    bool hasBlockInPath();
 
 protected:
     unsigned int    _atkValue;
@@ -37,11 +40,14 @@ protected:
     float           _t;
     unsigned int    _counter;
 
-
+    // Current Position in Map. [WARNING] NEVER USE _pos!
     std::pair<int, int> currentPos;
-    std::list<std::pair<int, int> > nextPositions;
+
+    // List of all the desired nextPositions to get to the castle
+    std::list<Tile*> nextPositions;
+
 public:
-    void setNextPositions(const std::list<std::pair<int, int>> &nextPositions);
+    void setNextPositions(const std::list<Tile*> &nextPositions);
 
 protected:
     std::pair<int, int > dir;
