@@ -31,7 +31,7 @@ set(SOURCE_FILES
         src/Walls/Wall.cpp
 
         include
-        src/Tile.cpp include/Tile.hpp src/WaveManager.cpp include/WaveManager.hpp src/Wave.cpp include/Wave.hpp src/Monsters/FastMob.cpp include/Monsters/FastMob.hpp src/Monsters/TankMob.cpp include/Monsters/TankMob.hpp src/Monsters/DpsMob.cpp include/Monsters/DpsMob.hpp src/Monsters/Boss.cpp include/Monsters/Boss.hpp)
+        src/Tile.cpp include/Tile.hpp src/WaveManager.cpp include/WaveManager.hpp src/Wave.cpp include/Wave.hpp src/Monsters/FastMob.cpp include/Monsters/FastMob.hpp src/Monsters/TankMob.cpp include/Monsters/TankMob.hpp src/Monsters/DpsMob.cpp include/Monsters/DpsMob.hpp src/Monsters/Boss.cpp include/Monsters/Boss.hpp src/Display/SFMLText.cpp include/Display/SFMLText.hpp)
 add_executable(GGJ2017 ${SOURCE_FILES})
 
 

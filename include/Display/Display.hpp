@@ -8,6 +8,8 @@
 #include "Map.hpp"
 #include "Monsters/Monster.hpp"
 #include "Tower/ATower.hpp"
+#include "SFMLText.hpp"
+#include "TextureManager.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <list>
@@ -19,7 +21,7 @@ class Display
 public:
     Display(std::list<Button*> &b, std::list<Monster*> &m, std::list<ATower*> &t, 
             std::list<Projectile*> &p) :
-        _map(nullptr), _buttons{ b }, _monsters{ m }, _towers{ t }, _projectiles{ p }, _window(nullptr) {}
+        _map(nullptr), _buttons{ b }, _monsters{ m }, _towers{ t }, _projectiles{ p }, _window(nullptr) { }
     ~Display() {
         if (this->_window)
             delete this->_window;
@@ -38,7 +40,7 @@ private:
     void drawButtons();
 
     Map     *_map;
-
+    SFMLText    *_text;
     std::list<Button*>      &_buttons;
     std::list<Monster*>     &_monsters;
     std::list<ATower*>      &_towers;

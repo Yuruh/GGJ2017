@@ -8,7 +8,7 @@
 #include <SFML/Window/Event.hpp>
 #include <iostream>
 
-int g_monsters = 0;
+int g_monsters = 10;
 
 bool Display::isActive()
 {
@@ -40,6 +40,8 @@ void Display::run()
 
 void Display::init(Map *map) // Will get everything from Core
 {
+    _text = new SFMLText(TextureManager::get(TextureManager::BUTTON),
+                         sf::Vector2f((MAP_X * TILE_SIZE / 2) + 300, 900));
     _map = map;
 }
 
@@ -54,6 +56,7 @@ void Display::draw()
     drawTowers();
     drawProjs();
     drawButtons();
+    _window->draw(*_text);
     this->_window->display();
 }
 

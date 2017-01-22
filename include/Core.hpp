@@ -14,6 +14,7 @@
 #include <Tower/Projectile.hpp>
 #include "Walls/Wall.hpp"
 #include <Tower/BasicTower.hpp>
+#include <Display/SFMLText.hpp>
 
 class Core
 {
