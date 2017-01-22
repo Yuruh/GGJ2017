@@ -16,6 +16,8 @@ public:
 
     void setLoose();
 
+    void setWin();
+
 private:
     sf::Font _textFont;
 

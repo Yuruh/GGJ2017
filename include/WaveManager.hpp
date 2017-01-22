@@ -15,6 +15,7 @@ public:
     ~WaveManager();
     void updateWaves(float&);
     void init(Map*);
+    bool isOver() const;
 private:
     std::list<Wave*>    _waves;
     float               _timeSinceBeginning;

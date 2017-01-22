@@ -9,6 +9,7 @@
 #include <iostream>
 #include <SFML/Window/Event.hpp>
 #include <Tower/BasicTower.hpp>
+#include <Display/Display.hpp>
 
 void GameEngine::init(Map * map) // Will get every lists from Core
 {
@@ -32,7 +33,11 @@ void GameEngine::nextWave()
 void GameEngine::update(float deltaTime)
 {
     if (_isLaunched)
+    {
         _waves.updateWaves(deltaTime);
+        if (_waves.isOver() && _monsters.empty())
+            g_monsters = 424242;
+    }
     updateBlock(deltaTime);
     updateMonster(deltaTime);
     updateProjs(deltaTime);

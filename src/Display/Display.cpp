@@ -59,9 +59,11 @@ void Display::draw()
     if (g_monsters > 0)
         drawProjs();
     drawButtons();
-    if (g_monsters > 0)
+    if (g_monsters > 4242)
+        _text->setWin();
+    else if (g_monsters < 4242 && g_monsters > 0)
        _text->update();
-    else
+    else if (g_monsters < 0)
         _text->setLoose();
     _window->draw(*_text);
     this->_window->display();

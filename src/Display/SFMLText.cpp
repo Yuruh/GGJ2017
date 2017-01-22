@@ -31,3 +31,8 @@ void SFMLText::setLoose()
 {
     this->setString("You lost !");
 }
+
+void SFMLText::setWin()
+{
+    this->setString("You won !");
+}

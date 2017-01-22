@@ -13,6 +13,11 @@ WaveManager::~WaveManager()
 
 void WaveManager::updateWaves(float &deltaTime)
 {
+//    if (this->_waves.empty())
+//    {
+//        g_monsters = 424242;
+//        return;
+//    }
     _timeSinceBeginning += deltaTime;
     std::list<Wave *> toDelete;
 
@@ -53,4 +58,9 @@ void WaveManager::init(Map *map)
 
     sideToSpawn = static_cast<enum side>(std::rand() % 4);
     _waves.push_back(new Wave(map, BOSS, 80.0f, sideToSpawn, 2));
+}
+
+bool WaveManager::isOver() const
+{
+    return this->_waves.empty();
 }
