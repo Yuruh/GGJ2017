@@ -51,7 +51,12 @@ void WaveManager::init(Map *map)
     //_waves.push_back(new Wave(map, MAGICIAN, 55.0f, sideToSpawn));
 //
    sideToSpawn = static_cast<enum side>(std::rand() % 4);
-    _waves.push_back(new Wave(map, TANK, 40.0f/*65.0f*/, sideToSpawn, 5));
+    _waves.push_back(new Wave(map, TANK, 40.0f/*65.0f*/, sideToSpawn, 10));
+    sideToSpawn = static_cast<enum side>(std::rand() % 4);
+    _waves.push_back(new Wave(map, FAST, 40.0f, sideToSpawn, 5));
+    sideToSpawn = static_cast<enum side>(std::rand() % 4);
+    _waves.push_back(new Wave(map, DPS, 40.0f, sideToSpawn, 10));
+    //_waves.push_back(new Wave(map, MAGICIAN, 55.0f, sideToSpawn));
 
     sideToSpawn = static_cast<enum side>(std::rand() % 4);
     _waves.push_back(new Wave(map, FAST, 60.0f, sideToSpawn, 10));
