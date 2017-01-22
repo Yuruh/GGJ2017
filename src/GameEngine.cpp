@@ -63,8 +63,8 @@ void GameEngine::updateMonster(float deltaTime)
         // Update
         (*monster)->update(deltaTime);
 
-        // If monster is dead, delete it (Will have to be checked not by HP but by validation of the Tower)
-        if ((*monster)->getHp() <= 0)
+        // Delete monster if he is dead
+        if ((*monster)->isDead)
         {
             monster = _monsters.erase(monster);
             if (monster == _monsters.end())

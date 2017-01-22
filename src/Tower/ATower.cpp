@@ -77,8 +77,11 @@ void ATower::update(float &deltaTime)
     this->_timeSinceAtk += deltaTime;
     if (_target == nullptr)
         nearestMonster(_monsters);
-    if (_target != nullptr && _target->getHp() <= 0) // Need to notify GameEngine that target died
+    if (_target != nullptr && _target->getHp() <= 0)
+    {
+        _target->isDead = true;
         _target = nullptr;
+    }
     if (_target != nullptr && canAttack() == true)
     {
         if (hadRunAway() == true) {
@@ -118,6 +121,7 @@ bool ATower::hadRunAway()
 
     dist = sqrtf(powf(_target->getPosition().x - _x, 2) + powf(_target->getPosition().y - _y, 2));
     if (dist > _range * TILE_SIZE) {
+        // Should be where we reset _target in a beautiful world
         return true;
     }
     return false;

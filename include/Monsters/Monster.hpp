@@ -33,6 +33,9 @@ public:
     bool hasBlockInPath();
     std::pair<int, int> getNextPos() const;
 
+public:
+    bool isDead;
+
 
 protected:
     unsigned int    _atkValue;
@@ -55,8 +58,6 @@ protected:
     std::pair<int, int > dir;
 
     void draw(sf::RenderTarget &, sf::RenderStates) const;
-
-    bool arrived;
 
     void updateCounterOffset();
 };

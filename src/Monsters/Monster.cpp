@@ -8,7 +8,8 @@
 
 #include <iostream>
 
-Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed) : ActiveElement(hp, atkSpeed), _atkValue(atkValue), _moveSpeed(moveSpeed)
+Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed) :
+    ActiveElement(hp, atkSpeed), _atkValue(atkValue), _moveSpeed(moveSpeed)
 {
     _t = 0;
     _counter = 0;
@@ -16,7 +17,7 @@ Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed
     currentPos.first = 0;
     currentPos.second = 0;
     dir = std::make_pair<int, int>( 0, 0 );
-    arrived = false;
+    isDead = false;
 }
 
 Monster::~Monster()
@@ -66,9 +67,6 @@ void Monster::update(float &deltaTime)
             this->dir.second = (this->nextPositions.front()->y - this->currentPos.second);
             this->updateCounterOffset();
         }
-            // Else we are arrived
-        else
-            arrived = true;
     }
 }
 
