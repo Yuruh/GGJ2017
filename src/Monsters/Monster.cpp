@@ -7,6 +7,7 @@
 #include "Monsters/Monster.hpp"
 
 #include <iostream>
+#include <Display/Display.hpp>
 
 Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed) : ActiveElement(hp, atkSpeed), _atkValue(atkValue), _moveSpeed(moveSpeed)
 {
@@ -68,7 +69,14 @@ void Monster::update(float &deltaTime)
         }
             // Else we are arrived
         else
-            arrived = true;
+        {
+            std::cout << this->currentPos.first << " " << this->currentPos.second << std::endl;
+            if (abs(this->currentPos.first - (MAP_X - 1) / 2) <= 1 && abs(this->currentPos.second - (MAP_Y - 1) / 2))
+            {
+                g_monsters++;
+                arrived = true;
+            }
+        }
     }
 }
 

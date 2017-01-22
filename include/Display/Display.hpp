@@ -52,5 +52,6 @@ private:
     void drawProjs();
 };
 
+extern int g_monsters;
 
 #endif //GGJ2017_DISPLAY_HPP
