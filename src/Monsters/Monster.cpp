@@ -74,7 +74,7 @@ void Monster::update(float &deltaTime)
             if (abs(this->currentPos.first - (MAP_X - 1) / 2) <= 1 && abs(this->currentPos.second - (MAP_Y - 1) / 2))
             {
                 isDead = true;
-                g_monsters++;
+                g_monsters--;
             }
         }
     }

@@ -26,3 +26,8 @@ void SFMLText::update()
         lastLife = g_monsters;
     }
 }
+
+void SFMLText::setLoose()
+{
+    this->setString("You lost !");
+}

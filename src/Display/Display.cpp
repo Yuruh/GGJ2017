@@ -51,12 +51,18 @@ void Display::draw()
 
     // Draw entities
     drawGround();
-    drawMonsters();
+    if (g_monsters > 0)
+        drawMonsters();
     drawMap();
-    drawTowers();
-    drawProjs();
+    if (g_monsters > 0)
+        drawTowers();
+    if (g_monsters > 0)
+        drawProjs();
     drawButtons();
-    _text->update();
+    if (g_monsters > 0)
+       _text->update();
+    else
+        _text->setLoose();
     _window->draw(*_text);
     this->_window->display();
 }
@@ -81,18 +87,22 @@ void Display::drawMap()
                 _map->setPositionWall((float)y * TILE_SIZE - 23, ((float)x * TILE_SIZE));
                 _window->draw(_map->getWall());
             }
-            if (_map->getMap()[y][x] == BLOCK)
+            if (g_monsters > 0)
             {
-                _map->setPositionBlock((float)y * TILE_SIZE - 11, (float)x * TILE_SIZE);
-                _window->draw(_map->getBlock());
+                if (_map->getMap()[y][x] == BLOCK)
+                {
+                    _map->setPositionBlock((float) y * TILE_SIZE - 11, (float) x * TILE_SIZE);
+                    _window->draw(_map->getBlock());
+                }
+
+                if (_map->getMap()[y][x] == TOWER)
+                {
+                    _map->setPositionTower((float) y * TILE_SIZE - 21, ((float) x * TILE_SIZE));
+                    _window->draw(_map->getTower());
+                }
+                if (_map->getMap()[y][x] == CASTLE)
+                    _window->draw(_map->getCastle());
             }
-            if (_map->getMap()[y][x] == TOWER)
-            {
-                _map->setPositionTower((float)y * TILE_SIZE - 21, ((float)x * TILE_SIZE));
-                _window->draw(_map->getTower());
-            }
-            if (_map->getMap()[y][x] == CASTLE)
-                _window->draw(_map->getCastle());
         }
 }
 

@@ -40,13 +40,16 @@ private:
     void drawButtons();
 
     Map     *_map;
-    SFMLText    *_text;
+
     std::list<Button*>      &_buttons;
     std::list<Monster*>     &_monsters;
     std::list<ATower*>      &_towers;
     std::list<Projectile*>  &_projectiles;
 
     sf::RenderWindow    *_window;
+
+    SFMLText    *_text;
+    SFMLText    *_win;
 
     void drawGround();
     void drawMonsters();

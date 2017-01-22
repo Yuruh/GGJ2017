@@ -13,8 +13,12 @@ public:
     SFMLText(sf::Texture const &texture, sf::Vector2f position);
     ~SFMLText() {};
     void update();
+
+    void setLoose();
+
 private:
     sf::Font _textFont;
+
 };
 
 

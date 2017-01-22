@@ -7,7 +7,7 @@
 
 #include "PassiveElement.hpp"
 
-#define WALL_DURATION   5.0
+#define WALL_DURATION   4.2
 
 class Wall : public PassiveElement
 {

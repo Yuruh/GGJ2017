@@ -134,7 +134,6 @@ std::list<Tile*> Map::getPath(const std::pair<int, int> &pos)
             nextPositions.push_front(&(_map[prev->y][prev->x]));
         prev = prev->prev;
     }
-
     return nextPositions;
 }
 
