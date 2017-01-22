@@ -73,7 +73,10 @@ void Monster::update(float &deltaTime)
         {
             std::cout << this->currentPos.first << " " << this->currentPos.second << std::endl;
             if (abs(this->currentPos.first - (MAP_X - 1) / 2) <= 1 && abs(this->currentPos.second - (MAP_Y - 1) / 2))
+            {
+                isDead = true;
                 g_monsters++;
+            }
         }
     }
 }
