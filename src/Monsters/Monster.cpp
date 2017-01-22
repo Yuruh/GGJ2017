@@ -25,8 +25,8 @@ Monster::~Monster()
 
 void Monster::update(float &deltaTime)
 {
-    if (arrived)
-        return;
+//    if (arrived)
+//        return;
     _t += deltaTime;
     if (this->_t > this->_refreshRate)
     {
@@ -66,7 +66,7 @@ void Monster::update(float &deltaTime)
             this->dir.second = (this->nextPositions.front()->y - this->currentPos.second);
             this->updateCounterOffset();
         }
-        // Else we are arrived
+            // Else we are arrived
         else
             arrived = true;
     }
@@ -77,8 +77,14 @@ bool    Monster::hasBlockInPath()
 {
     for (auto &path : nextPositions)
     {
-       if (path->type == BLOCK)
-           return true;
+        if (path->type == BLOCK)
+        {
+//            todo : ça fix le bug de l'offset qui se reset pas mais ça fait se tp le joueur
+//            this->setPosition(this->nextPositions.front()->x, this->nextPositions.front()->y);
+            this->dir.first = 0;
+            this->dir.second = 0;
+            return true;
+        }
     }
     return false;
 }
@@ -148,11 +154,9 @@ void Monster::updateCounterOffset()
 
 void Monster::setNextPositions(const std::list<Tile*> &nextPositions)
 {
-//    std::cout << "JE SET LES PROCHAINES POSITIONS" << std::endl;
     this->nextPositions = nextPositions;
     if (this->nextPositions.size() > 0)
     {
-        // Set direction between our currentPos and our desired nextPosition
         this->dir.first = this->nextPositions.front()->x - currentPos.first;
         this->dir.second = this->nextPositions.front()->y - currentPos.second;
         this->updateCounterOffset();

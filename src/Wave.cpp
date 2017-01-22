@@ -13,9 +13,9 @@ Wave::Wave(Map *map, waveType type, float startTime, enum side sideToSpawn) : _s
     {
         case BASIC:
             _monsters.push_back(new Soldier);
-//            _monsters.push_back(new Soldier);
-//            _monsters.push_back(new Soldier);
-//            _monsters.push_back(new Soldier);
+            _monsters.push_back(new Soldier);
+            _monsters.push_back(new Soldier);
+            _monsters.push_back(new Soldier);
             break;
         case FAST:
             break;
@@ -32,8 +32,6 @@ Wave::Wave(Map *map, waveType type, float startTime, enum side sideToSpawn) : _s
 
 Wave::~Wave()
 {}
-
-
 
 Monster* Wave::spawnNextMonster(float &deltaTime)
 {

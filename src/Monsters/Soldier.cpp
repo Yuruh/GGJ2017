@@ -6,7 +6,7 @@
 #include <Map.hpp>
 #include "Monsters/Soldier.hpp"
 
-Soldier::Soldier() : Monster(100, 15, 1.0f, 2)
+Soldier::Soldier() : Monster(100, 15, 1.0f, 1)
 {
     sf::Texture const& text = TextureManager::get(TextureManager::ACTORS);
     this->addSprites(text, sf::IntRect(0, 0, text.getSize().x / 4, text.getSize().y / 8), 3);

@@ -15,7 +15,7 @@ BasicTower::BasicTower(float x, float y, unsigned hp, int mp, int range, float a
 {
     sf::Texture const& text = TextureManager::get(TextureManager::TOWER);
     this->addSprites(text, sf::IntRect(0, 0, text.getSize().x, text.getSize().y), 1);
-
+    this->setProportionalSize(TILE_SIZE / 2, TILE_SIZE / 2);
     setPosition(x, y);
 }
 
