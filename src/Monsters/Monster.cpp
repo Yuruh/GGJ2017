@@ -7,6 +7,7 @@
 #include "Monsters/Monster.hpp"
 
 #include <iostream>
+#include <zconf.h>
 
 Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed) : ActiveElement(hp, atkSpeed), _atkValue(atkValue), _moveSpeed(moveSpeed)
 {
@@ -91,8 +92,15 @@ bool    Monster::hasBlockInPath()
 {
     for (auto &path : nextPositions)
     {
-        ;
+//        std::cout << *path << std::endl;
+       if (path->type == BLOCK)
+       {
+//           std::cout << "salut" << std::endl;
+           return true;
+       }
     }
+//    std::cout << std::endl;
+//    usleep(500000);
     return false;
 }
 
@@ -125,10 +133,18 @@ void Monster::draw(sf::RenderTarget &target, sf::RenderStates) const
         target.draw(this->sprites[this->_counter]);
 }
 
-std::pair<int, int> Monster::getPos() const
+const std::pair<int, int> &Monster::getPos() const
 {
     return this->currentPos;
 }
+
+std::pair<int, int> Monster::getNextPos() const
+{
+    if (!this->nextPositions.empty())
+        return std::pair<int, int>(this->nextPositions.front()->x, this->nextPositions.front()->y);
+    else
+        return std::pair<int, int>(-1, -1);
+};
 
 void Monster::setPosition(float x, float y)
 {
@@ -141,12 +157,13 @@ void Monster::setPosition(float x, float y)
 
 void Monster::setNextPositions(const std::list<Tile*> &nextPositions)
 {
+//    std::cout << "JE SET LES PROCHAINES POSITIONS" << std::endl;
     this->nextPositions = nextPositions;
     if (this->nextPositions.size() > 0)
     {
         // Set direction between our currentPos and our desired nextPosition
-        this->dir.first = (int) (this->nextPositions.front()->x - currentPos.first);
-        this->dir.second = (int) (this->nextPositions.front()->y - currentPos.second);
+        this->dir.first = this->nextPositions.front()->x - currentPos.first;
+        this->dir.second = this->nextPositions.front()->y - currentPos.second;
     }
 }
 

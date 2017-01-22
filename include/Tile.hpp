@@ -8,6 +8,7 @@
 
 #include <cstdlib>
 #include <list>
+#include <iostream>
 
 enum    typeMap {
     ROAD = 0,
@@ -34,6 +35,8 @@ public:
     int     x;
     int     y;
 };
+
+std::ostream& operator<<(std::ostream &os, const Tile&);
 
 
 #endif //GGJ2017_TILE_HPP

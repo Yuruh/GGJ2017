@@ -33,8 +33,10 @@ void WaveManager::init(Map *map)
     enum side sideToSpawn = static_cast<enum side>(std::rand() % 4);
     _waves.push_back(new Wave(map, BASIC, 0.0f, sideToSpawn));
 
-    sideToSpawn = static_cast<enum side>(std::rand() % 4);
-    _waves.push_back(new Wave(map, BASIC, 5.0f, sideToSpawn));
+//    sideToSpawn = static_cast<enum side>(std::rand() % 4);
+//    _waves.push_back(new Wave(map, BASIC, 5.0f, sideToSpawn));
+
+
 //
 //    sideToSpawn = static_cast<enum side>(std::rand() % 4);
 //    _waves.push_back(new Wave(map, FAST, 40.0f, sideToSpawn));

@@ -28,10 +28,12 @@ public:
 
     void setPosition(float, float);
 
-    std::pair<int, int> getPos() const;
+    const std::pair<int, int> &getPos() const;
 
     void checkBlockInPath(const std::pair<int, int> &pos);
     bool hasBlockInPath();
+    std::pair<int, int> getNextPos() const;
+
 
 protected:
     unsigned int    _atkValue;

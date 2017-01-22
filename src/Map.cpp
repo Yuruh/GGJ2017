@@ -104,7 +104,6 @@ void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &mon
         placeTower(towers, monsters, projs);
 }
 
-//todo opti ?
 std::list<Tile*> Map::getPath(const std::pair<int, int> &pos)
 {
     // List of future desired nextPositions to reach the castle
@@ -133,7 +132,6 @@ std::list<Tile*> Map::getPath(const std::pair<int, int> &pos)
     {
         if (prev->x != pos.first || prev->y != pos.second)
             nextPositions.push_front(&(_map[prev->y][prev->x]));
-
         prev = prev->prev;
     }
 

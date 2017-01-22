@@ -14,3 +14,9 @@ Tile &Tile::operator=(typeMap type)
     this->type = type;
     return *this;
 }
+
+std::ostream& operator<<(std::ostream &os, const Tile& tile)
+{
+    os << "Tile x = " << tile.x << " y = " << tile.y << " type = " << tile.type << " addr = " << &tile;
+    return os;
+}

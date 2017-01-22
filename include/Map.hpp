@@ -58,8 +58,6 @@ public:
 
     void set_block(const SfmlSpriteHandler &_block);
 
-    void launchAlgo(Tile *tile);
-
     void launchAlgo(Tile *tile, std::list<Tile *> &dist);
 };
 
