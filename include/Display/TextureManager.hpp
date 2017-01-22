@@ -11,7 +11,7 @@
 class TextureManager {
 public:
     enum TextureType {
-        WALL, BLOCK, GROUND, BUTTON, CASTLE, ACTORS, TOWER, PROJECTILE
+        WALL, BLOCK, GROUND, BUTTON, CASTLE, ACTORS, TOWER, PROJECTILE, LAVA
     };
 
     static TextureManager &Instance();

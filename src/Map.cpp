@@ -17,7 +17,8 @@ Map::Map() : _wall(TextureManager::get(TextureManager::WALL)),
              _ground(TextureManager::get(TextureManager::GROUND)),
              _block(TextureManager::get(TextureManager::BLOCK)),
              _castle(TextureManager::get(TextureManager::CASTLE)),
-             _tower(TextureManager::get(TextureManager::TOWER))
+             _tower(TextureManager::get(TextureManager::TOWER)),
+             _lava(TextureManager::get(TextureManager::LAVA))
 {
     _towers = MAP_X;
 
