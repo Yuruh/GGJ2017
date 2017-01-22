@@ -35,11 +35,11 @@ public:
     inline const SfmlSpriteHandler &getCastle() const { return _castle;};
     inline const SfmlSpriteHandler &getTower() const { return _tower;};
 
-    inline void setPositionWall(float y, float x) { _wall.setPosition(y, x); };
-    inline void setPositionGround(float y, float x) { _ground.setPosition(y, x); };
-    inline void setPositionBlock(float y, float x) { _block.setPosition(y, x); };
-    inline void setPositionCastle(float y, float x) { _castle.setPosition(y, x); };
-    inline void setPositionTower(float y, float x) { _tower.setPosition(y, x); };
+    inline void setPositionWall(float y, float x) { _wall.setPosition(x, y); };
+    inline void setPositionGround(float y, float x) { _ground.setPosition(x, y); };
+    inline void setPositionBlock(float y, float x) { _block.setPosition(x, y); };
+    inline void setPositionCastle(float y, float x) { _castle.setPosition(x, y); };
+    inline void setPositionTower(float y, float x) { _tower.setPosition(x, y); };
     inline void setType(int y, int x, typeMap type) { _map[y][x] = type; };
 
     std::list<Tile*> getPath(const std::pair<int, int> &pos);

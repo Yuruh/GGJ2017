@@ -7,7 +7,6 @@
 #include "Monsters/Monster.hpp"
 
 #include <iostream>
-#include <zconf.h>
 
 Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed) : ActiveElement(hp, atkSpeed), _atkValue(atkValue), _moveSpeed(moveSpeed)
 {

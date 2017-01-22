@@ -104,8 +104,8 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
     if (_isLaunched)
     {
         // Manage Wall spawn
-        if (event.first > 0 && event.first < MAP_Y * TILE_SIZE &&
-            event.second > 0 && event.second < MAP_X * TILE_SIZE)
+        if (event.second > 0 && event.second < MAP_Y * TILE_SIZE &&
+            event.first > 0 && event.first < MAP_X * TILE_SIZE)
         {
             while (event.first % TILE_SIZE != 0)
                 event.first -= 1;
@@ -113,7 +113,7 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
                 event.second -= 1;
             event.first /= TILE_SIZE;
             event.second /= TILE_SIZE;
-            if (_map->getMap()[event.first][event.second] == ROAD)
+            if (_map->getMap()[event.second][event.first] == ROAD)
             {
                 for (auto &monster : _monsters)
                 {

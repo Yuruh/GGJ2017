@@ -7,8 +7,8 @@
 
 Wall::Wall(int y, int x) : _timeSinceCreated(0.0)
 {
-    _pos.first = y;
-    _pos.second = x;
+    _pos.first = x;
+    _pos.second = y;
 }
 
 Wall::~Wall()
