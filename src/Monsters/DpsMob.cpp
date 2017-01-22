@@ -13,6 +13,6 @@ DpsMob::DpsMob() : Monster(50, 25, 1.0f, 1)
     this->addSprites(text, sf::IntRect(0, text.getSize().y / 8 * 5, text.getSize().x / 4, text.getSize().y / 8), 3);
     this->addSprites(text, sf::IntRect(0, text.getSize().y / 8 * 6, text.getSize().x / 4, text.getSize().y / 8), 3);
     this->addSprites(text, sf::IntRect(0, text.getSize().y / 8 * 7, text.getSize().x / 4, text.getSize().y / 8), 3);
-    this->setProportionalSize(TILE_SIZE / 1.75, TILE_SIZE / 1.75);
+    this->setProportionalSize(TILE_SIZE / 1.6, TILE_SIZE / 1.6);
     this->_refreshRate = 0.1f;
 }
