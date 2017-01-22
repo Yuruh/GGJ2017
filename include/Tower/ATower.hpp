@@ -30,13 +30,13 @@ public:
     int  PhysicialAttack();
     int  MagicalAttack();
 
-    int getMp() const;
-    void setMp(int) ;
+    int     getMp() const;
+    void    setMp(int) ;
 
     void    changeTime();
 
-    int getRange() const;
-    void setRange(int);
+    int     getRange() const;
+    void    setRange(int);
 
     MagickAttack* getMagickAttack() const;
     void                setMagickAttack(MagickAttack const&);

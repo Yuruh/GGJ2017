@@ -37,7 +37,6 @@ bool ATower::canAttack() {
         this->_timeSinceAtk = 0;
         return true;
     }
-    //std::cout << "can't attack" << std::endl;
     return false;
 }
 
@@ -75,14 +74,17 @@ Projectile *ATower::getPhysicalAttack() const {
 
 void ATower::update(float &deltaTime)
 {
-
     this->_timeSinceAtk += deltaTime;
-    if (_target != nullptr && _target->getHp() <= 0)
-        _target = nullptr;
     if (_target == nullptr)
         nearestMonster(_monsters);
-    if (_target != nullptr && canAttack() == true /*&& hadRunAway() == false*/)
+    if (_target != nullptr && _target->getHp() <= 0) // Need to notify GameEngine that target died
+        _target = nullptr;
+    if (_target != nullptr && canAttack() == true)
+    {
+        if (hadRunAway())
+            nearestMonster(_monsters);
         this->attack(*_target);
+    }
     // si je peux attaquer (atkSpeed) et que un mob est dans ma range -> attack
 }
 
@@ -115,7 +117,7 @@ bool ATower::hadRunAway()
 
     dist = sqrtf(powf(_target->getPosition().x - _x, 2) + powf(_target->getPosition().y - _y, 2));
     if (dist > _range) {
-        _target = nullptr;
+        //_target = nullptr; // Causing trouble
         return true;
     }
     return false;
@@ -141,5 +143,5 @@ bool ATower::isInCircle(const sf::Vector2f& _pos, float prev_dist) {
 void ATower::attack(ActiveElement &target)
 {
     this->_timeSinceAtk = 0;
-    _projectiles.push_back(new Projectile(this->getPosition().x, this->getPosition().y, 0, 1, _target));
+    _projectiles.push_back(new Projectile(_x, _y, 0, 1, *_target));
 }

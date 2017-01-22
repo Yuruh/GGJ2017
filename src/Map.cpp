@@ -85,13 +85,13 @@ void        Map::placeTower(std::list<ATower*> &towers, std::list<Monster*> &mon
         _map[y][x] = TOWER;
 
         // instantiate new tower
-        auto new_tower = new BasicTower((y - 0.5f) * TILE_SIZE, (x - 1.3f) * TILE_SIZE, 10, 10, 5, 5.0,
+        auto new_tower = new BasicTower(x * TILE_SIZE, y * TILE_SIZE, 10, 10, 5, 5.0,
             nullptr, nullptr,
             monsters, projs);
 
         // Set tile postition and proportions
-        new_tower->setPosition((y - 0.5f) * TILE_SIZE, (x - 1.3f) * TILE_SIZE);
-        new_tower->setProportionalSize(70, 70);
+        /*new_tower->setPosition((y - 0.5f) * TILE_SIZE, (x - 1.3f) * TILE_SIZE);
+        new_tower->setProportionalSize(70, 70);*/
 
         // Push new tower in towers list
         towers.push_back(new_tower);
