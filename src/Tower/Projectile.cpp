@@ -27,7 +27,6 @@ void Projectile::update(float &deltaTime) {
     ASpritesHandler::move(dirX, dirY);
 
     if (checkCollision() == true) {
-//        std::cout << "Aie!" << std::endl;
         _target.takeDmg((unsigned int) _hit);
         this->_hp = 0;
     }
@@ -36,7 +35,6 @@ void Projectile::update(float &deltaTime) {
 
 bool Projectile::checkCollision()
 {
-//    std::cout << "POS MONSTER " << _target.getPosition().x << " | " << _target.getPosition().y << " POS TPROJ " << this->getPosition().x << " | " << this->getPosition().y << std::endl;
     if (
             ((int)(this->getPosition().x - 10) <= (int)_target.getPosition().x && ((int)(this->getPosition().x + 10) >= ((int)_target.getPosition().x)))
         &&

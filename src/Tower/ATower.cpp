@@ -109,7 +109,6 @@ int ATower::nearestMonster(std::list<Monster*>& monsters)
         if (isInCircle(monster->getPosition(), _dist) == true) {
             nb = count;
             _target = monster;
-            //std::cout << "CATCHING POS MONSTER " << _target->getPosition().x << " | " << _target->getPosition().y << "POS TOUR " << _x << " | " << _y << std::endl;
         }
     }
     return (nb);
@@ -131,7 +130,6 @@ bool ATower::isInCircle(const sf::Vector2f& _pos, float prev_dist) {
     float dist;
 
     dist = sqrtf(powf(_pos.x - _x, 2) + powf(_pos.y - _y, 2));
-    //std::cout << "POS MONSTER " << _pos.x << " | " << _pos.y << "POS TOUR " << _x << " | " << _y << std::endl;
     if (_dist != 0 && dist < prev_dist) {
         _dist = dist;
         return false;

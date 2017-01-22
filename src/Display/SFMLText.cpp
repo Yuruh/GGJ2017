@@ -10,7 +10,6 @@ SFMLText::SFMLText(sf::Texture const &texture, sf::Vector2f position)
 {
     if (!this->_textFont.loadFromFile("resources/police/upheavtt.ttf"))
         throw(std::exception());
-    std::cout << "HELLO"  << std::endl;
     this->setString("Castle's life: " + std::to_string(g_monsters));
     this->setFont(_textFont);
     this->setCharacterSize(35);

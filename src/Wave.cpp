@@ -70,7 +70,6 @@ void Wave::putMonster(Monster *toPlace)
         unsigned    y = this->_sideToSpawn == SOUTH ? MAP_Y - 1 : 0;
         //float       offset = this->_sideToSpawn == SOUTH ? TILE_SIZE / 2 : -TILE_SIZE / 2;
 
-        //std::cout << "PLACER EN :" << randomTile << "||" << y << std::endl;
         toPlace->setPosition(randomTile, y);
     }
     else
@@ -79,7 +78,6 @@ void Wave::putMonster(Monster *toPlace)
         int randomTile = (random * 2 + 1) % MAP_Y;
         unsigned    x = this->_sideToSpawn == EAST ? MAP_X - 1 : 0;
         //float       offset = this->_sideToSpawn == EAST ?
-        //std::cout << "PLACER EN [2] :" << x << "||" << randomTile << std::endl;
         toPlace->setPosition(x, randomTile);
     }
 }

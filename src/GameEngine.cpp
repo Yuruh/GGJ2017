@@ -120,7 +120,6 @@ void GameEngine::handleEvent(std::pair<int, int> &event)
                     if (monster->getNextPos().first == event.first && monster->getNextPos().second == event.second)
                         return;
                 }
-//                std::cout << "je pose une pierre en " << event.first << " " << event.second << " aka " << &(_map->getMap()[event.first][event.second]) << std::endl;
                 _blocks.push_back(new Wall(event.second, event.first));
                 _map->setType(event.second, event.first, BLOCK);
             }
