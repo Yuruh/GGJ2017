@@ -31,26 +31,26 @@ void WaveManager::updateWaves(float &deltaTime)
 void WaveManager::init(Map *map)
 {
     enum side sideToSpawn = static_cast<enum side>(std::rand() % 4);
-    _waves.push_back(new Wave(map, BASIC, 0.0f, sideToSpawn));
+    _waves.push_back(new Wave(map, BASIC, 0.0f, sideToSpawn, 4));
 
     sideToSpawn = static_cast<enum side>(std::rand() % 4);
-    _waves.push_back(new Wave(map, BASIC, 5.0f, sideToSpawn));
+    _waves.push_back(new Wave(map, BASIC, 10.0f, sideToSpawn, 8));
 
 
 //
-//    sideToSpawn = static_cast<enum side>(std::rand() % 4);
-//    _waves.push_back(new Wave(map, FAST, 40.0f, sideToSpawn));
+    sideToSpawn = static_cast<enum side>(std::rand() % 4);
+    _waves.push_back(new Wave(map, FAST, 20.0f, sideToSpawn, 6));
 //
-//    sideToSpawn = static_cast<enum side>(std::rand() % 4);
-//    _waves.push_back(new Wave(map, DPS, 50.0f, sideToSpawn));
-//    _waves.push_back(new Wave(map, MAGICIAN, 55.0f, sideToSpawn));
+    sideToSpawn = static_cast<enum side>(std::rand() % 4);
+    _waves.push_back(new Wave(map, DPS, 30.0f, sideToSpawn, 3));
+    //_waves.push_back(new Wave(map, MAGICIAN, 55.0f, sideToSpawn));
 //
-//    sideToSpawn = static_cast<enum side>(std::rand() % 4);
-//    _waves.push_back(new Wave(map, TANK, 65.0f, sideToSpawn));
-//
-//    sideToSpawn = static_cast<enum side>(std::rand() % 4);
-//    _waves.push_back(new Wave(map, FAST, 75.0f, sideToSpawn));
-//
-//    sideToSpawn = static_cast<enum side>(std::rand() % 4);
-//    _waves.push_back(new Wave(map, BOSS, 100.0f, sideToSpawn));
+   sideToSpawn = static_cast<enum side>(std::rand() % 4);
+    _waves.push_back(new Wave(map, TANK, 40.0f/*65.0f*/, sideToSpawn, 4));
+
+    sideToSpawn = static_cast<enum side>(std::rand() % 4);
+    _waves.push_back(new Wave(map, FAST, 60.0f, sideToSpawn, 4));
+
+    sideToSpawn = static_cast<enum side>(std::rand() % 4);
+    _waves.push_back(new Wave(map, BOSS, 80.0f, sideToSpawn, 2));
 }

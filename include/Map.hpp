@@ -8,10 +8,10 @@
 #include    <array>
 #include    <list>
 #include    "Display/SfmlSpriteHandler.hpp"
-#include "Tile.hpp"
+#include    "Tile.hpp"
 
 # define    MAP_Y       21
-# define    MAP_X       21
+# define    MAP_X       41
 # define    TILE_SIZE   40
 
 

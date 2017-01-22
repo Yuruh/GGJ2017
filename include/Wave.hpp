@@ -8,7 +8,7 @@
 #include <Monsters/Monster.hpp>
 #include "Map.hpp"
 
-#define INTERVAL_SPAWN      0.5f
+#define INTERVAL_SPAWN      1.0f
 
 enum side { WEST, EAST, NORTH, SOUTH };
 
@@ -17,7 +17,7 @@ enum waveType { BASIC, FAST, TANK, DPS, MAGICIAN, BOSS};
 class Wave
 {
 public:
-    Wave(Map *map, waveType type, float startTime, enum side);
+    Wave(Map *map, waveType type, float startTime, enum side, unsigned);
     ~Wave();
     Monster*            spawnNextMonster(float&);
     bool                isSpawnReady();

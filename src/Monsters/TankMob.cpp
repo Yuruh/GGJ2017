@@ -1,12 +1,12 @@
 //
-// Created by wasta-geek on 21/01/17.
+// Created by wasta-geek on 22/01/17.
 //
 
 #include <Display/TextureManager.hpp>
 #include <Map.hpp>
-#include "Monsters/Soldier.hpp"
+#include "Monsters/TankMob.hpp"
 
-Soldier::Soldier() : Monster(100, 15, 1.0f, 1.5f)
+TankMob::TankMob() : Monster(200, 10, 1.0f, 0.5)
 {
     sf::Texture const& text = TextureManager::get(TextureManager::ACTORS);
     this->addSprites(text, sf::IntRect(0, 0, text.getSize().x / 4, text.getSize().y / 8), 3);
@@ -16,6 +16,3 @@ Soldier::Soldier() : Monster(100, 15, 1.0f, 1.5f)
     this->setProportionalSize(TILE_SIZE, TILE_SIZE);
     this->_refreshRate = 0.1f;
 }
-
-Soldier::~Soldier()
-{}
