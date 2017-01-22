@@ -56,6 +56,7 @@ void Display::draw()
     drawTowers();
     drawProjs();
     drawButtons();
+    _text->update();
     _window->draw(*_text);
     this->_window->display();
 }
