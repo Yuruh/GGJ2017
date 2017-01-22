@@ -12,6 +12,7 @@ Monster::Monster(unsigned hp, unsigned atkValue, float atkSpeed, float moveSpeed
 {
     _t = 0;
     _counter = 0;
+    _counterOffset = 0;
     currentPos.first = 0;
     currentPos.second = 0;
     dir = std::make_pair<int, int>( 0, 0 );
@@ -29,7 +30,7 @@ void Monster::update(float &deltaTime)
     _t += deltaTime;
     if (this->_t > this->_refreshRate)
     {
-        if (_counter < this->sprites.size() - 1)
+        if (_counter < 3 - 1)
             _counter++;
         else
             _counter = 0;
@@ -63,26 +64,11 @@ void Monster::update(float &deltaTime)
             // Recalc the new direction to reach our new desired nextPosition
             this->dir.first = (this->nextPositions.front()->x - this->currentPos.first);
             this->dir.second = (this->nextPositions.front()->y - this->currentPos.second);
+            this->updateCounterOffset();
         }
         // Else we are arrived
         else
             arrived = true;
-    }
-}
-
-// Should be useless now
-void    Monster::checkBlockInPath(const std::pair<int, int> &pos)
-{
-    for (auto &path : nextPositions)
-    {
-        if (pos.first == path->x && pos.second == path->y)
-        {
-//            this->dir.first = 0;
-//            this->dir.second = 0;
-            this->nextPositions.clear();
-            this->setPosition((float) this->getPos().first, (float) this->getPos().second);
-            return;
-        }
     }
 }
 
@@ -91,15 +77,9 @@ bool    Monster::hasBlockInPath()
 {
     for (auto &path : nextPositions)
     {
-//        std::cout << *path << std::endl;
        if (path->type == BLOCK)
-       {
-//           std::cout << "salut" << std::endl;
            return true;
-       }
     }
-//    std::cout << std::endl;
-//    usleep(500000);
     return false;
 }
 
@@ -129,7 +109,7 @@ void Monster::attack(ActiveElement &target)
 void Monster::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
     if (this->_counter < this->sprites.size() && this->_counter >= 0)
-        target.draw(this->sprites[this->_counter]);
+        target.draw(this->sprites[this->_counter + _counterOffset]);
 }
 
 const std::pair<int, int> &Monster::getPos() const
@@ -154,6 +134,18 @@ void Monster::setPosition(float x, float y)
     this->currentPos.second = (int) y;
 }
 
+void Monster::updateCounterOffset()
+{
+    if (this->dir.first == 1)
+        this->_counterOffset = 6;
+    if (this->dir.first == -1)
+        this->_counterOffset = 3;
+    if (this->dir.second == 1)
+        this->_counterOffset = 0;
+    if (this->dir.second == -1)
+        this->_counterOffset = 9;
+}
+
 void Monster::setNextPositions(const std::list<Tile*> &nextPositions)
 {
 //    std::cout << "JE SET LES PROCHAINES POSITIONS" << std::endl;
@@ -163,6 +155,7 @@ void Monster::setNextPositions(const std::list<Tile*> &nextPositions)
         // Set direction between our currentPos and our desired nextPosition
         this->dir.first = this->nextPositions.front()->x - currentPos.first;
         this->dir.second = this->nextPositions.front()->y - currentPos.second;
+        this->updateCounterOffset();
     }
 }
 
