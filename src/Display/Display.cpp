@@ -5,9 +5,6 @@
 #include "Display/Display.hpp"
 #include "Display/Button.hpp"
 
-#include <SFML/Window/Event.hpp>
-#include <iostream>
-
 int g_monsters = 10;
 
 bool Display::isActive()
@@ -72,8 +69,14 @@ void Display::drawGround()
     for (int y = 0; y < MAP_Y; y += 1)
         for (int x = 0; x < MAP_X; x += 1)
         {
-            _map->setPositionGround((float) y * TILE_SIZE, (float) x * TILE_SIZE);
-            _window->draw(_map->getGround());
+            if (g_monsters > 0)
+            {
+                _map->setPositionGround((float) y * TILE_SIZE, (float) x * TILE_SIZE);
+                _window->draw(_map->getGround());
+            } else {
+                _map->setPositionLava((float) y * TILE_SIZE, (float) x * TILE_SIZE);
+                _window->draw(_map->getLava());
+            }
         }
 }
 

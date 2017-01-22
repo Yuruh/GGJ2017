@@ -14,6 +14,7 @@ TextureManager::TextureManager()
     this->addTexture("resources/spriteSheets/Actor1.png", TextureManager::ACTORS);
     this->addTexture("resources/assets/cannonball15.png", TextureManager::PROJECTILE);
     this->addTexture("resources/assets/tower.png", TextureManager::TOWER);
+    this->addTexture("resources/assets/lava.png", TextureManager::LAVA);
 }
 
 TextureManager::~TextureManager()
